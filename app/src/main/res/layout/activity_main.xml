@@ -70,6 +70,7 @@
     <ImageButton
             android:layout_width="88dp"
             android:layout_height="61dp" app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+            android:backgroundTint="@android:color/transparent"
             android:id="@+id/imageButton"
             style="@style/Widget.AppCompat.Button.Borderless" android:textAlignment="center" android:scaleX="1.5"
             android:scaleY="1.5" app:layout_constraintBottom_toTopOf="@+id/DSTRB"
