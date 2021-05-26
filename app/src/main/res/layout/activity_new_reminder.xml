@@ -8,12 +8,12 @@
         tools:context=".NewReminder"
         android:background="#101010" android:backgroundTint="#101010">
 
-    <TextView
-            android:text="Pranie"
+    <EditText
+            android:hint="@string/name_your_reminder"
             android:layout_width="400dp"
             android:layout_height="70dp" android:id="@+id/textView"
             android:background="@drawable/rounded_corner"
-            android:textSize="50dp" android:textStyle="bold"
+            android:textSize="25sp" android:textStyle="bold"
             android:textAlignment="center" android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,6 @@
             android:text="Time"
             android:layout_width="350dp"
             android:layout_height="351dp" android:id="@+id/textView4"
-
             android:textColor="#FFFFFF"
             android:textAlignment="viewStart" android:background="#8C8484" android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
