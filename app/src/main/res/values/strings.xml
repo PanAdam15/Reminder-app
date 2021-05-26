@@ -16,5 +16,17 @@
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
+    <string name="pranie">Pranie</string>
+    <string name="time">Time</string>
+    <string name="data">Data</string>
+    <string name="bluetooth">bluetooth</string>
+    <string name="speaker">speaker</string>
 
 </resources>
