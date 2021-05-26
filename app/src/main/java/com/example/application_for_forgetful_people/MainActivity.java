@@ -8,19 +8,32 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button addNewReminderButton;
+    Button settingsButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button addNewReminderButton = (Button) findViewById(R.id.AddNew);
+        addNewReminderButton = (Button) findViewById(R.id.AddNewReminder);
+        settingsButton = (Button) findViewById(R.id.settingsButton);
+
         addNewReminderButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NewReminder.class);
                 startActivity(intent);
-                finish();
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
 
