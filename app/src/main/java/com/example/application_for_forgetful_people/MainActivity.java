@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button addNewReminderButton = (Button) findViewById(R.id.AddNewReminder);
+        Button addNewReminderButton = (Button) findViewById(R.id.AddNew);
         addNewReminderButton.setOnClickListener(new View.OnClickListener(){
 
             @Override

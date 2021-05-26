@@ -21,7 +21,7 @@
     <Button
 
             android:layout_width="57dp"
-            android:layout_height="0dp" android:id="@+id/AddNewReminder"
+            android:layout_height="0dp" android:id="@+id/AddNew"
             android:background="?android:attr/selectableItemBackground"
             app:icon="@android:drawable/ic_input_add" android:backgroundTint="@android:color/transparent"
             android:scaleX="1.5" android:scaleY="1.5"
@@ -78,7 +78,7 @@
             android:scaleY="1.5"
             android:layout_marginTop="38dp"
             app:layout_constraintStart_toEndOf="@+id/button2" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="71dp" app:layout_constraintBottom_toTopOf="@+id/AddNewReminder"
+            android:layout_marginBottom="71dp" app:layout_constraintBottom_toTopOf="@+id/AddNew"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="30dp"
     />
 
