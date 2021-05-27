@@ -23,7 +23,7 @@
     <string name="fri">Fri</string>
     <string name="sat">Sat</string>
     <string name="sun">Sun</string>
-    <string name="pranie">Pranie</string>
+    <string name="name">Activity name</string>
     <string name="time">Time</string>
     <string name="data">Data</string>
     <string name="bluetooth">bluetooth</string>

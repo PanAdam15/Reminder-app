@@ -8,16 +8,17 @@
         tools:context=".NewReminder"
         android:background="#101010" android:backgroundTint="#101010">
 
-    <TextView
-            android:text="@string/pranie"
+    <EditText
+            android:hint="@string/name"
             android:layout_width="380dp"
             android:layout_height="70dp" android:id="@+id/textView"
             android:background="@drawable/rounded_corner"
-            android:textSize="50sp" android:textStyle="bold"
+            android:textSize="20sp" android:textStyle="bold"
             android:textAlignment="center" android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" android:importantForAutofill="no"
+            android:inputType="textShortMessage"/>
     <TextView
             android:text="@string/time"
             android:layout_width="350dp"
