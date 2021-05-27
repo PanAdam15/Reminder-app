@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         addNewReminderButton = (Button) findViewById(R.id.AddNewReminder);
         settingsButton = (Button) findViewById(R.id.settingsButton);
         list = (ListView) findViewById(R.id.listView1);
-        String reminders[] = {"Pranie", "Lalala", "Marmolada"};
+        String reminders[] = {"Pranie", "Woda", "Światło","Żelazko na gazie"};
         ArrayList<String> reminderL = new ArrayList<String>();
         reminderL.addAll(Arrays.asList(reminders));
         adapter = new ArrayAdapter<String>(this,R.layout.activity_listview,reminderL);

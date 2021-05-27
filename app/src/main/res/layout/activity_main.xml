@@ -10,7 +10,7 @@
             android:text="@string/dstrb"
             android:layout_width="176dp"
             android:layout_height="74dp" android:id="@+id/DSTRB"
-            android:autoText="false" android:textSize="50dp"
+            android:autoText="false" android:textSize="50sp"
             android:textStyle="bold" android:textColor="#FFFFFF" android:background="@drawable/rounded_corner"
             android:textColorLink="#A19B9B" android:textAlignment="center" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="35dp" app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,8 @@
             app:layout_constraintStart_toEndOf="@+id/settingsButton" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="580dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="30dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="35dp"/>
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="35dp"
+            android:contentDescription="bt_img"/>
     <TextView
             android:layout_width="300dp"
             android:layout_height="65dp" android:id="@+id/textView2"
@@ -87,6 +88,8 @@
             android:id="@+id/listView1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="270dp"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="270dp" android:dividerHeight="25dp"
+            android:headerDividersEnabled="false" android:footerDividersEnabled="false"
+            android:divider="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

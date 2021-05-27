@@ -28,17 +28,20 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
           android:id="@+id/Row"
           android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:textSize="15sp"
-          android:textAlignment="center"
-          android:background="@drawable/rounded_corner">
+          android:layout_height="65dp"
+          android:textSize="20sp"
+          android:textStyle="bold"
 
-<!--    <Switch-->
-<!--android:layout_width="52dp"-->
-<!--android:layout_height="30dp" android:id="@+id/switch1"-->
-<!--android:verticalScrollbarPosition="right"-->
+          android:background="@drawable/rounded_corner"
+          android:gravity="center"
+>
 
-<!--/>-->
+    <!--    <Switch-->
+    <!--android:layout_width="52dp"-->
+    <!--android:layout_height="30dp" android:id="@+id/switch1"-->
+    <!--android:verticalScrollbarPosition="right"-->
+
+    <!--/>-->
 
 
 </TextView>
