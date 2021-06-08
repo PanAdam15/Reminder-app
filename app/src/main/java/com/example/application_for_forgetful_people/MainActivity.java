@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
-        list = findViewById(R.id.listView1);
+        list = findViewById(R.id.recycler_view1);
         String[] reminders = {"Pranie", "Woda", "Światło","Żelazko na gazie"};
         ArrayList<String> reminderL = new ArrayList<>(Arrays.asList(reminders));
-        adapter = new ArrayAdapter<>(this, R.layout.activity_listview, reminderL);
+        adapter = new ArrayAdapter<>(this, R.layout.activity_row, reminderL);
         list.setAdapter(adapter);
         addNewReminderButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, NewReminder.class);

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="300dp"
+            android:layout_height="65dp" android:id="@+id/textView2"
+            android:background="@drawable/rounded_corner"
+
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <Switch
+            android:layout_width="52dp"
+            android:layout_height="30dp" android:id="@+id/switch1"
+            android:verticalScrollbarPosition="right"
+
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="@+id/textView2"/>
+    <TextView
+            android:text="Pranie"
+            android:layout_width="158dp"
+            android:layout_height="30dp" android:id="@+id/textView3"
+            android:background="#090909" android:textColor="#EFEAEA"
+            android:textAlignment="center"
+
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toEndOf="@+id/switch1"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
