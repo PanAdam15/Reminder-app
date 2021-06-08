@@ -9,9 +9,9 @@
         android:background="#101010" android:backgroundTint="#101010">
 
     <EditText
-            android:hint="@string/name"
+            android:hint="@string/nameOfNewActitity"
             android:layout_width="380dp"
-            android:layout_height="70dp" android:id="@+id/textView"
+            android:layout_height="70dp" android:id="@+id/nameOfNewActivity"
             android:background="@drawable/rounded_corner"
             android:textSize="20sp" android:textStyle="bold"
             android:textAlignment="center" android:textColor="#FFFFFF"

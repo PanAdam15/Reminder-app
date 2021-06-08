@@ -28,5 +28,6 @@
     <string name="data">Data</string>
     <string name="bluetooth">bluetooth</string>
     <string name="speaker">speaker</string>
+    <string name="nameOfNewActitity">Enter name of new activity</string>
 
 </resources>
