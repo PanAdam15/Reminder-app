@@ -32,7 +32,7 @@ public class ReminderViewModel extends AndroidViewModel {
         reminderRepository.insert(reminder);
     }
 
-    public void deleteReminderById(Long id){
-        reminderRepository.deleteReminderById(id);
+    public void deleteReminder(Reminder reminder){
+        reminderRepository.deleteReminder(reminder);
     }
 }

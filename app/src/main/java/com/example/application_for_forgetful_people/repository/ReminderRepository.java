@@ -36,9 +36,9 @@ public class ReminderRepository {
         });
     }
 
-    public void deleteReminderById(Long id){
+    public void deleteReminder(Reminder reminder){
         ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
-            reminderDao.deleteReminderById(id);
+            reminderDao.delete(reminder);
         });
     }
 }
