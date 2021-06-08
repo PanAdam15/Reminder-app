@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view1);
         reminderListAdapter = new ReminderListAdapter(this);
+
+        ItemTouchHelper.Callback callback = new MyItemTouchHelper(reminderListAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        reminderListAdapter.setItemTouchHelper(itemTouchHelper);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         recyclerView.setAdapter(reminderListAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
