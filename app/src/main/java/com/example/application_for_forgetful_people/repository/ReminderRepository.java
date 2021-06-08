@@ -38,7 +38,7 @@ public class ReminderRepository {
 
     public void deleteReminder(Reminder reminder){
         ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
-            reminderDao.delete(reminder);
+            reminderDao.deleteReminder(reminder);
         });
     }
 }

@@ -19,7 +19,7 @@ public interface ReminderDao {
     LiveData<List<Reminder>> getAllReminders();
 
     @Delete
-    void delete(Reminder reminder);
+    void deleteReminder(Reminder reminder);
 
 
 }
