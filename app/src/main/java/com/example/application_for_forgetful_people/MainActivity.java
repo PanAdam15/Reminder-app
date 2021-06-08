@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.entity.Reminder;

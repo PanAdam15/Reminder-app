@@ -35,4 +35,10 @@ public class ReminderRepository {
             reminderDao.insert(reminder);
         });
     }
+
+    public void deleteReminderById(Long id){
+        ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
+            reminderDao.deleteReminderById(id);
+        });
+    }
 }
