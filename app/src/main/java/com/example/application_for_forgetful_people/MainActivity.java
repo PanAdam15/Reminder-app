@@ -6,6 +6,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.application_for_forgetful_people.entity.Reminder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button addNewReminderButton;
     Button settingsButton;
-    ListView list;
-    ArrayAdapter<String> adapter;
+    private ReminderViewModel reminderViewModel;
+    private ReminderListAdapter reminderListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
-        list = findViewById(R.id.recycler_view1);
-        String[] reminders = {"Pranie", "Woda", "Światło","Żelazko na gazie"};
-        ArrayList<String> reminderL = new ArrayList<>(Arrays.asList(reminders));
-        adapter = new ArrayAdapter<>(this, R.layout.activity_row, reminderL);
-        list.setAdapter(adapter);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view1);
+        reminderListAdapter = new ReminderListAdapter(this);
+        recyclerView.setAdapter(reminderListAdapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
+
+        reminderViewModel.insert(new Reminder("test1"));
+        reminderViewModel.insert(new Reminder("test2"));
+        reminderViewModel.insert(new Reminder("test3"));
+
+        reminderViewModel.getAllReminders().observe(this, elements ->{
+            reminderListAdapter.setListOfReminders(elements);
+        });
+
+
         addNewReminderButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, NewReminder.class);
             startActivity(intent);

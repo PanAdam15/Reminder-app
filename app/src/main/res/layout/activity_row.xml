@@ -27,9 +27,8 @@
             app:layout_constraintTop_toTopOf="@+id/textView2"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="@+id/textView2"/>
     <TextView
-            android:text="Pranie"
             android:layout_width="158dp"
-            android:layout_height="30dp" android:id="@+id/textView3"
+            android:layout_height="30dp" android:id="@+id/nameOfReminder"
             android:background="#090909" android:textColor="#EFEAEA"
             android:textAlignment="center"
 
