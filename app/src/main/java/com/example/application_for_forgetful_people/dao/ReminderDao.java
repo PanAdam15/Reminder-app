@@ -21,5 +21,8 @@ public interface ReminderDao {
     @Delete
     void deleteReminder(Reminder reminder);
 
+    @Query("DELETE FROM reminder WHERE id = :id")
+    void deleteReminderById(Long id);
+
 
 }

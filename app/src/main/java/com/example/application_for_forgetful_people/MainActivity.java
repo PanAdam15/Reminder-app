@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
+        reminderListAdapter.setReminderViewModel(reminderViewModel);
+
         reminderViewModel.getAllReminders().observe(this, elements ->{
             reminderListAdapter.setListOfReminders(elements);
         });

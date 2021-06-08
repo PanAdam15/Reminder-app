@@ -18,9 +18,17 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     private List<Reminder> listOfReminders;
     private ItemTouchHelper itemTouchHelper;
 
+    public void setReminderViewModel(ReminderViewModel reminderViewModel) {
+        this.reminderViewModel = reminderViewModel;
+    }
+
+    private ReminderViewModel reminderViewModel;
+    private Reminder mReminder;
+
     public ReminderListAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
         this.listOfReminders = null;
+
     }
 
     @NonNull
@@ -46,6 +54,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     public void onItemSwiped(int position) {
         listOfReminders.remove(position);
         notifyItemRemoved(position);
+        reminderViewModel.deleteReminderById(listOfReminders.get(position).getId()-1);
     }
 
     public void setItemTouchHelper(ItemTouchHelper itemTouchHelper) {
