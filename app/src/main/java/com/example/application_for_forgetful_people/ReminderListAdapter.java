@@ -10,20 +10,20 @@ import com.example.application_for_forgetful_people.entity.Reminder;
 
 import java.util.List;
 
-public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapter.ReminderViewHolder> implements ItemTouchHelperAdapter{
+public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapter.ReminderViewHolder>
+        implements ItemTouchHelperAdapter{
 
     @NonNull
     LayoutInflater layoutInflater;
 
     private List<Reminder> listOfReminders;
     private ItemTouchHelper itemTouchHelper;
+    private ReminderViewModel reminderViewModel;
+    private Reminder mReminder;
 
     public void setReminderViewModel(ReminderViewModel reminderViewModel) {
         this.reminderViewModel = reminderViewModel;
     }
-
-    private ReminderViewModel reminderViewModel;
-    private Reminder mReminder;
 
     public ReminderListAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
@@ -52,9 +52,9 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
 
     @Override
     public void onItemSwiped(int position) {
+        reminderViewModel.deleteReminderById(listOfReminders.get(position).getId());
         listOfReminders.remove(position);
         notifyItemRemoved(position);
-        reminderViewModel.deleteReminderById(listOfReminders.get(position).getId()-1);
     }
 
     public void setItemTouchHelper(ItemTouchHelper itemTouchHelper) {

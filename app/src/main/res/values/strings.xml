@@ -1,33 +1,33 @@
 <resources>
-    <string name="app_name">Application_for_forgetful_people</string>
+    <string name="app_name">App</string>
     <string name="dstrb">DSTRB</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Ustawienia</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="messages_header">Wiadomości</string>
+    <string name="sync_header">Test</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="signature_title">Test1</string>
+    <string name="reply_title">Test2</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="mon">Mon</string>
-    <string name="tue">Tue</string>
-    <string name="wed">Wed</string>
-    <string name="thu">Thu</string>
-    <string name="fri">Fri</string>
-    <string name="sat">Sat</string>
-    <string name="sun">Sun</string>
+    <string name="sync_title">Ustawienia1</string>
+    <string name="attachment_title">Ustawienia2</string>
+    <string name="attachment_summary_on">Ustawienia3</string>
+    <string name="attachment_summary_off">Ustawienia4</string>
+    <string name="mon">Pon</string>
+    <string name="tue">Wt</string>
+    <string name="wed">Śr</string>
+    <string name="thu">Czw</string>
+    <string name="fri">Pt</string>
+    <string name="sat">Sob</string>
+    <string name="sun">Nd</string>
     <string name="name">Activity name</string>
-    <string name="time">Time</string>
+    <string name="time">Czas</string>
     <string name="data">Data</string>
     <string name="bluetooth">bluetooth</string>
     <string name="speaker">speaker</string>
-    <string name="nameOfNewActitity">Enter name of new activity</string>
+    <string name="nameOfNewActitity">Wprowadź nazwę nowej aktywności</string>
 
 </resources>
