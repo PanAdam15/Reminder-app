@@ -2,7 +2,7 @@ package com.example.application_for_forgetful_people.repository;
 
 import android.app.Application;
 import androidx.lifecycle.LiveData;
-import com.example.application_for_forgetful_people.ReminderRoomDatabase;
+import com.example.application_for_forgetful_people.AppRoomDatabase;
 import com.example.application_for_forgetful_people.dao.ReminderDao;
 import com.example.application_for_forgetful_people.entity.Reminder;
 
@@ -14,9 +14,9 @@ public class ReminderRepository {
     private final LiveData<List<Reminder>> listOfReminders;
 
     public ReminderRepository(Application application) {
-        ReminderRoomDatabase reminderRoomDatabase =
-                ReminderRoomDatabase.getDatabase(application);
-        reminderDao = reminderRoomDatabase.reminderDao();
+        AppRoomDatabase appRoomDatabase =
+                AppRoomDatabase.getDatabase(application);
+        reminderDao = appRoomDatabase.reminderDao();
         listOfReminders = reminderDao.getAllReminders();
     }
 
@@ -25,25 +25,25 @@ public class ReminderRepository {
     }
 
     public void deleteAll(){
-        ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
+        AppRoomDatabase.databaseWriteExecutor.execute(() ->{
             reminderDao.deleteAll();
         });
     }
 
     public void insert(Reminder reminder){
-        ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
+        AppRoomDatabase.databaseWriteExecutor.execute(() ->{
             reminderDao.insert(reminder);
         });
     }
 
     public void deleteReminder(Reminder reminder){
-        ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
+        AppRoomDatabase.databaseWriteExecutor.execute(() ->{
             reminderDao.deleteReminder(reminder);
         });
     }
 
     public void deleteReminderById(Long id){
-        ReminderRoomDatabase.databaseWriteExecutor.execute(() ->{
+        AppRoomDatabase.databaseWriteExecutor.execute(() ->{
             reminderDao.deleteReminderById(id);
         });
     }

@@ -7,24 +7,27 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.application_for_forgetful_people.dao.ReminderDao;
+import com.example.application_for_forgetful_people.dao.UserDao;
 import com.example.application_for_forgetful_people.entity.Reminder;
+import com.example.application_for_forgetful_people.entity.User;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Reminder.class}, version = 1, exportSchema = false)
-public abstract class ReminderRoomDatabase extends RoomDatabase {
+@Database(entities = {Reminder.class, User.class}, version = 2, exportSchema = false)
+public abstract class AppRoomDatabase extends RoomDatabase {
 
     public abstract ReminderDao reminderDao();
+    public abstract UserDao userDao();
 
-    private static volatile ReminderRoomDatabase INSTANCE;
+    private static volatile AppRoomDatabase INSTANCE;
 
-    public static ReminderRoomDatabase getDatabase(final Context context){
+    public static AppRoomDatabase getDatabase(final Context context){
         if(INSTANCE == null){
-            synchronized (ReminderRoomDatabase.class){
+            synchronized (AppRoomDatabase.class){
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ReminderRoomDatabase.class,"ReminderDB")
+                            AppRoomDatabase.class,"ReminderDB")
                             .addCallback(sRoomDatabaseCallback)
                             .fallbackToDestructiveMigration()
                             .build();
@@ -45,6 +48,7 @@ public abstract class ReminderRoomDatabase extends RoomDatabase {
 
             databaseWriteExecutor.execute(() -> {
                 ReminderDao dao = INSTANCE.reminderDao();
+                UserDao userDao = INSTANCE.userDao();
 
             });
         }
