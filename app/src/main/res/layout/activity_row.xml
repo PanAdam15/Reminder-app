@@ -22,8 +22,8 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
     <Switch
-            android:layout_width="52dp"
-            android:layout_height="30dp" android:id="@+id/switch1"
+            android:layout_width="65dp"
+            android:layout_height="42dp" android:id="@+id/switch1"
             android:verticalScrollbarPosition="right"
 
             app:layout_constraintTop_toTopOf="@+id/textView2"
