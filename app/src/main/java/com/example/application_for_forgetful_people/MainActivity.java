@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.entity.Reminder;
+import com.tomer.fadingtextview.FadingTextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -62,6 +62,17 @@
             android:outlineAmbientShadowColor="#DCBBBB" android:textAlignment="center"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.518"
             android:layout_marginStart="50dp"/>
+    <com.tomer.fadingtextview.FadingTextView
+            android:layout_width="230dp"
+            android:layout_height="62dp"
+            app:texts="@array/curiosities"
+            app:timeout="10000"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:id="@+id/fading_text"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/AddNewReminder"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view1" app:layout_constraintTop_toBottomOf="@+id/DSTRB"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
