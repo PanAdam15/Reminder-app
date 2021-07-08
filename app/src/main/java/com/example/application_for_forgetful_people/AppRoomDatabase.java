@@ -6,9 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import com.example.application_for_forgetful_people.dao.CuriosityDao;
 import com.example.application_for_forgetful_people.dao.ReminderDao;
 import com.example.application_for_forgetful_people.dao.StatisticsDao;
 import com.example.application_for_forgetful_people.dao.UserDao;
+import com.example.application_for_forgetful_people.entity.Curiosity;
 import com.example.application_for_forgetful_people.entity.Reminder;
 import com.example.application_for_forgetful_people.entity.User;
 import com.example.application_for_forgetful_people.entity.Statistics;
@@ -16,12 +18,13 @@ import com.example.application_for_forgetful_people.entity.Statistics;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Reminder.class, User.class, Statistics.class}, version = 4, exportSchema = false)
+@Database(entities = {Reminder.class, User.class, Statistics.class, Curiosity.class}, version = 5, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
 
     public abstract ReminderDao reminderDao();
     public abstract UserDao userDao();
     public abstract StatisticsDao statisticsDao();
+    public abstract CuriosityDao curiosityDao();
 
     private static volatile AppRoomDatabase INSTANCE;
 
@@ -53,7 +56,7 @@ public abstract class AppRoomDatabase extends RoomDatabase {
                 ReminderDao dao = INSTANCE.reminderDao();
                 UserDao userDao = INSTANCE.userDao();
                 StatisticsDao statisticsDao = INSTANCE.statisticsDao();
-
+                CuriosityDao curiosityDao = INSTANCE.curiosityDao();
             });
         }
     };
