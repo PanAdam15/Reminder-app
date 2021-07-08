@@ -10,9 +10,33 @@
         <item>reply_all</item>
     </string-array>
     <string-array name="curiosities">
-        <item>test1</item>
-        <item>test2</item>
-        <item>test3</item>
-        <item>test4</item>
+        <item>W mózgu jest 100 miliardów neuronów.</item>
+        <item>Naczynia krwionośne obecne w mózgu mają prawie 160 000 kilometrów długości.</item>
+        <item>Mózg w prawie 80% to woda.</item>
+        <item>Twój mózg, kiedy nie śpimy generuje około 25 watów energii.</item>
+        <item>Dopiero około 25 roku życia ludzki mózg osiąga pełną dojrzałość</item>
+        <item>Ludzki mózg waży około 1,5 kg, co stanowi zaledwie 2% masy ciała.</item>
+        <item>Prędkość impulsu nerwowego to ok. 400 km/godz.</item>
+        <item>Człowiek doświadcza około 70 tysięcy myśli dziennie.</item>
+        <item>90% decyzji podejmowanych jest podświadomie.</item>
+        <item>Ilość informacji docierająca do naszego mózgu wynosi około 100 megabajtów na sekundę.</item>
+        <item>Picie alkoholu nie powoduje, że zapomina o rzeczach i wydarzeniach.</item>
+        <item>Kiedy pijesz alkohol, Twój mózg chwilowo traci zdolność tworzenia wspomnień.</item>
+        <item>Około 25% procent cholesterolu człowieka znajduje się w mózgu.</item>
+        <item>Jedna trzecia całego mózgu zajmuje się przetwarzaniem bodźców wzrokowych.</item>
+        <item>Dzięki intensywnemu krążeniu 90 % energii cieplnej na zimnie ucieka przez głowę.</item>
+        <item>Epilepsja to rodzaj „zwarcia”, do którego dochodzi w mózgu.</item>
+        <item>Jedynym stanem w którym mózg jest aktywny prawie w 100% jest stan epilepsji.</item>
+        <item>Jeśli jakiś obszar mózgu jest uszkodzony, inny potrafi przejąć jego funkcje.</item>
+        <item>Muzyka wyzwala aktywność w tej samej części mózgu, która uwalnia dopaminę.</item>
+        <item>To, że wykorzystujemy tylko 10% naszego mózgu to mit.</item>
+        <item>Im bardziej stymulujemy mózg do pracy tym lepiej on działa.</item>
+        <item>Aktywny mózg jest bardziej odporny na starzenie się i Alzheimera.</item>
+        <item>Każda część mózgu ma przypisaną konkretną funkcję.</item>
+        <item>Nasz mózg ma ogromny potencjał i możemy się nauczyć jak efektywniej go używać.</item>
+
+
+
+
     </string-array>
 </resources>
