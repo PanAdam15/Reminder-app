@@ -67,6 +67,7 @@
             android:layout_height="120dp"
             app:texts="@array/curiosities"
             app:timeout="10000"
+            app:shuffle="true"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:gravity="center"
