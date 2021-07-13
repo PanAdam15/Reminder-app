@@ -21,6 +21,8 @@ public class NewReminder extends AppCompatActivity {
     private CheckBox checkBoxFr;
     private CheckBox checkBoxSat;
     private CheckBox checkBoxSun;
+    private Switch switchBluetooth;
+    private Switch switchRing;
     boolean isMon;
     boolean isTue;
     boolean isWen;
@@ -28,6 +30,8 @@ public class NewReminder extends AppCompatActivity {
     boolean isFr;
     boolean isSat;
     boolean isSun;
+    boolean isBt;
+    boolean isRing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +47,15 @@ public class NewReminder extends AppCompatActivity {
         checkBoxFr = findViewById(R.id.checkBoxFriday);
         checkBoxSat = findViewById(R.id.checkBoxSaturday);
         checkBoxSun = findViewById(R.id.checkBoxSunday);
+        switchBluetooth = findViewById(R.id.switchBluetooth);
+        switchRing = findViewById(R.id.switchRing);
 
         addNewReminderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkDays();
+                checkCheckboxesAndSwitches();
                 String nameOfRemidner = nameOfNewReminder.getText().toString();
-                Reminder reminder = new Reminder(nameOfRemidner,isMon,isTue,isWen,isThu,isFr,isSat,isSun);
+                Reminder reminder = new Reminder(nameOfRemidner,isMon,isTue,isWen,isThu,isFr,isSat,isSun,isBt,isRing);
                 reminderViewModel.insert(reminder);
                 Intent intent = new Intent(NewReminder.this,MainActivity.class);
                 startActivityForResult(intent,RESULT_OK);
@@ -57,10 +63,9 @@ public class NewReminder extends AppCompatActivity {
         });
 
 
-
     }
 
-    public void checkDays(){
+    public void checkCheckboxesAndSwitches(){
         isMon = checkBoxMon.isChecked();
         isTue = checkBoxTue.isChecked();
         isWen = checkBoxWen.isChecked();
@@ -68,6 +73,8 @@ public class NewReminder extends AppCompatActivity {
         isFr = checkBoxFr.isChecked();
         isSat = checkBoxSat.isChecked();
         isSun = checkBoxSun.isChecked();
+        isBt = switchBluetooth.isChecked();
+        isRing = switchRing.isChecked();
     }
 
 

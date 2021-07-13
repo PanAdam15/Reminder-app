@@ -36,13 +36,20 @@ public class Reminder {
     @NonNull
     private boolean ifSunday;
 
+    @NonNull
+    private boolean ifBluetooth;
+
+    @NonNull
+    private boolean ifRing;
+
+
     public Reminder(long id, @NonNull String name) {
         this.id = id;
         this.name = name;
     }
 
     @Ignore
-    public Reminder(@NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday) {
+    public Reminder(@NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday, boolean ifBluetooth, boolean ifRing) {
         this.name = name;
         this.ifMonday = ifMonday;
         this.ifTuesday = ifTuesday;
@@ -51,6 +58,8 @@ public class Reminder {
         this.ifFriday = ifFriday;
         this.ifSaturday = ifSaturday;
         this.ifSunday = ifSunday;
+        this.ifBluetooth = ifBluetooth;
+        this.ifRing = ifRing;
     }
 
     @Ignore
@@ -133,5 +142,21 @@ public class Reminder {
 
     public void setIfSunday(boolean ifSunday) {
         this.ifSunday = ifSunday;
+    }
+
+    public boolean isIfBluetooth() {
+        return ifBluetooth;
+    }
+
+    public void setIfBluetooth(boolean ifBluetooth) {
+        this.ifBluetooth = ifBluetooth;
+    }
+
+    public boolean isIfRing() {
+        return ifRing;
+    }
+
+    public void setIfRing(boolean ifRing) {
+        this.ifRing = ifRing;
     }
 }

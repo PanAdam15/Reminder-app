@@ -18,7 +18,7 @@ import com.example.application_for_forgetful_people.entity.Statistics;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Reminder.class, User.class, Statistics.class, Curiosity.class}, version = 6, exportSchema = false)
+@Database(entities = {Reminder.class, User.class, Statistics.class, Curiosity.class}, version = 7, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
 
     public abstract ReminderDao reminderDao();
