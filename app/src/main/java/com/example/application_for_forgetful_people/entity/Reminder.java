@@ -15,9 +15,42 @@ public class Reminder {
     @NonNull
     private String name;
 
+    @NonNull
+    private boolean ifMonday;
+
+    @NonNull
+    private boolean ifTuesday;
+
+    @NonNull
+    private boolean ifWednesday;
+
+    @NonNull
+    private boolean ifThursday;
+
+    @NonNull
+    private boolean ifFriday;
+
+    @NonNull
+    private boolean ifSaturday;
+
+    @NonNull
+    private boolean ifSunday;
+
     public Reminder(long id, @NonNull String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Ignore
+    public Reminder(@NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday) {
+        this.name = name;
+        this.ifMonday = ifMonday;
+        this.ifTuesday = ifTuesday;
+        this.ifWednesday = ifWednesday;
+        this.ifThursday = ifThursday;
+        this.ifFriday = ifFriday;
+        this.ifSaturday = ifSaturday;
+        this.ifSunday = ifSunday;
     }
 
     @Ignore
@@ -44,5 +77,61 @@ public class Reminder {
 
     public void setName(@NonNull String name) {
         this.name = name;
+    }
+
+    public boolean isIfMonday() {
+        return ifMonday;
+    }
+
+    public void setIfMonday(boolean ifMonday) {
+        this.ifMonday = ifMonday;
+    }
+
+    public boolean isIfTuesday() {
+        return ifTuesday;
+    }
+
+    public void setIfTuesday(boolean ifTuesday) {
+        this.ifTuesday = ifTuesday;
+    }
+
+    public boolean isIfWednesday() {
+        return ifWednesday;
+    }
+
+    public void setIfWednesday(boolean ifWednesday) {
+        this.ifWednesday = ifWednesday;
+    }
+
+    public boolean isIfThursday() {
+        return ifThursday;
+    }
+
+    public void setIfThursday(boolean ifThursday) {
+        this.ifThursday = ifThursday;
+    }
+
+    public boolean isIfFriday() {
+        return ifFriday;
+    }
+
+    public void setIfFriday(boolean ifFriday) {
+        this.ifFriday = ifFriday;
+    }
+
+    public boolean isIfSaturday() {
+        return ifSaturday;
+    }
+
+    public void setIfSaturday(boolean ifSaturday) {
+        this.ifSaturday = ifSaturday;
+    }
+
+    public boolean isIfSunday() {
+        return ifSunday;
+    }
+
+    public void setIfSunday(boolean ifSunday) {
+        this.ifSunday = ifSunday;
     }
 }

@@ -58,37 +58,37 @@
     <RadioGroup
             android:layout_width="66dp"
             android:layout_height="176dp"
-            android:id="@+id/days" android:contextClickable="true"
+            android:id="@+id/radioGroupDays" android:contextClickable="true"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/textView4" app:layout_constraintBottom_toTopOf="@+id/AddNew"
             app:layout_constraintTop_toTopOf="@+id/textView4">
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox3" android:text="@string/mon"
+                android:layout_height="25dp" android:id="@+id/checkBoxMonday" android:text="@string/mon"
                 android:textColor="#FFFFFF" android:textSize="12sp"/>
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox8" android:text="@string/tue"
+                android:layout_height="25dp" android:id="@+id/checkBoxTuesday" android:text="@string/tue"
                 android:textSize="12sp" android:textColor="#FFFFFF"/>
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox7" android:text="@string/wed"
+                android:layout_height="25dp" android:id="@+id/checkBoxWednesday" android:text="@string/wed"
                 android:textSize="12sp" android:textColor="#FFFFFF"/>
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox6" android:text="@string/thu"
+                android:layout_height="25dp" android:id="@+id/checkBoxThursday" android:text="@string/thu"
                 android:textSize="12sp" android:textColor="#FFFFFF"/>
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox5" android:text="@string/fri"
+                android:layout_height="25dp" android:id="@+id/checkBoxFriday" android:text="@string/fri"
                 android:textSize="12sp" android:textColor="#FFFFFF"/>
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox4" android:text="@string/sat"
+                android:layout_height="25dp" android:id="@+id/checkBoxSaturday" android:text="@string/sat"
                 android:textSize="12sp" android:textColor="#FFFFFF"/>
         <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="25dp" android:id="@+id/checkBox2" android:text="@string/sun"
+                android:layout_height="25dp" android:id="@+id/checkBoxSunday" android:text="@string/sun"
                 android:textSize="12sp" android:textColor="#FFFFFF"/>
     </RadioGroup>
     <ImageView
