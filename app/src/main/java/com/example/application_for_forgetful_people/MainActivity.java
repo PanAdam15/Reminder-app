@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,0,AlarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
 
-        Toast.makeText(this, "alarm set succsessufltlasdu",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "alarm set successful",Toast.LENGTH_LONG).show();
 
     }
 
