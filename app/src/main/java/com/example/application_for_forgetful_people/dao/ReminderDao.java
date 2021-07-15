@@ -18,6 +18,9 @@ public interface ReminderDao {
     @Query("SELECT * FROM reminder")
     LiveData<List<Reminder>> getAllReminders();
 
+    @Query("SELECT * FROM reminder where isActive = 1")
+    LiveData<List<Reminder>> getRemindersWhoseAreActive();
+
     @Delete
     void deleteReminder(Reminder reminder);
 

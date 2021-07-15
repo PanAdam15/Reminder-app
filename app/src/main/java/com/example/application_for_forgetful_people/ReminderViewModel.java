@@ -13,11 +13,13 @@ public class ReminderViewModel extends AndroidViewModel {
 
     private final ReminderRepository reminderRepository;
     private final LiveData<List<Reminder>> listOfReminders;
+    private final LiveData<List<Reminder>> listOfRemindersWhoseStatusIsActive;
 
     public ReminderViewModel(@NonNull Application application) {
         super(application);
         reminderRepository = new ReminderRepository(application);
         listOfReminders = reminderRepository.getAllReminders();
+        listOfRemindersWhoseStatusIsActive = reminderRepository.getRemindersWhoseStatusIsActive();
     }
 
     LiveData<List<Reminder>> getAllReminders(){
@@ -42,5 +44,9 @@ public class ReminderViewModel extends AndroidViewModel {
 
     public void updateIsActiveStatus(boolean isActive, long id) {
         reminderRepository.updateIsActiveStatus(isActive,id);
+    }
+
+    LiveData<List<Reminder>> getListOfRemindersWhoseStatusIsActive(){
+        return listOfRemindersWhoseStatusIsActive;
     }
 }

@@ -12,12 +12,15 @@ public class ReminderRepository {
 
     private final ReminderDao reminderDao;
     private final LiveData<List<Reminder>> listOfReminders;
+    private final LiveData<List<Reminder>> listOfRemindersWhoseStatusIsActive;
 
     public ReminderRepository(Application application) {
         AppRoomDatabase appRoomDatabase =
                 AppRoomDatabase.getDatabase(application);
         reminderDao = appRoomDatabase.reminderDao();
         listOfReminders = reminderDao.getAllReminders();
+        listOfRemindersWhoseStatusIsActive = reminderDao.getRemindersWhoseAreActive();
+
     }
 
     public LiveData<List<Reminder>> getAllReminders(){
@@ -52,5 +55,9 @@ public class ReminderRepository {
         AppRoomDatabase.databaseWriteExecutor.execute(() ->{
             reminderDao.updateIsActiveStatus(isActive,id);
         });
+    }
+
+    public LiveData<List<Reminder>> getRemindersWhoseStatusIsActive(){
+        return listOfRemindersWhoseStatusIsActive;
     }
 }

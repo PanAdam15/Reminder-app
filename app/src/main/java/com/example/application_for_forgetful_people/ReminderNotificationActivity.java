@@ -27,7 +27,7 @@ public class ReminderNotificationActivity extends AppCompatActivity {
 
         notificationReminderListAdapter.setReminderViewModel(reminderViewModel);
 
-        reminderViewModel.getAllReminders().observe(this, reminders -> {
+        reminderViewModel.getListOfRemindersWhoseStatusIsActive().observe(this, reminders -> {
             notificationReminderListAdapter.setListOfReminders(reminders);
         });
     }
