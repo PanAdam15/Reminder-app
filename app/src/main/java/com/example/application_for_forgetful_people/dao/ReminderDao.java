@@ -24,5 +24,6 @@ public interface ReminderDao {
     @Query("DELETE FROM reminder WHERE id = :id")
     void deleteReminderById(Long id);
 
-
+    @Query("UPDATE reminder set isActive = :isActive where id = :id")
+    void updateIsActiveStatus(boolean isActive, long id);
 }

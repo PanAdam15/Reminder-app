@@ -55,7 +55,7 @@ public class NewReminder extends AppCompatActivity {
             public void onClick(View v) {
                 checkCheckboxesAndSwitches();
                 String nameOfRemidner = nameOfNewReminder.getText().toString();
-                Reminder reminder = new Reminder(nameOfRemidner,isMon,isTue,isWen,isThu,isFr,isSat,isSun,isBt,isRing);
+                Reminder reminder = new Reminder(nameOfRemidner,isMon,isTue,isWen,isThu,isFr,isSat,isSun,isBt,isRing,true);
                 reminderViewModel.insert(reminder);
                 Intent intent = new Intent(NewReminder.this,MainActivity.class);
                 startActivityForResult(intent,RESULT_OK);

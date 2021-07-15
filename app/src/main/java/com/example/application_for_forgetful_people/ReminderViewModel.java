@@ -39,4 +39,8 @@ public class ReminderViewModel extends AndroidViewModel {
     public void deleteReminderById(Long id){
         reminderRepository.deleteReminderById(id);
     }
+
+    public void updateIsActiveStatus(boolean isActive, long id) {
+        reminderRepository.updateIsActiveStatus(isActive,id);
+    }
 }

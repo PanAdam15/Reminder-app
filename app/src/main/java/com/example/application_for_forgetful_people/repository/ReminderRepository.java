@@ -47,4 +47,10 @@ public class ReminderRepository {
             reminderDao.deleteReminderById(id);
         });
     }
+
+    public void updateIsActiveStatus(boolean isActive, long id){
+        AppRoomDatabase.databaseWriteExecutor.execute(() ->{
+            reminderDao.updateIsActiveStatus(isActive,id);
+        });
+    }
 }

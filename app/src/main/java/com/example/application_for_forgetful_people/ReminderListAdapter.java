@@ -2,7 +2,9 @@ package com.example.application_for_forgetful_people;
 
 import android.content.Context;
 import android.view.*;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -43,6 +45,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     @Override
     public void onBindViewHolder(@NonNull ReminderViewHolder holder, int position) {
         holder.nameOfRemidner.setText(listOfReminders.get(position).getName());
+        holder.isActiveSwitch.setChecked(listOfReminders.get(position).isActive());
         if(listOfReminders.get(position).isIfBluetooth()){
                 holder.bluetooth.setVisibility(View.VISIBLE);
         }else{
@@ -77,6 +80,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
         TextView nameOfRemidner;
         ImageView bluetooth, speaker;
         GestureDetector mGestureDetector;
+        Switch isActiveSwitch;
 
         public ReminderViewHolder(View view) {
             super(view);
@@ -86,6 +90,15 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             nameOfRemidner = view.findViewById(R.id.nameOfReminder);
             bluetooth = view.findViewById(R.id.imageBT);
             speaker = view.findViewById(R.id.imageSpeaker);
+
+            isActiveSwitch = view.findViewById(R.id.isActiveSwitch);
+
+            isActiveSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    reminderViewModel.updateIsActiveStatus(isChecked,listOfReminders.get(getAdapterPosition()).getId());
+                }
+            });
         }
 
         @Override
