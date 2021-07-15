@@ -2,6 +2,7 @@ package com.example.application_for_forgetful_people;
 
 import android.content.Context;
 import android.view.*;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -20,6 +21,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     private ItemTouchHelper itemTouchHelper;
     private ReminderViewModel reminderViewModel;
     private Reminder mReminder;
+
 
     public void setReminderViewModel(ReminderViewModel reminderViewModel) {
         this.reminderViewModel = reminderViewModel;
@@ -41,6 +43,14 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     @Override
     public void onBindViewHolder(@NonNull ReminderViewHolder holder, int position) {
         holder.nameOfRemidner.setText(listOfReminders.get(position).getName());
+        if(listOfReminders.get(position).isIfBluetooth()){
+                holder.bluetooth.setVisibility(View.VISIBLE);
+        }else{
+            holder.bluetooth.setVisibility(View.INVISIBLE);}
+        if(listOfReminders.get(position).isIfRing()){
+                holder.speaker.setVisibility(View.VISIBLE);
+        }else{
+            holder.speaker.setVisibility(View.INVISIBLE);}
     }
 
     @Override
@@ -65,6 +75,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
                 View.OnClickListener,
                 GestureDetector.OnGestureListener {
         TextView nameOfRemidner;
+        ImageView bluetooth, speaker;
         GestureDetector mGestureDetector;
 
         public ReminderViewHolder(View view) {
@@ -73,6 +84,8 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             mGestureDetector = new GestureDetector(view.getContext(),this);
 
             nameOfRemidner = view.findViewById(R.id.nameOfReminder);
+            bluetooth = view.findViewById(R.id.imageBT);
+            speaker = view.findViewById(R.id.imageSpeaker);
         }
 
         @Override

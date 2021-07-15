@@ -84,6 +84,7 @@ public class Reminder {
         return name;
     }
 
+
     public void setName(@NonNull String name) {
         this.name = name;
     }

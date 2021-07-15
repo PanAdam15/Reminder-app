@@ -36,6 +36,24 @@
 
             app:layout_constraintTop_toTopOf="@+id/textView2"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/switch1"/>
+            app:layout_constraintStart_toEndOf="@+id/switch1" android:layout_marginEnd="20dp"/>
+
+    <ImageView
+            android:layout_width="18dp"
+            android:layout_height="21dp" app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+            android:id="@+id/imageBT"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toEndOf="@+id/nameOfReminder" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameOfReminder"
+            app:layout_constraintBottom_toTopOf="@+id/imageSpeaker"
+            android:layout_marginBottom="10dp"/>
+    <ImageView
+            android:layout_width="18dp"
+            android:layout_height="19dp" app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
+            app:layout_constraintStart_toEndOf="@+id/nameOfReminder"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/imageSpeaker"
+            app:layout_constraintBottom_toBottomOf="@+id/nameOfReminder"
+            app:layout_constraintTop_toTopOf="@+id/nameOfReminder" android:layout_marginTop="25dp"/>"
+            android:id="@+id/imageView2" tools:layout_editor_absoluteX="251dp" tools:layout_editor_absoluteY="33dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
