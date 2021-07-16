@@ -4,8 +4,12 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.*;
@@ -39,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(mReceiver, filter);
 
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
@@ -106,6 +116,32 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.createNotificationChannel(channel);
 
     }
+
+    //The BroadcastReceiver that listens for bluetooth broadcasts
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
+//            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+//           ... //Device found
+//            }
+//            else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+//           ... //Device is now connected
+//            }
+//            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+//           ... //Done searching
+//            }
+//            else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
+//           ... //Device is about to disconnect
+//            }
+//            else
+            if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+                setAlarm();
+            }
+        }
+    };
 
 
 }
