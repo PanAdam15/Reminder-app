@@ -15,25 +15,21 @@ public class Statistics {
     private long id;
 
     @NonNull
-    private String name;
+    private long reminderId;
 
     @NonNull
-    private String disconnected;
+    private boolean wasForgotten;
 
-    @NonNull
-    private Integer amountOfForgotten;
-
-    public Statistics(long id, @NonNull String name, @NonNull String disconnected, @NonNull Integer amountOfForgotten) {
+    public Statistics(long id, long reminderId, boolean wasForgotten) {
         this.id = id;
-        this.name = name;
-        this.disconnected = disconnected;
-        this.amountOfForgotten = amountOfForgotten;
+        this.reminderId = reminderId;
+        this.wasForgotten = wasForgotten;
     }
+
     @Ignore
-    public Statistics(@NonNull String name, @NonNull String disconnected, @NonNull Integer amountOfForgotten) {
-        this.name = name;
-        this.disconnected = disconnected;
-        this.amountOfForgotten = amountOfForgotten;
+    public Statistics(long reminderId, boolean wasForgotten) {
+        this.reminderId = reminderId;
+        this.wasForgotten = wasForgotten;
     }
 
     public long getId() {
@@ -44,30 +40,19 @@ public class Statistics {
         this.id = id;
     }
 
-    @NonNull
-    public String getName() {
-        return name;
+    public long getReminderId() {
+        return reminderId;
     }
 
-    public void setName(@NonNull String name) {
-        this.name = name;
+    public void setReminderId(long reminderId) {
+        this.reminderId = reminderId;
     }
 
-    @NonNull
-    public String getDisconnected() {
-        return disconnected;
+    public boolean isWasForgotten() {
+        return wasForgotten;
     }
 
-    public void setDisconnected(@NonNull String disconnected) {
-        this.disconnected = disconnected;
-    }
-
-    @NonNull
-    public Integer getAmountOfForgotten() {
-        return amountOfForgotten;
-    }
-
-    public void setAmountOfForgotten(@NonNull Integer amountOfForgotten) {
-        this.amountOfForgotten = amountOfForgotten;
+    public void setWasForgotten(boolean wasForgotten) {
+        this.wasForgotten = wasForgotten;
     }
 }
