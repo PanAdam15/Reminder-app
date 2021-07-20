@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private ReminderViewModel reminderViewModel;
     private ReminderListAdapter reminderListAdapter;
     private ActivityMainBinding binding;
-    private AlarmManager alarmManager;
-    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         createNotificationChannel();
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
-        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
-        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        this.registerReceiver(mReceiver, filter);
+        startService(new Intent(this,BackgroundService.class));
 
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
@@ -85,24 +79,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        bluetoothButton.setOnClickListener(v -> {
-            setAlarm();
-        });
-
-
-    }
-
-    private void setAlarm(){
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        Intent intent = new Intent(this,AlarmReceiver.class);
-
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,0,0,pendingIntent);
-
-        Toast.makeText(this, "alarm set successful",Toast.LENGTH_LONG).show();
-
     }
 
     private void createNotificationChannel(){
@@ -117,31 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //The BroadcastReceiver that listens for bluetooth broadcasts
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-//            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-//           ... //Device found
-//            }
-//            else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-//           ... //Device is now connected
-//            }
-//            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-//           ... //Done searching
-//            }
-//            else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
-//           ... //Device is about to disconnect
-//            }
-//            else
-            if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
-                setAlarm();
-            }
-        }
-    };
 
 
 }
