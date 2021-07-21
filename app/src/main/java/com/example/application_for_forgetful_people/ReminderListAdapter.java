@@ -54,6 +54,21 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
                 holder.speaker.setVisibility(View.VISIBLE);
         }else{
             holder.speaker.setVisibility(View.INVISIBLE);}
+
+        if(!listOfReminders.get(position).isIfMonday())
+            holder.mon.setBackgroundColor(525252);
+        if(!listOfReminders.get(position).isIfTuesday())
+            holder.tue.setBackgroundColor(525252);
+        if(!listOfReminders.get(position).isIfWednesday())
+            holder.wed.setBackgroundColor(525252);
+        if(!listOfReminders.get(position).isIfThursday())
+            holder.thu.setBackgroundColor(525252);
+        if(!listOfReminders.get(position).isIfFriday())
+            holder.fri.setBackgroundColor(525252);
+        if(!listOfReminders.get(position).isIfSaturday())
+            holder.sat.setBackgroundColor(525252);
+        if(!listOfReminders.get(position).isIfSunday())
+            holder.sun.setBackgroundColor(525252);
     }
 
     @Override
@@ -77,7 +92,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     public class ReminderViewHolder extends RecyclerView.ViewHolder implements
                 View.OnClickListener,
                 GestureDetector.OnGestureListener {
-        TextView nameOfRemidner;
+        TextView nameOfRemidner, mon,tue,wed,thu,fri,sat,sun;
         ImageView bluetooth, speaker;
         GestureDetector mGestureDetector;
         Switch isActiveSwitch;
@@ -90,6 +105,13 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             nameOfRemidner = view.findViewById(R.id.nameOfReminder);
             bluetooth = view.findViewById(R.id.imageBT);
             speaker = view.findViewById(R.id.imageSpeaker);
+            mon = view.findViewById(R.id.iconMon);
+            tue = view.findViewById(R.id.iconTue);
+            wed = view.findViewById(R.id.iconWed);
+            thu = view.findViewById(R.id.iconThu);
+            fri = view.findViewById(R.id.iconFri);
+            sat = view.findViewById(R.id.iconSat);
+            sun = view.findViewById(R.id.iconSun);
 
             isActiveSwitch = view.findViewById(R.id.isActiveSwitch);
 
