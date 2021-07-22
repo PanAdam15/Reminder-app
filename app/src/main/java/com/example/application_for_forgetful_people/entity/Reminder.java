@@ -49,6 +49,21 @@ public class Reminder {
         this.id = id;
         this.name = name;
     }
+    @Ignore
+    public Reminder(long id, @NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday, boolean ifBluetooth, boolean ifRing, boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.ifMonday = ifMonday;
+        this.ifTuesday = ifTuesday;
+        this.ifWednesday = ifWednesday;
+        this.ifThursday = ifThursday;
+        this.ifFriday = ifFriday;
+        this.ifSaturday = ifSaturday;
+        this.ifSunday = ifSunday;
+        this.ifBluetooth = ifBluetooth;
+        this.ifRing = ifRing;
+        this.isActive = isActive;
+    }
 
     @Ignore
     public Reminder(@NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday, boolean ifBluetooth, boolean ifRing, boolean isActive) {
@@ -63,6 +78,19 @@ public class Reminder {
         this.ifBluetooth = ifBluetooth;
         this.ifRing = ifRing;
         this.isActive = isActive;
+    }
+   @Ignore
+    public Reminder(@NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday, boolean ifBluetooth, boolean ifRing) {
+        this.name = name;
+        this.ifMonday = ifMonday;
+        this.ifTuesday = ifTuesday;
+        this.ifWednesday = ifWednesday;
+        this.ifThursday = ifThursday;
+        this.ifFriday = ifFriday;
+        this.ifSaturday = ifSaturday;
+        this.ifSunday = ifSunday;
+        this.ifBluetooth = ifBluetooth;
+        this.ifRing = ifRing;
     }
 
     @Ignore

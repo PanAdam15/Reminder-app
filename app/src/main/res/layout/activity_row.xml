@@ -55,19 +55,19 @@
                 app:layout_constraintEnd_toEndOf="parent" android:id="@+id/imageSpeaker"
                 app:layout_constraintBottom_toBottomOf="@+id/nameOfReminder"
                 app:layout_constraintTop_toTopOf="@+id/nameOfReminder" android:layout_marginTop="50dp"/>
-        <TableLayout android:layout_width="196dp" android:layout_height="27dp"
+        <TableLayout android:layout_width="200dp" android:layout_height="35dp"
                      app:layout_constraintStart_toEndOf="@+id/isActiveSwitch"
                      app:layout_constraintEnd_toStartOf="@+id/imageSpeaker"
                      app:layout_constraintTop_toBottomOf="@+id/nameOfReminder"
                      app:layout_constraintBottom_toBottomOf="@+id/textView2">
-            <TableRow android:layout_height="match_parent" android:layout_width="185dp" android:padding="3px">
+            <TableRow android:layout_height="match_parent" android:layout_width="match_parent" android:padding="2dp">
                 <TextView
                         android:text="Pon"
                         android:layout_width="25dp"
                         android:layout_height="25dp" android:id="@+id/iconMon" tools:layout_editor_absoluteY="71dp"
                         tools:layout_editor_absoluteX="65dp" android:background="@drawable/rounded_corner_title"
                         android:layout_marginEnd="3dp" android:textSize="11sp" android:gravity="center"
-                        android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:textStyle="bold"/>
 
 
                 <TextView
@@ -78,7 +78,7 @@
                         tools:layout_editor_absoluteX="88dp"
                         android:layout_marginEnd="3dp"
                         android:background="@drawable/rounded_corner_title" android:textSize="11sp"
-                        android:gravity="center" android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:gravity="center" android:textStyle="bold"/>
 
                 <TextView
                         android:text="Sr"
@@ -87,7 +87,7 @@
                         tools:layout_editor_absoluteX="238dp"
                         android:layout_marginEnd="3dp"
                         android:background="@drawable/rounded_corner_title" android:textSize="11sp"
-                        android:gravity="center" android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:gravity="center" android:textStyle="bold"/>
                 <TextView
                         android:text="Cz"
                         android:layout_width="25dp"
@@ -95,7 +95,7 @@
                         tools:layout_editor_absoluteX="213dp"
                         android:layout_marginEnd="3dp"
                         android:background="@drawable/rounded_corner_title" android:textSize="11sp"
-                        android:gravity="center" android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:gravity="center" android:textStyle="bold"/>
                 <TextView
                         android:text="Pt"
                         android:layout_width="25dp"
@@ -103,7 +103,7 @@
                         tools:layout_editor_absoluteX="188dp"
                         android:layout_marginEnd="3dp"
                         android:background="@drawable/rounded_corner_title" android:textSize="11sp"
-                        android:gravity="center" android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:gravity="center" android:textStyle="bold"/>
                 <TextView
                         android:text="So"
                         android:layout_width="25dp"
@@ -111,7 +111,7 @@
                         tools:layout_editor_absoluteX="163dp"
                         android:layout_marginEnd="3dp"
                         android:background="@drawable/rounded_corner_title" android:textSize="11sp"
-                        android:gravity="center" android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:gravity="center" android:textStyle="bold"/>
                 <TextView
                         android:text="Nd"
                         android:layout_width="25dp"
@@ -119,7 +119,7 @@
                         tools:layout_editor_absoluteX="113dp"
                         android:layout_marginEnd="3dp"
                         android:background="@drawable/rounded_corner_title" android:textSize="11sp"
-                        android:gravity="center" android:textAlignment="textStart" android:textStyle="bold"/>
+                        android:gravity="center" android:textStyle="bold"/>
             </TableRow>
         </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
