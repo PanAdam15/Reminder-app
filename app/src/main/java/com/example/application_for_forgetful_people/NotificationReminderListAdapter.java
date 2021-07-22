@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.entity.Reminder;
 import com.example.application_for_forgetful_people.entity.Statistics;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class NotificationReminderListAdapter extends RecyclerView.Adapter<NotificationReminderListAdapter.NotificationReminderViewHolder> {
@@ -23,6 +24,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
     private ReminderViewModel reminderViewModel;
     int forRadioPosition;
     private StatisticViewModel statisticViewModel;
+    private HashMap<Long,Boolean> statMap;
 
     public void setReminderViewModel(ReminderViewModel reminderViewModel) {
         this.reminderViewModel = reminderViewModel;
@@ -49,6 +51,20 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
     public void onBindViewHolder(@NonNull NotificationReminderViewHolder holder, int position) {
         holder.nameOfReminder.setText(listOfReminders.get(position).getName());
         setRadioPosition(position);
+
+        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                case R.id.radioButton:
+                    statMap.put(listOfReminders.get(position).getId(),true);
+                    break;
+                    case R.id.radioButton2:
+                        statMap.put(listOfReminders.get(position).getId(),false);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -61,8 +77,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
     public class NotificationReminderViewHolder extends RecyclerView.ViewHolder {
 
         RadioGroup radioGroup;
-        RadioButton radioButtonYes;
-        RadioButton radioButtonNo;
+
         TextView nameOfReminder;
 
         public NotificationReminderViewHolder(@NonNull View itemView) {
@@ -70,21 +85,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
 
             nameOfReminder = itemView.findViewById(R.id.nameOfReminder);
             radioGroup = itemView.findViewById(R.id.radioGroup);
-
-            radioGroup.setOnCheckedChangeListener(((group, checkedId) -> {
-
-                radioButtonYes = radioGroup.findViewById(R.id.radioButton);
-
-                radioButtonNo = radioGroup.findViewById(R.id.radioButton2);
-
-                if(radioButtonYes.isChecked()){
-                    statisticViewModel.insert(new Statistics(0,true));
-                }
-                else if(radioButtonNo.isChecked()){
-                    System.out.println("nietest");
-                }
-
-            }));
+            statMap = new HashMap<>();
         }
     }
 
@@ -99,5 +100,9 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
 
     public void setRadioPosition(int position){
         this.forRadioPosition = position;
+    }
+
+    public HashMap<Long, Boolean> getStatMap(){
+        return statMap;
     }
 }
