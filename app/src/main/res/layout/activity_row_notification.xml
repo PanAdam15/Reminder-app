@@ -42,7 +42,8 @@
             <RadioButton
                     android:layout_width="40dp"
                     android:layout_height="wrap_content" android:id="@+id/radioButton"
-                    android:layout_marginEnd="20dp"/>
+                    android:layout_marginEnd="20dp"
+            />
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" android:id="@+id/radioButton2"/>
