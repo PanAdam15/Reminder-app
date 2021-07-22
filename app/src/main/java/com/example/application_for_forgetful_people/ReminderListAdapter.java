@@ -24,15 +24,20 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     private ReminderViewModel reminderViewModel;
     private Reminder mReminder;
 
+    interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private OnItemClickListener mOnItemClickListener;
 
     public void setReminderViewModel(ReminderViewModel reminderViewModel) {
         this.reminderViewModel = reminderViewModel;
     }
 
-    public ReminderListAdapter(Context context) {
+    public ReminderListAdapter(Context context, OnItemClickListener mOnItemClickListener) {
         layoutInflater = LayoutInflater.from(context);
         this.listOfReminders = null;
-
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @NonNull
@@ -48,12 +53,49 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
         holder.isActiveSwitch.setChecked(listOfReminders.get(position).isActive());
         if(listOfReminders.get(position).isIfBluetooth()){
                 holder.bluetooth.setVisibility(View.VISIBLE);
-        }else{
+        }
+        else{
             holder.bluetooth.setVisibility(View.INVISIBLE);}
         if(listOfReminders.get(position).isIfRing()){
                 holder.speaker.setVisibility(View.VISIBLE);
-        }else{
+        }
+        else{
             holder.speaker.setVisibility(View.INVISIBLE);}
+
+        if(!listOfReminders.get(position).isIfMonday())
+            holder.mon.setBackgroundColor(525252);
+        else
+            holder.mon.setBackgroundResource(R.drawable.rounded_corner_title);
+
+        if(!listOfReminders.get(position).isIfTuesday())
+            holder.tue.setBackgroundColor(525252);
+        else
+            holder.tue.setBackgroundResource(R.drawable.rounded_corner_title);
+
+        if(!listOfReminders.get(position).isIfWednesday())
+            holder.wed.setBackgroundColor(525252);
+        else
+            holder.wed.setBackgroundResource(R.drawable.rounded_corner_title);
+
+        if(!listOfReminders.get(position).isIfThursday())
+            holder.thu.setBackgroundColor(525252);
+        else
+            holder.thu.setBackgroundResource(R.drawable.rounded_corner_title);
+
+        if(!listOfReminders.get(position).isIfFriday())
+            holder.fri.setBackgroundColor(525252);
+        else
+            holder.fri.setBackgroundResource(R.drawable.rounded_corner_title);
+
+        if(!listOfReminders.get(position).isIfSaturday())
+            holder.sat.setBackgroundColor(525252);
+        else
+            holder.sat.setBackgroundResource(R.drawable.rounded_corner_title);
+
+        if(!listOfReminders.get(position).isIfSunday())
+            holder.sun.setBackgroundColor(525252);
+        else
+            holder.sun.setBackgroundResource(R.drawable.rounded_corner_title);
     }
 
     @Override
@@ -77,7 +119,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     public class ReminderViewHolder extends RecyclerView.ViewHolder implements
                 View.OnClickListener,
                 GestureDetector.OnGestureListener {
-        TextView nameOfRemidner;
+        TextView nameOfRemidner, mon,tue,wed,thu,fri,sat,sun;
         ImageView bluetooth, speaker;
         GestureDetector mGestureDetector;
         Switch isActiveSwitch;
@@ -90,9 +132,21 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             nameOfRemidner = view.findViewById(R.id.nameOfReminder);
             bluetooth = view.findViewById(R.id.imageBT);
             speaker = view.findViewById(R.id.imageSpeaker);
+            mon = view.findViewById(R.id.iconMon);
+            tue = view.findViewById(R.id.iconTue);
+            wed = view.findViewById(R.id.iconWed);
+            thu = view.findViewById(R.id.iconThu);
+            fri = view.findViewById(R.id.iconFri);
+            sat = view.findViewById(R.id.iconSat);
+            sun = view.findViewById(R.id.iconSun);
 
             isActiveSwitch = view.findViewById(R.id.isActiveSwitch);
-
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(getAdapterPosition());
+                }
+            });
             isActiveSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

@@ -60,4 +60,10 @@ public class ReminderRepository {
     public LiveData<List<Reminder>> getRemindersWhoseStatusIsActive(){
         return listOfRemindersWhoseStatusIsActive;
     }
+
+    public void update(Reminder reminder){
+        AppRoomDatabase.databaseWriteExecutor.execute(() ->{
+            reminderDao.update(reminder);
+        });
+    }
 }

@@ -49,4 +49,6 @@ public class ReminderViewModel extends AndroidViewModel {
     LiveData<List<Reminder>> getListOfRemindersWhoseStatusIsActive(){
         return listOfRemindersWhoseStatusIsActive;
     }
+
+    public void update(Reminder reminder){ reminderRepository.update(reminder);}
 }

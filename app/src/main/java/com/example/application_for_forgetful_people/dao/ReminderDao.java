@@ -29,4 +29,7 @@ public interface ReminderDao {
 
     @Query("UPDATE reminder set isActive = :isActive where id = :id")
     void updateIsActiveStatus(boolean isActive, long id);
+
+    @Update
+    void update(Reminder reminder);
 }
