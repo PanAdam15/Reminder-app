@@ -1,5 +1,6 @@
 package com.example.application_for_forgetful_people;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,12 +46,19 @@ public class ReminderNotificationActivity extends AppCompatActivity {
             notificationReminderListAdapter.setListOfReminders(reminders);
         });
 
+        confirmButton.setVisibility(View.INVISIBLE);
+
+        notificationReminderListAdapter.setConfirmButton(confirmButton);
+
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 statmap = notificationReminderListAdapter.getStatMap();
                 for(Map.Entry<Long,Boolean> entry: statmap.entrySet()){
                     statisticViewModel.insert(new Statistics(entry.getKey(),entry.getValue()));
+                    Intent intent = new Intent(ReminderNotificationActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

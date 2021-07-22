@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
     int forRadioPosition;
     private StatisticViewModel statisticViewModel;
     private HashMap<Long,Boolean> statMap;
+    private Button confirmButton;
 
     public void setReminderViewModel(ReminderViewModel reminderViewModel) {
         this.reminderViewModel = reminderViewModel;
@@ -40,6 +42,10 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
         this.statisticViewModel = statisticViewModel;
     }
 
+    public void setConfirmButton(Button confirmButton) {
+        this.confirmButton = confirmButton;
+    }
+
     @NonNull
     @Override
     public NotificationReminderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,8 +59,10 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
         setRadioPosition(position);
 
         holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
                 switch(checkedId){
                 case R.id.radioButton:
                     statMap.put(listOfReminders.get(position).getId(),true);
@@ -62,6 +70,10 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
                     case R.id.radioButton2:
                         statMap.put(listOfReminders.get(position).getId(),false);
                         break;
+                }
+
+                if(statMap.size() == listOfReminders.size()){
+                    confirmButton.setVisibility(View.VISIBLE);
                 }
             }
         });
