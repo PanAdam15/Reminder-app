@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+        });
+
+        bluetoothButton.setOnClickListener(v -> {
+            Intent bluetoothSettingsActivity = new Intent();
+            bluetoothSettingsActivity.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+            startActivity(bluetoothSettingsActivity);
         });
 
     }
