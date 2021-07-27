@@ -1,6 +1,8 @@
 package com.example.application_for_forgetful_people;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.*;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -107,9 +109,10 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
 
     @Override
     public void onItemSwiped(int position) {
-        reminderViewModel.deleteReminderById(listOfReminders.get(position).getId());
-        listOfReminders.remove(position);
-        notifyItemRemoved(position);
+        AlertDialog diaBox = AskOption(position);
+        diaBox.show();
+
+
     }
 
     public void setItemTouchHelper(ItemTouchHelper itemTouchHelper) {
@@ -193,6 +196,35 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     public void setListOfReminders(List<Reminder> listOfReminders) {
         this.listOfReminders = listOfReminders;
         notifyDataSetChanged();
+    }
+
+    private AlertDialog AskOption(int position)
+    {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(layoutInflater.getContext())
+                // set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete")
+               // .setIcon(R.drawable.delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        reminderViewModel.deleteReminderById(listOfReminders.get(position).getId());
+                        listOfReminders.remove(position);
+                        notifyItemRemoved(position);
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+
+        return myQuittingDialogBox;
     }
 
 }
