@@ -18,7 +18,7 @@ public interface ReminderDao {
     @Query("SELECT * FROM reminder")
     LiveData<List<Reminder>> getAllReminders();
 
-    @Query("SELECT * FROM reminder where isActive = 1 and ((SELECT strftime('%w','now') = '0' and ifSunday = 1) or " +
+    @Query("SELECT * FROM reminder where isActive = 1 and ifBluetooth = 1 and ((SELECT strftime('%w','now') = '0' and ifSunday = 1) or " +
             "(SELECT strftime('%w','now') = '1' and ifMonday = 1) or " +
             "(SELECT strftime('%w','now') = '2' and ifTuesday = 1) or " +
             "(SELECT strftime('%w','now') = '3' and ifWednesday = 1) or " +
