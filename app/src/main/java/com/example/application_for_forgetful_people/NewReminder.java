@@ -1,13 +1,17 @@
 package com.example.application_for_forgetful_people;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-public class NewReminder extends AppCompatActivity {
+import java.time.LocalTime;
+
+public class NewReminder extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private Bundle pack;
     private Long id;
@@ -15,6 +19,7 @@ public class NewReminder extends AppCompatActivity {
     private ReminderViewModel reminderViewModel;
     private EditText nameOfNewReminder;
     private Button addNewReminderButton;
+    private Button chooseTimeOfReminder;
     private CheckBox checkBoxMon;
     private CheckBox checkBoxTue;
     private CheckBox checkBoxWen;
@@ -34,6 +39,8 @@ public class NewReminder extends AppCompatActivity {
     boolean isBt;
     boolean isRing;
     boolean isActive;
+    private String hourOfReminderActivate;
+    private String minuteOfReminderActivate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,7 @@ public class NewReminder extends AppCompatActivity {
         checkBoxSun = findViewById(R.id.checkBoxSunday);
         switchBluetooth = findViewById(R.id.switchBluetooth);
         switchRing = findViewById(R.id.switchRing);
+        chooseTimeOfReminder = findViewById(R.id.chooseTimeButton);
 
         pack = getIntent().getExtras();
         if(pack !=null){
@@ -78,6 +86,11 @@ public class NewReminder extends AppCompatActivity {
             switchRing.setChecked(isRing);
         }
 
+        if(isBt)
+            chooseTimeOfReminder.setVisibility(View.INVISIBLE);
+        else
+            chooseTimeOfReminder.setVisibility(View.VISIBLE);
+
         addNewReminderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,18 +112,29 @@ public class NewReminder extends AppCompatActivity {
                     updateIntent.putExtra("sun", isSun);
                     updateIntent.putExtra("bt", isBt);
                     updateIntent.putExtra("speaker", isRing);
-                    updateIntent.putExtra("active",isActive);
+                    updateIntent.putExtra("active", isActive);
+                    updateIntent.putExtra("hour", hourOfReminderActivate);
+                    updateIntent.putExtra("minute", minuteOfReminderActivate);
                     setResult(RESULT_OK, updateIntent);
                     finish();
+                }
+            }
+        });
 
-//                    if(id==null){
-//                        Reminder reminderAdd = new Reminder(nameOfRemidner,isMon,isTue,isWen,isThu,isFr,isSat,isSun,isBt,isRing,true);
-//                        reminderViewModel.insert(reminderAdd);
-//                    }
-//                    else {
-//                        Reminder reminderUpdate = new Reminder(id, nameOfRemidner, isMon, isTue, isWen, isThu, isFr, isSat, isSun, isBt, isRing, true);
-//                        reminderViewModel.update(reminderUpdate);
-//                    }
+        chooseTimeOfReminder.setOnClickListener(v -> {
+            DialogFragment timePicker = new TimePickerFragment();
+            timePicker.show(getSupportFragmentManager(), "time picker");
+        });
+
+        switchBluetooth.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked) {
+                    chooseTimeOfReminder.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    chooseTimeOfReminder.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -119,6 +143,7 @@ public class NewReminder extends AppCompatActivity {
     }
 
     public void checkCheckboxesAndSwitches(){
+
         isMon = checkBoxMon.isChecked();
         isTue = checkBoxTue.isChecked();
         isWen = checkBoxWen.isChecked();
@@ -132,8 +157,15 @@ public class NewReminder extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         super.onBackPressed();
         this.finish();
     }
 
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+        hourOfReminderActivate = String.valueOf(hourOfDay);
+        minuteOfReminderActivate = String.valueOf(minute);
+    }
 }
