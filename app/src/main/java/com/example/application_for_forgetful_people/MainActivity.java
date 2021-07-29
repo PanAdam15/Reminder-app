@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -74,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        bluetoothButton.setOnClickListener(v -> {
+            Intent bluetoothSettingsActivity = new Intent();
+            bluetoothSettingsActivity.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+            startActivity(bluetoothSettingsActivity);
+        });
+
     }
 
     private void createNotificationChannel(){
@@ -106,8 +113,11 @@ public class MainActivity extends AppCompatActivity {
                                                         pack.getBooleanExtra("sat",false),
                                                         pack.getBooleanExtra("sun",false),
                                                         pack.getBooleanExtra("bt",false),
-                                                        pack.getBooleanExtra("speaker",false)));
-                showToast("Dodanie przypomnienia");
+                                                        pack.getBooleanExtra("speaker",false),
+                                                        pack.getBooleanExtra("active", true),
+                                                        pack.getStringExtra("hour"),
+                                                        pack.getStringExtra("minute")));
+                showToast("Dodano przypomnienie");
             }
         }else if (requestCode == UPDATE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
 
@@ -124,7 +134,9 @@ public class MainActivity extends AppCompatActivity {
                                                     pack.getBooleanExtra("sun",false),
                                                     pack.getBooleanExtra("bt",false),
                                                     pack.getBooleanExtra("speaker",false),
-                                                    pack.getBooleanExtra("active",false));
+                                                    pack.getBooleanExtra("active",false),
+                                                    pack.getStringExtra("hour"),
+                                                    pack.getStringExtra("minute"));
 
                 showToast("Zaktualizowano");
                 reminderViewModel.update(reminder);
