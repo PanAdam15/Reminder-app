@@ -52,6 +52,9 @@ public class NewReminder extends AppCompatActivity {
         switchBluetooth = findViewById(R.id.switchBluetooth);
         switchRing = findViewById(R.id.switchRing);
 
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
+
         pack = getIntent().getExtras();
         if(pack !=null){
             id = pack.getLong("id");
@@ -136,4 +139,9 @@ public class NewReminder extends AppCompatActivity {
         this.finish();
     }
 
+    @Override // back button in nav bar
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }

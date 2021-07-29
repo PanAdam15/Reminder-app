@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Settings_activity"
+        android:paddingBottom="6dip"
+        android:paddingTop="4dip">
+
+    <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:stretchColumns="*"
+            android:paddingRight="2dp">
+
+        <TableRow android:layout_marginBottom="20sp">
+
+            <TextView
+                    android:text="Tryb Dzień/Noc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/colorModeView" android:textSize="20sp"/>
+            <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/colorSwitch" android:textSize="20sp"
+                    android:gravity="center" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow android:layout_marginBottom="20sp">
+            <TextView
+                    android:text="Nazwa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/nameView" android:textSize="20sp"/>
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/nameEditText"/>
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="20sp">
+            <Button
+                    android:text="Statystyki"
+                    android:layout_width="201dp"
+                    android:layout_height="wrap_content" android:id="@+id/statsButton"/>
+        </TableRow>
+    </TableLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
