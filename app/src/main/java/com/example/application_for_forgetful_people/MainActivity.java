@@ -114,9 +114,7 @@ public class MainActivity extends AppCompatActivity {
                                                         pack.getBooleanExtra("sun",false),
                                                         pack.getBooleanExtra("bt",false),
                                                         pack.getBooleanExtra("speaker",false),
-                                                        pack.getBooleanExtra("active", true),
-                                                        pack.getStringExtra("hour"),
-                                                        pack.getStringExtra("minute")));
+                                                        pack.getBooleanExtra("active", true)));
                 showToast("Dodano przypomnienie");
             }
         }else if (requestCode == UPDATE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
@@ -134,9 +132,7 @@ public class MainActivity extends AppCompatActivity {
                                                     pack.getBooleanExtra("sun",false),
                                                     pack.getBooleanExtra("bt",false),
                                                     pack.getBooleanExtra("speaker",false),
-                                                    pack.getBooleanExtra("active",false),
-                                                    pack.getStringExtra("hour"),
-                                                    pack.getStringExtra("minute"));
+                                                    pack.getBooleanExtra("active",true));
 
                 showToast("Zaktualizowano");
                 reminderViewModel.update(reminder);

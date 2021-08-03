@@ -47,10 +47,6 @@ public class Reminder {
     @NonNull
     private boolean isActive;
 
-    private String hourOfReminderActivation;
-
-    private String minuteOfReminderActivation;
-
     public Reminder(long id, @NonNull String name) {
         this.id = id;
         this.name = name;
@@ -99,40 +95,6 @@ public class Reminder {
         this.ifRing = ifRing;
     }
 
-    @Ignore
-    public Reminder(@NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday, boolean ifBluetooth, boolean ifRing, boolean isActive, String hourOfReminderActivation, String minuteOfReminderActivation) {
-        this.name = name;
-        this.ifMonday = ifMonday;
-        this.ifTuesday = ifTuesday;
-        this.ifWednesday = ifWednesday;
-        this.ifThursday = ifThursday;
-        this.ifFriday = ifFriday;
-        this.ifSaturday = ifSaturday;
-        this.ifSunday = ifSunday;
-        this.ifBluetooth = ifBluetooth;
-        this.ifRing = ifRing;
-        this.isActive = isActive;
-        this.hourOfReminderActivation = hourOfReminderActivation;
-        this.minuteOfReminderActivation = minuteOfReminderActivation;
-    }
-
-    @Ignore
-    public Reminder(long id, @NonNull String name, boolean ifMonday, boolean ifTuesday, boolean ifWednesday, boolean ifThursday, boolean ifFriday, boolean ifSaturday, boolean ifSunday, boolean ifBluetooth, boolean ifRing, boolean isActive, String hourOfReminderActivation, String minuteOfReminderActivation) {
-        this.id = id;
-        this.name = name;
-        this.ifMonday = ifMonday;
-        this.ifTuesday = ifTuesday;
-        this.ifWednesday = ifWednesday;
-        this.ifThursday = ifThursday;
-        this.ifFriday = ifFriday;
-        this.ifSaturday = ifSaturday;
-        this.ifSunday = ifSunday;
-        this.ifBluetooth = ifBluetooth;
-        this.ifRing = ifRing;
-        this.isActive = isActive;
-        this.hourOfReminderActivation = hourOfReminderActivation;
-        this.minuteOfReminderActivation = minuteOfReminderActivation;
-    }
 
     @Ignore
     public Reminder(@NonNull String name) {
@@ -239,21 +201,5 @@ public class Reminder {
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    public String getHourOfReminderActivation() {
-        return hourOfReminderActivation;
-    }
-
-    public void setHourOfReminderActivation(String hourOfReminderActivation) {
-        this.hourOfReminderActivation = hourOfReminderActivation;
-    }
-
-    public String getMinuteOfReminderActivation() {
-        return minuteOfReminderActivation;
-    }
-
-    public void setMinuteOfReminderActivation(String minuteOfReminderActivation) {
-        this.minuteOfReminderActivation = minuteOfReminderActivation;
     }
 }
