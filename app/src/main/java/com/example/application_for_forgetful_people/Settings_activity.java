@@ -40,13 +40,19 @@ public class Settings_activity extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
 
-
+        nameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)
+                    System.out.println("dsa"); // tu edycja db
+            }
+        });
 
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 countOfForgotten = statisticsViewModel.getForgottenCount();
-                nameEditText.setText(String.valueOf(statisticsViewModel.getForgottenCount()));
+                //nameEditText.setText(String.valueOf(statisticsViewModel.getForgottenCount()));
             }
         });
         t.start();
@@ -109,5 +115,7 @@ public class Settings_activity extends AppCompatActivity {
         finish();
         return true;
     }
-
+    private void showToast(String text) {
+        Toast.makeText(Settings_activity.this, text, Toast.LENGTH_SHORT).show();
+    }
 }

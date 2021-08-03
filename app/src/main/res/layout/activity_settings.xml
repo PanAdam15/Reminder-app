@@ -44,6 +44,7 @@
                     android:id="@+id/nameEditText"/>
         </TableRow>
 
+
         <TableRow android:layout_marginBottom="20sp">
             <Button
                     android:text="Statystyki"
