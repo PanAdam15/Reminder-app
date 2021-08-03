@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.time.LocalTime;
-
 public class NewReminder extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private Bundle pack;
@@ -60,6 +58,8 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         switchRing = findViewById(R.id.switchRing);
         chooseTimeOfReminder = findViewById(R.id.chooseTimeButton);
 
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         pack = getIntent().getExtras();
         if(pack !=null){
             id = pack.getLong("id");
@@ -167,5 +167,10 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
 
         hourOfReminderActivate = String.valueOf(hourOfDay);
         minuteOfReminderActivate = String.valueOf(minute);
+    }
+    @Override // back button in nav bar
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

@@ -67,9 +67,7 @@ public class BackgroundService extends Service {
 //            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 //           ... //Device found
 //            }
-//            else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-//           ... //Device is now connected
-//            }
+////
 //            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
 //           ... //Done searching
 //            }
@@ -77,7 +75,10 @@ public class BackgroundService extends Service {
 //           ... //Device is about to disconnect
 //            }
 //            else
-            if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+            if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+//           ... //Device is now connected
+               }
+            else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 setAlarm();
             }
         }

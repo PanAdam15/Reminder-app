@@ -1,10 +1,11 @@
 package com.example.application_for_forgetful_people.dao;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.*;
-import com.example.application_for_forgetful_people.entity.Reminder;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 import com.example.application_for_forgetful_people.entity.Statistics;
-import com.example.application_for_forgetful_people.entity.User;
 
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface StatisticsDao {
     @Query("SELECT * FROM statistics")
     LiveData<List<Statistics>> getAllStatistics();
 
-
+    @Query("SELECT COUNT(id) FROM statistics WHERE wasForgotten = 1")
+    int getForgottenCount();
 }
