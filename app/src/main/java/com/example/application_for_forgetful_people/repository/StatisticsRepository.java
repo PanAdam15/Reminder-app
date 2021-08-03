@@ -4,9 +4,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import com.example.application_for_forgetful_people.AppRoomDatabase;
 import com.example.application_for_forgetful_people.dao.StatisticsDao;
-import com.example.application_for_forgetful_people.dao.UserDao;
 import com.example.application_for_forgetful_people.entity.Statistics;
-import com.example.application_for_forgetful_people.entity.User;
 
 import java.util.List;
 
@@ -30,4 +28,8 @@ public class StatisticsRepository {
         AppRoomDatabase.databaseWriteExecutor.execute(() ->
                 statisticsDao.insert(statistics));
     }
+
+   public int getForgottenCount(){
+        return statisticsDao.getForgottenCount();
+   }
 }

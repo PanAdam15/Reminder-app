@@ -25,7 +25,7 @@
 
         <SwitchPreferenceCompat
                 app:key="sync"
-                app:title="@string/sync_title"/>
+                app:title="@string/sync_title" android:id="@+id/colorModeSwitch"/>
 
         <SwitchPreferenceCompat
                 app:key="attachment"

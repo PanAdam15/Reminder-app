@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:background="#101010" android:backgroundTint="#101010">
+        tools:context=".MainActivity" >
     <TextView
             android:text="@string/dstrb"
             android:layout_width="176dp"
@@ -19,16 +19,16 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
             android:textColorHighlight="#0E0505"/>
     <Button
-
             android:layout_width="60dp"
             android:layout_height="74dp" android:id="@+id/AddNewReminder"
             android:background="?android:attr/selectableItemBackground"
-            app:icon="@android:drawable/ic_input_add" android:backgroundTint="@android:color/transparent"
+            app:icon="@android:drawable/ic_input_add"
             android:scaleX="1.5" android:scaleY="1.5"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Theme.Application_for_forgetful_people"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageButton"
             app:layout_constraintStart_toEndOf="@+id/DSTRB" app:layout_constraintHorizontal_bias="0.533"
-            android:textColorHint="#F4F1F1" android:textColor="#FAF1F1" app:iconTint="#FFFFFF"/>
+            android:textColor="#EFEAEA" app:iconTint="#FFFFFF"
+    />
     <Button
             android:layout_width="60dp"
             android:layout_height="74dp" android:id="@+id/settingsButton"
@@ -71,7 +71,6 @@
             app:timeout="10000"
             app:shuffle="true"
             android:textSize="20sp"
-            android:textColor="@color/white"
             android:gravity="center"
             android:id="@+id/fading_text"
             app:layout_constraintEnd_toStartOf="@+id/AddNewReminder"

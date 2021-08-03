@@ -202,11 +202,11 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     {
         AlertDialog myQuittingDialogBox = new AlertDialog.Builder(layoutInflater.getContext())
                 // set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to Delete")
+                .setTitle("Usuń")
+                .setMessage("Czy na pewno chcesz usunąć ten element?")
                // .setIcon(R.drawable.delete)
 
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Usuń", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         reminderViewModel.deleteReminderById(listOfReminders.get(position).getId());
@@ -215,7 +215,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         dialog.dismiss();

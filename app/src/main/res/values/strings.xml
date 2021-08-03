@@ -12,7 +12,7 @@
     <string name="reply_title">Test2</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Ustawienia1</string>
+    <string name="sync_title">Tryb dark/light</string>
     <string name="attachment_title">Ustawienia2</string>
     <string name="attachment_summary_on">Ustawienia3</string>
     <string name="attachment_summary_off">Ustawienia4</string>
@@ -29,5 +29,11 @@
     <string name="bluetooth">bluetooth</string>
     <string name="speaker">speaker</string>
     <string name="nameOfNewActitity">Wprowadź nazwę nowej aktywności</string>
+    <string name="title_activity_settings_activity">Settings_activity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 
 </resources>

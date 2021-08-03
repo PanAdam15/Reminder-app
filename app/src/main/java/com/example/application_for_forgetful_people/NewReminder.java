@@ -65,6 +65,8 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         switchRing = findViewById(R.id.switchRing);
         chooseTimeOfReminder = findViewById(R.id.chooseTimeButton);
 
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         isActive = true;
 
         pack = getIntent().getExtras();
@@ -286,5 +288,10 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
 
         hourOfReminderActivate = String.valueOf(hourOfDay);
         minuteOfReminderActivate = String.valueOf(minute);
+    }
+    @Override // back button in nav bar
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

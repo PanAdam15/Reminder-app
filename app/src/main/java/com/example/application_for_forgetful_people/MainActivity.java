@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private ReminderListAdapter reminderListAdapter;
     private ActivityMainBinding binding;
     private List<Reminder> listOfReminders;
+    private StatisticsViewModel statisticsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -58,10 +61,21 @@ public class MainActivity extends AppCompatActivity {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
+       ////////////////////////
 
+        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
+
+//        statisticsViewModel.insert(new Statistics(80,true));
+//        statisticsViewModel.insert(new Statistics(60,true));
+//        statisticsViewModel.insert(new Statistics(70,false));
+//        statisticsViewModel.insert(new Statistics(40,true));
+//        statisticsViewModel.insert(new Statistics(50,true));
+
+        //////////////////////
         reminderViewModel.getAllReminders().observe(this, elements ->{
             reminderListAdapter.setListOfReminders(elements);
             listOfReminders = elements;
+
         });
 
 
@@ -71,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, Settings_activity.class);
             startActivity(intent);
         });
 
@@ -160,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("active",listOfReminders.get(position).isActive());
         startActivityForResult(intent,UPDATE_ACTIVITY_REQUEST_CODE);
     }
+
 
     private void showToast(String text) {
         Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
