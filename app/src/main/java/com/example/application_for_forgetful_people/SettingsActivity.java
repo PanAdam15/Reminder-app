@@ -16,7 +16,7 @@ import com.jjoe64.graphview.series.DataPoint;
 
 import java.util.List;
 
-public class Settings_activity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     private TextView mTextView;
     private Switch colorSwitch;
@@ -88,7 +88,7 @@ public class Settings_activity extends AppCompatActivity {
 
         } catch (IllegalArgumentException e) {
 
-            Toast.makeText(Settings_activity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(SettingsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
  //       if(colorSwitch!=NullPointerException){
@@ -116,6 +116,6 @@ public class Settings_activity extends AppCompatActivity {
         return true;
     }
     private void showToast(String text) {
-        Toast.makeText(Settings_activity.this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SettingsActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 }

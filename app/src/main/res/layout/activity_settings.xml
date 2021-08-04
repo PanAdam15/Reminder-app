@@ -6,7 +6,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Settings_activity"
+        tools:context=".SettingsActivity"
         android:paddingBottom="6dip"
         android:paddingTop="4dip">
 

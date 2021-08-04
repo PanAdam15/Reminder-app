@@ -27,7 +27,7 @@
                 android:name=".NewReminder"
                 android:parentActivityName=".MainActivity"/>
         <activity
-                android:name=".Settings_activity"
+                android:name=".SettingsActivity"
                 android:label="@string/title_activity_settings_activity"
 
                 />
