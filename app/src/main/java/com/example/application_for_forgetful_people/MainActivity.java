@@ -4,9 +4,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.provider.Settings;
+import android.view.ContextThemeWrapper;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.databinding.ActivityMainBinding;
 import com.example.application_for_forgetful_people.entity.Reminder;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int UPDATE_ACTIVITY_REQUEST_CODE = 2;
     Button addNewReminderButton;
     Button settingsButton;
-    ImageButton bluetoothButton;
+    Button imageButton;
     private ReminderViewModel reminderViewModel;
     private ReminderListAdapter reminderListAdapter;
     private ActivityMainBinding binding;
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
-        bluetoothButton = findViewById(R.id.imageButton);
+        imageButton = findViewById(R.id.imageButton);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view1);
         reminderListAdapter = new ReminderListAdapter(this,this::onItemClick);
@@ -60,23 +67,14 @@ public class MainActivity extends AppCompatActivity {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
-       ////////////////////////
 
         statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
 
-//        statisticsViewModel.insert(new Statistics(80,true));
-//        statisticsViewModel.insert(new Statistics(60,true));
-//        statisticsViewModel.insert(new Statistics(70,false));
-//        statisticsViewModel.insert(new Statistics(40,true));
-//        statisticsViewModel.insert(new Statistics(50,true));
-
-        //////////////////////
         reminderViewModel.getAllReminders().observe(this, elements ->{
             reminderListAdapter.setListOfReminders(elements);
             listOfReminders = elements;
 
         });
-
 
         addNewReminderButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, NewReminder.class);
@@ -88,12 +86,47 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        bluetoothButton.setOnClickListener(v -> {
-            Intent bluetoothSettingsActivity = new Intent();
-            bluetoothSettingsActivity.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
-            startActivity(bluetoothSettingsActivity);
+
+        final PopupMenu dropDownMenu = new PopupMenu(new ContextThemeWrapper(this, R.style.MenuTheme), imageButton);
+        final Menu menu = dropDownMenu.getMenu();
+
+        dropDownMenu.getMenuInflater().inflate(R.menu.menu, menu);
+        try {
+            Field field = dropDownMenu.getClass().getDeclaredField("mPopup");
+            field.setAccessible(true);
+            Object menuPopupHelper = field.get(dropDownMenu);
+            Class<?> cls = Class.forName("com.android.internal.view.menu.MenuPopupHelper");
+            Method method = cls.getDeclaredMethod("setForceShowIcon", new Class[]{boolean.class});
+            method.setAccessible(true);
+            method.invoke(menuPopupHelper, new Object[]{true});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        dropDownMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.opt1:
+                        Intent bluetoothSettingsActivity = new Intent();
+                        bluetoothSettingsActivity.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+                        startActivity(bluetoothSettingsActivity);
+                        break;
+                    case R.id.opt2:
+                        Intent intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+                        startActivity(intent);
+                        break;
+                }
+                return false;
+            }
         });
 
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropDownMenu.show();
+            }
+        });
     }
 
     private void createNotificationChannel(){
