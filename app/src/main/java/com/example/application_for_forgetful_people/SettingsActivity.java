@@ -20,8 +20,8 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView mTextView;
     private Switch colorSwitch;
     private Button advancedStatistics;
-    private List<Statistics> listOfStatistics;
     private StatisticsViewModel statisticsViewModel;
+    private static List<Statistics> listOfStatistics;
     private int countOfForgotten;
     private TextView nameEditText;
     private TextView show1;
@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
 
-        mTextView = (TextView) findViewById(R.id.text);
+        mTextView = findViewById(R.id.text);
         colorSwitch = findViewById(R.id.colorSwitch);
 
         nameEditText = findViewById(R.id.nameEditText);
@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
             BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]
                     {
 
-//                            new DataPoint(listOfStatistics.get(1).getId(),listOfStatistics.get(1).getId()),
+                            new DataPoint(listOfStatistics.get(1).getId(),listOfStatistics.get(1).getId()),
                             new DataPoint(2,1),
                             new DataPoint(3,5),
                             new DataPoint(4,3),
@@ -136,5 +136,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
     private void showToast(String text) {
         Toast.makeText(SettingsActivity.this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void setListOfStatistics(List<Statistics> listOfStatistics) {
+        SettingsActivity.listOfStatistics = listOfStatistics;
     }
 }
