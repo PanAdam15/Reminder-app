@@ -20,7 +20,6 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView mTextView;
     private Switch colorSwitch;
     private Button advancedStatistics;
-    private List<Statistics> listOfStatistics;
     private StatisticsViewModel statisticsViewModel;
     private static List<Statistics> listOfStatistics;
     private int countOfForgotten;
@@ -68,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
             BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]
                     {
 
-//                            new DataPoint(listOfStatistics.get(1).getId(),listOfStatistics.get(1).getId()),
+                            new DataPoint(listOfStatistics.get(1).getId(),listOfStatistics.get(1).getId()),
                             new DataPoint(2,1),
                             new DataPoint(3,5),
                             new DataPoint(4,3),

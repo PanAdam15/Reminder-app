@@ -79,15 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
 
-        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
-
-        statisticsViewModel.insert(new Statistics(80,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(60,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(70,false,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(40,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(50,true,"dsf","fds","das"));
-
-
         reminderViewModel.getAllReminders().observe(this, elements ->{
             reminderListAdapter.setListOfReminders(elements);
             listOfReminders = elements;
