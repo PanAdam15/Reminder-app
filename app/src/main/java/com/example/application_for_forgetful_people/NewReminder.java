@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.lang.reflect.Array;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -67,6 +65,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Nowe przypomnienie");
         isActive = true;
 
         pack = getIntent().getExtras();

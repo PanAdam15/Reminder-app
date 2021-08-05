@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.databinding.ActivityMainBinding;
 import com.example.application_for_forgetful_people.entity.Reminder;
+import com.example.application_for_forgetful_people.entity.Statistics;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -76,13 +77,6 @@ public class MainActivity extends AppCompatActivity {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
-        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
-
-        statisticsViewModel.insert(new Statistics(80,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(60,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(70,false,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(40,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(50,true,"dsf","fds","das"));
 
 
         reminderViewModel.getAllReminders().observe(this, elements ->{
@@ -145,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setElevation(0);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void createNotificationChannel(){

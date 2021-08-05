@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
-
+        getSupportActionBar().setTitle("Opcje i statystyki");
 
         mTextView = findViewById(R.id.text);
         colorSwitch = findViewById(R.id.colorSwitch);
