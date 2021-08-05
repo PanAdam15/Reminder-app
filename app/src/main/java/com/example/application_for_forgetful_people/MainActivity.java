@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.databinding.ActivityMainBinding;
 import com.example.application_for_forgetful_people.entity.Reminder;
-import com.example.application_for_forgetful_people.entity.Statistics;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
         imageButton = findViewById(R.id.imageButton);
-
         RecyclerView recyclerView = findViewById(R.id.recycler_view1);
         reminderListAdapter = new ReminderListAdapter(this,this::onItemClick);
 
@@ -68,13 +66,6 @@ public class MainActivity extends AppCompatActivity {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
-        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
-
-        statisticsViewModel.insert(new Statistics(80,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(60,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(70,false,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(40,true,"dsf","fds","das"));
-        statisticsViewModel.insert(new Statistics(50,true,"dsf","fds","das"));
 
 
         reminderViewModel.getAllReminders().observe(this, elements ->{
@@ -86,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         addNewReminderButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, NewReminder.class);
             startActivityForResult(intent,ADD_ACTIVITY_REQUEST_CODE);
+
         });
 
         settingsButton.setOnClickListener(v -> {
@@ -132,8 +124,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dropDownMenu.show();
+
             }
         });
+        getSupportActionBar().setElevation(0);
     }
 
     private void createNotificationChannel(){

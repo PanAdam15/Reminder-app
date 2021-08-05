@@ -27,7 +27,7 @@
             style="@style/Theme.Application_for_forgetful_people"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageButton"
             app:layout_constraintStart_toEndOf="@+id/DSTRB" app:layout_constraintHorizontal_bias="0.533"
-            android:textColor="#EFEAEA" app:iconTint="#FFFFFF"
+            android:textColor="#EFEAEA"
             app:layout_constraintBottom_toBottomOf="@+id/fading_text" android:layout_marginBottom="30dp"
             android:layout_marginTop="16dp"/>
     <Button
@@ -43,7 +43,7 @@
             android:layout_marginStart="17dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="5dp"
             app:layout_constraintEnd_toStartOf="@+id/imageButton" app:layout_constraintHorizontal_bias="0.461"
-            app:layout_constraintVertical_bias="0.0" android:textColor="#EFEAEA" app:iconTint="#FFFFFF"
+            app:layout_constraintVertical_bias="0.0"
             app:iconSize="40dp" android:layout_marginEnd="216dp"
     />
 
@@ -55,7 +55,7 @@
             app:icon="@drawable/more_2"
             android:scaleX="1.5" android:scaleY="1.5" android:textAlignment="center"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:textColor="#EFEAEA" app:iconTint="#FFFFFF"
+            android:textColor="#EFEAEA"
 
             android:drawableTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
