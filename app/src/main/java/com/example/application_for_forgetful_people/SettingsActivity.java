@@ -21,8 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private TextView mTextView;
     private Switch colorSwitch;
-    private List<Statistics> listOfStatistics;
-    private StatisticsViewModel statisticsViewModel;
+    private static List<Statistics> listOfStatistics;
     private int countOfForgotten;
     private TextView nameEditText;
     Statistics s;
@@ -31,20 +30,11 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-//        Thread t = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                statisticsViewModel = new ViewModelProvider(SettingsActivity.this).get(StatisticsViewModel.class);
-//                listOfStatistics = statisticsViewModel.getListOfStatisticsToList();
-//            }
-//        });
-//        t.start();
-
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
 
-        mTextView = (TextView) findViewById(R.id.text);
+        mTextView = findViewById(R.id.text);
         colorSwitch = findViewById(R.id.colorSwitch);
         colorSwitch.setChecked(true);
         nameEditText = findViewById(R.id.nameEditText);
@@ -115,5 +105,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
     private void showToast(String text) {
         Toast.makeText(SettingsActivity.this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void setListOfStatistics(List<Statistics> listOfStatistics) {
+        SettingsActivity.listOfStatistics = listOfStatistics;
     }
 }

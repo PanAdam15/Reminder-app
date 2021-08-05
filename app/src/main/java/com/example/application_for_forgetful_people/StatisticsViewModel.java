@@ -13,12 +13,14 @@ public class StatisticsViewModel extends AndroidViewModel {
 
     private final StatisticsRepository statisticsRepository;
     private final LiveData<List<Statistics>> listOfStatistics;
+    private final List<Statistics> listOfStatisticsToList;
 
     public StatisticsViewModel(@NonNull Application application) {
         super(application);
 
         statisticsRepository = new StatisticsRepository(application);
         listOfStatistics = statisticsRepository.getAllStatistics();
+        listOfStatisticsToList = statisticsRepository.getListOfStatisticsToList();
     }
     public LiveData<List<Statistics>> getAllStatistics(){
         return listOfStatistics;
@@ -26,5 +28,8 @@ public class StatisticsViewModel extends AndroidViewModel {
     public int getForgottenCount() { return statisticsRepository.getForgottenCount(); }
     public void insert(Statistics statistics){
         statisticsRepository.insert(statistics);
+    }
+    public List<Statistics> getListOfStatisticsToList(){
+        return listOfStatisticsToList;
     }
 }

@@ -41,8 +41,7 @@ public class BackgroundService extends Service {
 
     private void startForeground() {
 
-        createNotificationChannel()
-                ;
+        createNotificationChannel();
         Intent notificationIntent = new Intent(this, MainActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,

@@ -12,12 +12,14 @@ public class StatisticsRepository {
 
     private final StatisticsDao statisticsDao;
     private final LiveData<List<Statistics>> listOfStatistics;
+    private final List<Statistics> listOfStatisticsToList;
 
     public StatisticsRepository(Application application) {
         AppRoomDatabase appRoomDatabase =
                 AppRoomDatabase.getDatabase(application);
         statisticsDao = appRoomDatabase.statisticsDao();
         listOfStatistics = statisticsDao.getAllStatistics();
+        listOfStatisticsToList = statisticsDao.getStatisticAllToList();
     }
 
     public LiveData<List<Statistics>> getAllStatistics(){
@@ -31,5 +33,9 @@ public class StatisticsRepository {
 
    public int getForgottenCount(){
         return statisticsDao.getForgottenCount();
+   }
+
+   public List<Statistics> getListOfStatisticsToList(){
+        return listOfStatisticsToList;
    }
 }

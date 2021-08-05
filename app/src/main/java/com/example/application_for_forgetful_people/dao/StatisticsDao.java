@@ -20,4 +20,7 @@ public interface StatisticsDao {
 
     @Query("SELECT COUNT(id) FROM statistics WHERE wasForgotten = 1")
     int getForgottenCount();
+
+    @Query("SELECT * FROM statistics")
+    List<Statistics> getStatisticAllToList();
 }

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.databinding.ActivityMainBinding;
 import com.example.application_for_forgetful_people.entity.Reminder;
+import com.example.application_for_forgetful_people.entity.Statistics;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private List<Reminder> listOfReminders;
     private StatisticsViewModel statisticsViewModel;
+    private List<Statistics> listOfStatistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                statisticsViewModel = new ViewModelProvider(MainActivity.this).get(StatisticsViewModel.class);
+                listOfStatistics = statisticsViewModel.getListOfStatisticsToList();
+                SettingsActivity.setListOfStatistics(listOfStatistics);
+            }
+        });
+        t1.start();
 
         startService(new Intent(this,BackgroundService.class));
 
@@ -67,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
-
-        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
 
         reminderViewModel.getAllReminders().observe(this, elements ->{
             reminderListAdapter.setListOfReminders(elements);
