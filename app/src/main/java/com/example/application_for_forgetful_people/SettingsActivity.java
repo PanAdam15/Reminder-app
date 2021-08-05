@@ -14,21 +14,31 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private TextView mTextView;
     private Switch colorSwitch;
-    private Object NullPointerException;
     private List<Statistics> listOfStatistics;
     private StatisticsViewModel statisticsViewModel;
     private int countOfForgotten;
     private TextView nameEditText;
+    Statistics s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+//        Thread t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                statisticsViewModel = new ViewModelProvider(SettingsActivity.this).get(StatisticsViewModel.class);
+//                listOfStatistics = statisticsViewModel.getListOfStatisticsToList();
+//            }
+//        });
+//        t.start();
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
@@ -38,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
         colorSwitch = findViewById(R.id.colorSwitch);
         colorSwitch.setChecked(true);
         nameEditText = findViewById(R.id.nameEditText);
-        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
+
 
         nameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -48,14 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                countOfForgotten = statisticsViewModel.getForgottenCount();
-                //nameEditText.setText(String.valueOf(statisticsViewModel.getForgottenCount()));
-            }
-        });
-        t.start();
+
 
         final GraphView graph = findViewById(R.id.graph);
         graph.setVisibility(View.VISIBLE);
@@ -63,27 +66,23 @@ public class SettingsActivity extends AppCompatActivity {
             BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]
                     {
 
-                            new DataPoint(1,2),
+                            new DataPoint(listOfStatistics.get(1).getId(),listOfStatistics.get(1).getId()),
                             new DataPoint(2,1),
                             new DataPoint(3,5),
                             new DataPoint(4,3),
                             new DataPoint(5,4),
                             new DataPoint(6,1),
-                            new DataPoint(7,5),
-                            new DataPoint(8,1),
-                            new DataPoint(9,0),
-                            new DataPoint(10,1),
-                            new DataPoint(11,5)
+                            new DataPoint(7,5)
                     });
 
             series.setSpacing(60);
             series.setAnimated(true);
             graph.getViewport().setXAxisBoundsManual(true);
             graph.getViewport().setMinX(0);
-            graph.getViewport().setMaxX(20);
+            graph.getViewport().setMaxX(8);
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setMinY(0);
-            graph.getViewport().setMaxY(20);
+            graph.getViewport().setMaxY(8);
             graph.addSeries(series);
 
         } catch (IllegalArgumentException e) {
@@ -91,7 +90,6 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(SettingsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
- //       if(colorSwitch!=NullPointerException){
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO)
             colorSwitch.setChecked(true);
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)

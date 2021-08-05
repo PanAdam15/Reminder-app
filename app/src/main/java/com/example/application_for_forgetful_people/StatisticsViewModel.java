@@ -23,7 +23,7 @@ public class StatisticsViewModel extends AndroidViewModel {
     public LiveData<List<Statistics>> getAllStatistics(){
         return listOfStatistics;
     }
-    public int getForgottenCount() {return statisticsRepository.getForgottenCount();}
+    public int getForgottenCount() { return statisticsRepository.getForgottenCount(); }
     public void insert(Statistics statistics){
         statisticsRepository.insert(statistics);
     }

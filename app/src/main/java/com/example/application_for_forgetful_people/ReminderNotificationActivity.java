@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.entity.Statistics;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class ReminderNotificationActivity extends AppCompatActivity {
 
     private ReminderViewModel reminderViewModel;
     private NotificationReminderListAdapter notificationReminderListAdapter;
-    private StatisticViewModel statisticViewModel;
+    private StatisticsViewModel statisticViewModel;
     private Button confirmButton;
     private HashMap<Long,Boolean> statmap;
 
@@ -36,7 +37,7 @@ public class ReminderNotificationActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
-        statisticViewModel = new ViewModelProvider(this).get(StatisticViewModel.class);
+        statisticViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
 
         notificationReminderListAdapter.setStatisticViewModel(statisticViewModel);
 
@@ -55,7 +56,8 @@ public class ReminderNotificationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 statmap = notificationReminderListAdapter.getStatMap();
                 for(Map.Entry<Long,Boolean> entry: statmap.entrySet()){
-                    statisticViewModel.insert(new Statistics(entry.getKey(),entry.getValue()));
+                    LocalDate currentDate = LocalDate.now();
+                    statisticViewModel.insert(new Statistics(entry.getKey(),entry.getValue(),String.valueOf(currentDate.getDayOfMonth()),String.valueOf(currentDate.getMonthValue()),String.valueOf(currentDate.getYear())));
                     Intent intent = new Intent(ReminderNotificationActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

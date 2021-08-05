@@ -20,6 +20,15 @@ public class Statistics {
     @NonNull
     private boolean wasForgotten;
 
+    @NonNull
+    private String dayOfForgettingActivity;
+
+    @NonNull
+    private String monthOfForgettingActivity;
+
+    @NonNull
+    private String yearOfForgettingActivity;
+
     public Statistics(long id, long reminderId, boolean wasForgotten) {
         this.id = id;
         this.reminderId = reminderId;
@@ -30,6 +39,15 @@ public class Statistics {
     public Statistics(long reminderId, boolean wasForgotten) {
         this.reminderId = reminderId;
         this.wasForgotten = wasForgotten;
+    }
+
+    @Ignore
+    public Statistics(long reminderId, boolean wasForgotten, @NonNull String dayOfForgettingActivity, @NonNull String monthOfForgettingActivity, @NonNull String yearOfForgettingActivity) {
+        this.reminderId = reminderId;
+        this.wasForgotten = wasForgotten;
+        this.dayOfForgettingActivity = dayOfForgettingActivity;
+        this.monthOfForgettingActivity = monthOfForgettingActivity;
+        this.yearOfForgettingActivity = yearOfForgettingActivity;
     }
 
     public long getId() {
@@ -54,5 +72,32 @@ public class Statistics {
 
     public void setWasForgotten(boolean wasForgotten) {
         this.wasForgotten = wasForgotten;
+    }
+
+    @NonNull
+    public String getDayOfForgettingActivity() {
+        return dayOfForgettingActivity;
+    }
+
+    public void setDayOfForgettingActivity(@NonNull String dayOfForgettingActivity) {
+        this.dayOfForgettingActivity = dayOfForgettingActivity;
+    }
+
+    @NonNull
+    public String getMonthOfForgettingActivity() {
+        return monthOfForgettingActivity;
+    }
+
+    public void setMonthOfForgettingActivity(@NonNull String monthOfForgettingActivity) {
+        this.monthOfForgettingActivity = monthOfForgettingActivity;
+    }
+
+    @NonNull
+    public String getYearOfForgettingActivity() {
+        return yearOfForgettingActivity;
+    }
+
+    public void setYearOfForgettingActivity(@NonNull String yearOfForgettingActivity) {
+        this.yearOfForgettingActivity = yearOfForgettingActivity;
     }
 }

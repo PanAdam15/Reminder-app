@@ -24,7 +24,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
     private List<Reminder> listOfReminders;
     private ReminderViewModel reminderViewModel;
     int forRadioPosition;
-    private StatisticViewModel statisticViewModel;
+    private StatisticsViewModel statisticViewModel;
     private HashMap<Long,Boolean> statMap;
     private Button confirmButton;
 
@@ -38,7 +38,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
         this.listOfReminders = null;
     }
 
-    public void setStatisticViewModel(StatisticViewModel statisticViewModel){
+    public void setStatisticViewModel(StatisticsViewModel statisticViewModel){
         this.statisticViewModel = statisticViewModel;
     }
 
