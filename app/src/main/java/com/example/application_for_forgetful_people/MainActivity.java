@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -78,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
         reminderListAdapter.setReminderViewModel(reminderViewModel);
+
+        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
+
+        statisticsViewModel.insert(new Statistics(80,true,"dsf","fds","das"));
+        statisticsViewModel.insert(new Statistics(60,true,"dsf","fds","das"));
+        statisticsViewModel.insert(new Statistics(70,false,"dsf","fds","das"));
+        statisticsViewModel.insert(new Statistics(40,true,"dsf","fds","das"));
+        statisticsViewModel.insert(new Statistics(50,true,"dsf","fds","das"));
+
 
         reminderViewModel.getAllReminders().observe(this, elements ->{
             reminderListAdapter.setListOfReminders(elements);

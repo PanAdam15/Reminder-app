@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#62def8">
+
+    <TableRow>
+        <TextView
+                android:id="@+id/all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textSize="22sp"
+                android:text="Wszystkie"/>
+        <TextView
+                android:id="@+id/allShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textSize="22sp"
+                android:text="Yo madafaka"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+                android:id="@+id/forgotten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textSize="22sp"
+                android:text="Yo madafaka"/>
+        <TextView
+                android:id="@+id/forgottenShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textSize="22sp"
+                android:text="Yo madafaka"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+                android:id="@+id/a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textSize="22sp"
+                android:text="Yo madafaka"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+                android:id="@+id/b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textSize="22sp"
+                android:text="Yo madafaka"/>
+    </TableRow>
+
+
+
+</TableLayout>
