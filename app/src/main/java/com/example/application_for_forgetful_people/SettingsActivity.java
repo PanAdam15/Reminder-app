@@ -13,7 +13,10 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -22,11 +25,13 @@ public class SettingsActivity extends AppCompatActivity {
     private Button advancedStatistics;
     private StatisticsViewModel statisticsViewModel;
     private static List<Statistics> listOfStatistics;
+    LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities;
     private int countOfForgotten;
     private TextView nameEditText;
     private TextView show1;
     private TextView show2;
     Statistics s;
+    ArrayList<Calendar> mainDaysOfWeek;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,12 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        mainDaysOfWeek = calculatePastSevenDaysOfWeek();
+        try {
+            sevenLastDaysWithAmountOfForgottenActivities = getSevenDaysOfStatistics(listOfStatistics, mainDaysOfWeek); // rozwiąza problem NPE - prawdopodobnie bład w metodzie
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         final GraphView graph = findViewById(R.id.graph);
@@ -67,13 +78,13 @@ public class SettingsActivity extends AppCompatActivity {
             BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]
                     {
 
-                            new DataPoint(listOfStatistics.get(1).getId(),listOfStatistics.get(1).getId()),
-                            new DataPoint(2,1),
-                            new DataPoint(3,5),
-                            new DataPoint(4,3),
-                            new DataPoint(5,4),
-                            new DataPoint(6,1),
-                            new DataPoint(7,5)
+                            new DataPoint(1,sevenLastDaysWithAmountOfForgottenActivities.get(0)),
+                            new DataPoint(2,sevenLastDaysWithAmountOfForgottenActivities.get(1)),
+                            new DataPoint(3,sevenLastDaysWithAmountOfForgottenActivities.get(2)),
+                            new DataPoint(4,sevenLastDaysWithAmountOfForgottenActivities.get(3)),
+                            new DataPoint(5,sevenLastDaysWithAmountOfForgottenActivities.get(4)),
+                            new DataPoint(6,sevenLastDaysWithAmountOfForgottenActivities.get(5)),
+                            new DataPoint(7,sevenLastDaysWithAmountOfForgottenActivities.get(6))
                     });
 
             series.setSpacing(60);
@@ -140,5 +151,55 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static void setListOfStatistics(List<Statistics> listOfStatistics) {
         SettingsActivity.listOfStatistics = listOfStatistics;
+    }
+
+    private LinkedHashMap<Integer, Integer> getSevenDaysOfStatistics(List<Statistics> listOfStatistics, ArrayList<Calendar> daysOfWeek) throws ParseException {
+        ArrayList<Calendar> datesOfStatistics = new ArrayList<>();
+        LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities = new LinkedHashMap<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyy", Locale.ENGLISH);
+
+        Calendar calOfToday = Calendar.getInstance();
+        Calendar calOfSevenDaysBefore = Calendar.getInstance();
+        int amountOfForgot;
+        listOfStatistics.forEach(s -> {
+            try {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(Objects.requireNonNull(sdf.parse(s.getDayOfForgettingActivity() + " " + s.getMonthOfForgettingActivity() + " " + s.getYearOfForgettingActivity())));
+                datesOfStatistics.add(cal);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        });
+        calOfToday.add(Calendar.DATE,-1);
+        calOfSevenDaysBefore.add(Calendar.DATE, -7);
+
+        daysOfWeek=calculatePastSevenDaysOfWeek();
+
+        for (int i = 0; i < daysOfWeek.size(); i++) {
+            amountOfForgot = 0;
+            for (int j = 0; j < datesOfStatistics.size(); j++) {
+                Date date1 = sdf.parse(sdf.format(daysOfWeek.get(i).getTime()));
+                Date date2 = sdf.parse(sdf.format(datesOfStatistics.get(j).getTime()));
+                boolean b = listOfStatistics.get(j).isWasForgotten();
+                if((date1.equals(date2) ) && b){
+                    amountOfForgot++;
+                }
+            }
+            sevenLastDaysWithAmountOfForgottenActivities.put(i,amountOfForgot);
+        }
+
+        return sevenLastDaysWithAmountOfForgottenActivities;
+
+    }
+
+    private ArrayList<Calendar> calculatePastSevenDaysOfWeek(){
+        ArrayList<Calendar> days = new ArrayList<>();
+
+        for (int i = 0; i >= -6; i--) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, i);
+            days.add(cal);
+        }
+        return days;
     }
 }
