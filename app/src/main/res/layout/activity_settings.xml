@@ -49,7 +49,8 @@
             <Button
                     android:text="Statystyki"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/statsButton"/>
+                    android:layout_height="wrap_content" android:id="@+id/statsButton"
+                     android:backgroundTint="@color/purple_200"/>
         </TableRow>
     </TableLayout>
 

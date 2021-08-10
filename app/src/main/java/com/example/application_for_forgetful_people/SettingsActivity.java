@@ -1,5 +1,6 @@
 package com.example.application_for_forgetful_people;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.application_for_forgetful_people.entity.Statistics;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
@@ -62,6 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         final GraphView graph = findViewById(R.id.graph);
+        GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
         graph.setVisibility(View.VISIBLE);
         try {
             BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]
@@ -84,6 +88,23 @@ public class SettingsActivity extends AppCompatActivity {
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setMinY(0);
             graph.getViewport().setMaxY(8);
+            series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+                @Override
+                public int get(DataPoint data) {
+                    int x,y,z;
+                    if(data.getX() % 2 ==0) {
+                        x=0;
+                        y=0;
+                        z=255;
+                    }
+                    else {
+                        x=255;
+                        y=0;
+                        z=0;
+                    }
+                    return Color.rgb(x, y,z );
+                }
+            });
             graph.addSeries(series);
 
         } catch (IllegalArgumentException e) {
@@ -91,18 +112,25 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(SettingsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
             colorSwitch.setChecked(true);
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO)
+
+        }
+        else if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO){
             colorSwitch.setChecked(false);
+
+        }
+
         colorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(colorSwitch.isChecked()) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
                 }
                 else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
                 }
             }
 
@@ -131,6 +159,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
     @Override // back button in nav bar
     public boolean onSupportNavigateUp() {
+
         finish();
         return true;
     }
