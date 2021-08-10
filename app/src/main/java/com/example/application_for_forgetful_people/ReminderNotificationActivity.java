@@ -29,21 +29,30 @@ public class ReminderNotificationActivity extends AppCompatActivity {
 
         confirmButton = findViewById(R.id.buttonNotificationConfirm);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_notification);
-        notificationReminderListAdapter = new NotificationReminderListAdapter(this);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RecyclerView recyclerView = findViewById(R.id.recycler_view_notification);
+                notificationReminderListAdapter = new NotificationReminderListAdapter(ReminderNotificationActivity.this);
 
-        recyclerView.setAdapter(notificationReminderListAdapter);
+                recyclerView.setAdapter(notificationReminderListAdapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setLayoutManager(new LinearLayoutManager(ReminderNotificationActivity.this));
+                reminderViewModel = new ViewModelProvider(ReminderNotificationActivity.this).get(ReminderViewModel.class);
+                statisticViewModel = new ViewModelProvider(ReminderNotificationActivity.this).get(StatisticsViewModel.class);
+                notificationReminderListAdapter.setStatisticViewModel(statisticViewModel);
 
-        reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
-        statisticViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
+                notificationReminderListAdapter.setReminderViewModel(reminderViewModel);
+            }
+        });
+        t.start();
 
-        notificationReminderListAdapter.setStatisticViewModel(statisticViewModel);
-
-        notificationReminderListAdapter.setReminderViewModel(reminderViewModel);
-
-        reminderViewModel.getListOfRemindersWhoseStatusIsActive().observe(this, reminders -> {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        reminderViewModel.getListOfRemindersWhoseStatusIsActive().observe(ReminderNotificationActivity.this, reminders -> {
             notificationReminderListAdapter.setListOfReminders(reminders);
         });
 
