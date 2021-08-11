@@ -10,11 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.application_for_forgetful_people.entity.Statistics;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.ValueDependentColor;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void run() {
                 statisticsViewModel = new ViewModelProvider(SettingsActivity.this).get(StatisticsViewModel.class);
                 countOfForgotten = statisticsViewModel.getForgottenCount();
-            }
+               }
         });
         t.start();
 
@@ -59,6 +62,8 @@ public class SettingsActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         advancedStatistics = findViewById(R.id.statsButton);
 
+
+
         nameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -67,6 +72,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+
+
         mainDaysOfWeek = calculatePastSevenDaysOfWeek();
         try {
             sevenLastDaysWithAmountOfForgottenActivities = getSevenDaysOfStatistics(listOfStatistics, mainDaysOfWeek); // rozwiąza problem NPE - prawdopodobnie bład w metodzie
@@ -74,49 +81,43 @@ public class SettingsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Date d1 = mainDaysOfWeek.get(4).getTime();
+        Date d2 = mainDaysOfWeek.get(0).getTime();
 
         final GraphView graph = findViewById(R.id.graph);
         GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
         graph.setVisibility(View.VISIBLE);
         try {
-            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]
                     {
+                            new DataPoint(mainDaysOfWeek.get(4).getTime(),sevenLastDaysWithAmountOfForgottenActivities.get(4)),
+                            new DataPoint(mainDaysOfWeek.get(3).getTime(),sevenLastDaysWithAmountOfForgottenActivities.get(3)),
+                            new DataPoint(mainDaysOfWeek.get(2).getTime(),sevenLastDaysWithAmountOfForgottenActivities.get(2)),
+                            new DataPoint(mainDaysOfWeek.get(1).getTime(),sevenLastDaysWithAmountOfForgottenActivities.get(1)),
+                            new DataPoint(mainDaysOfWeek.get(0).getTime(),sevenLastDaysWithAmountOfForgottenActivities.get(0)),
 
-                            new DataPoint(1,sevenLastDaysWithAmountOfForgottenActivities.get(0)),
-                            new DataPoint(2,sevenLastDaysWithAmountOfForgottenActivities.get(1)),
-                            new DataPoint(3,sevenLastDaysWithAmountOfForgottenActivities.get(2)),
-                            new DataPoint(4,sevenLastDaysWithAmountOfForgottenActivities.get(3)),
-                            new DataPoint(5,sevenLastDaysWithAmountOfForgottenActivities.get(4)),
-                            new DataPoint(6,sevenLastDaysWithAmountOfForgottenActivities.get(5)),
-                            new DataPoint(7,sevenLastDaysWithAmountOfForgottenActivities.get(6))
                     });
 
-            series.setSpacing(60);
-            series.setAnimated(true);
-            graph.getViewport().setXAxisBoundsManual(true);
-            graph.getViewport().setMinX(0);
-            graph.getViewport().setMaxX(8);
-            graph.getViewport().setYAxisBoundsManual(true);
-            graph.getViewport().setMinY(0);
-            graph.getViewport().setMaxY(8);
-            series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
-                @Override
-                public int get(DataPoint data) {
-                    int x,y,z;
-                    if(data.getX() % 2 ==0) {
-                        x=0;
-                        y=0;
-                        z=255;
-                    }
-                    else {
-                        x=255;
-                        y=0;
-                        z=0;
-                    }
-                    return Color.rgb(x, y,z );
-                }
-            });
             graph.addSeries(series);
+
+
+            series.setAnimated(true);
+
+            graph.getViewport().setMinX(d1.getTime());
+            graph.getViewport().setMaxX(d2.getTime());
+            graph.getViewport().setXAxisBoundsManual(true);
+            graph.getViewport().setMinY(0);
+            graph.getViewport().setYAxisBoundsManual(true);
+            graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(SettingsActivity.this));
+            graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+            graph.getGridLabelRenderer().setHumanRounding(false);
+            series.setDrawDataPoints(true);
+            series.setDrawBackground(true);
+            graph.setTitle("Wykres zapomnianych czynności");
+            graph.getGridLabelRenderer().setHorizontalAxisTitle("Daty");
+            graph.getGridLabelRenderer().setVerticalAxisTitle("Ilość zapomnianych czynności");
+
+
 
         } catch (IllegalArgumentException e) {
 
