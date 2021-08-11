@@ -193,11 +193,8 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
                         intent.putExtra(AlarmClock.EXTRA_MINUTES, Integer.parseInt(minuteOfReminderActivate));
                         intent.putExtra(AlarmClock.EXTRA_MESSAGE, nameOfRemidner);
                         intent.putExtra(AlarmClock.EXTRA_DAYS, days);
-                        if (intent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(intent);
-                            finish();
-                        } else
-                            Toast.makeText(NewReminder.this, "Na tym urządzeniu nie ma aplikacji, która wspiera tą akcję", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        finish();
                     }
 
                 } else {

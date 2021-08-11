@@ -118,11 +118,29 @@ public class SettingsActivity extends AppCompatActivity {
             graph.getGridLabelRenderer().setHorizontalAxisTitle("Daty");
             graph.getGridLabelRenderer().setVerticalAxisTitle("Ilość zapomnianych czynności");
 
-            if(maxValueOfForgottenActions%2 == 0)
-                graph.getGridLabelRenderer().setNumVerticalLabels(maxValueOfForgottenActions);
-            else
-                graph.getGridLabelRenderer().setNumVerticalLabels(maxValueOfForgottenActions+1);
+            int maxValue = maxValueOfForgottenActions;    // here, you find your max value
+            // search the interval between 2 vertical labels
+            int interval;
+            if(maxValue <=10)
+                interval = 1;
+            else if (maxValue <= 55) {
+                interval = 5; // increment of 5 between each label
+            } else if (maxValue <= 110) {
+                interval = 10; // increment of 10 between each label
+            } else {
+                interval = 20; // increment of 20 between each label
+            }
+            // search the top value of your graph, it must be a multiplier of your interval
+            int maxLabel = maxValue;
+            while (maxLabel % interval != 0) {
+                maxLabel++;
+            }
+            // set manual bounds
 
+            //graph.getViewport().setYAxisBoundsManual(true);
+            // indicate number of vertical labels
+            graph.getGridLabelRenderer().setNumVerticalLabels(maxLabel / interval + 1);
+            // now, it's ok, you should have a graph with integer labels
 
         } catch (IllegalArgumentException e) {
 
