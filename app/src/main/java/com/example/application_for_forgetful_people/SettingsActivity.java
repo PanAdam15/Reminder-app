@@ -83,6 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         Date d1 = mainDaysOfWeek.get(4).getTime();
         Date d2 = mainDaysOfWeek.get(0).getTime();
+        int maxValueOfForgottenActions = getMaxValueFromLastFiveDays(sevenLastDaysWithAmountOfForgottenActivities);
 
         final GraphView graph = findViewById(R.id.graph);
         GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
@@ -117,6 +118,10 @@ public class SettingsActivity extends AppCompatActivity {
             graph.getGridLabelRenderer().setHorizontalAxisTitle("Daty");
             graph.getGridLabelRenderer().setVerticalAxisTitle("Ilość zapomnianych czynności");
 
+            if(maxValueOfForgottenActions%2 == 0)
+                graph.getGridLabelRenderer().setNumVerticalLabels(maxValueOfForgottenActions);
+            else
+                graph.getGridLabelRenderer().setNumVerticalLabels(maxValueOfForgottenActions+1);
 
 
         } catch (IllegalArgumentException e) {
@@ -231,5 +236,14 @@ public class SettingsActivity extends AppCompatActivity {
             days.add(cal);
         }
         return days;
+    }
+
+    private int getMaxValueFromLastFiveDays(LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities){
+        int max = 0;
+        for (int i = 0; i < 5; i++) {
+            if(max < sevenLastDaysWithAmountOfForgottenActivities.get(i))
+                max = sevenLastDaysWithAmountOfForgottenActivities.get(i);
+        }
+        return max;
     }
 }
