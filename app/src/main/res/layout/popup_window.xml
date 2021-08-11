@@ -13,7 +13,8 @@
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
                 android:textSize="22sp"
-                android:text="Wszystkie" android:layout_marginVertical="10dp" android:layout_marginEnd="10dp"/>
+                android:text="Wszystkie" android:layout_marginVertical="10dp" android:layout_marginEnd="10dp"
+        />
         <TextView
                 android:id="@+id/allShow"
                 android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
                 android:layout_margin="5dp"
                 android:textSize="22sp"
                 android:text="Jakies inne"
-                android:textAlignment="center"/>
+                />
         <TextView
                 android:id="@+id/popupWindow3"
                 android:layout_width="wrap_content"

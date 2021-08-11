@@ -29,7 +29,7 @@
         <activity
                 android:name=".SettingsActivity"
                 android:label="@string/title_activity_settings_activity"
-
+                android:hardwareAccelerated="true"
                 />
 
         <service android:name=".BackgroundService"/>
