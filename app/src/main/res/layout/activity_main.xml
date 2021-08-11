@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" >
+        tools:context=".MainActivity">
     <TextView
             android:text="@string/dstrb"
             android:layout_width="176dp"
@@ -18,22 +18,26 @@
             android:layout_marginStart="115dp" android:layout_marginEnd="115dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
             android:textColorHighlight="#0E0505"/>
+
+
     <Button
             android:layout_width="60dp"
-            android:layout_height="0dp" android:id="@+id/AddNewReminder"
+            android:layout_height="60dp" android:id="@+id/AddNewReminder"
             android:background="@android:color/transparent"
 
             app:icon="@android:drawable/ic_input_add"
             android:scaleX="1.5" android:scaleY="1.5"
             style="@style/Theme.Application_for_forgetful_people"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/DSTRB" app:layout_constraintHorizontal_bias="0.533"
             android:textColor="#EFEAEA"
-            app:layout_constraintBottom_toBottomOf="@+id/fading_text" android:layout_marginBottom="30dp"
-            android:layout_marginTop="16dp"/>
+            android:backgroundTint="@android:color/transparent" android:shadowColor="@android:color/transparent"
+            app:rippleColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="@+id/imageButton"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+            app:layout_constraintTop_toBottomOf="@+id/fading_text" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="1.0" android:layout_marginBottom="20dp"/>
     <Button
-            android:layout_width="0dp"
-            android:layout_height="101dp" android:id="@+id/settingsButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp" android:id="@+id/settingsButton"
             android:backgroundTint="@android:color/transparent"
             android:background="@android:color/transparent"
             app:icon="@drawable/rsz_kisspng_computer_icons_scalable_vector_graphics_clip_art_p_action_gear_cog_preferences_service_options_5b631755d611886171018115332206938768"
@@ -44,15 +48,13 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="17dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton" app:layout_constraintHorizontal_bias="0.461"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.127"
             app:iconSize="40dp" android:layout_marginEnd="216dp"
     />
-
-
     <Button
-            android:layout_width="51dp"
-            android:layout_height="71dp" android:id="@+id/imageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp" android:id="@+id/imageButton"
             android:backgroundTint="@android:color/transparent"
             app:icon="@drawable/more_2"
             android:scaleX="1.5" android:scaleY="1.5" android:textAlignment="center"
@@ -62,10 +64,11 @@
             android:drawableTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/DSTRB" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintBottom_toBottomOf="@+id/settingsButton"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_height="500dp"
             android:id="@+id/recycler_view1"
             tools:listitem="@layout/activity_row"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -82,10 +85,9 @@
             android:textSize="20sp"
             android:gravity="center"
             android:id="@+id/fading_text"
-            app:layout_constraintEnd_toStartOf="@+id/AddNewReminder"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/DSTRB"
-            android:layout_marginStart="45dp"
-            app:layout_constraintHorizontal_bias="0.525"/>
+            android:layout_marginStart="84dp"
+            app:layout_constraintEnd_toStartOf="@+id/AddNewReminder"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
