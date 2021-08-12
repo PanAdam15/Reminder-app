@@ -1,6 +1,8 @@
 package com.example.application_for_forgetful_people;
 
-import android.graphics.Color;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,18 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.application_for_forgetful_people.entity.Statistics;
-import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -33,11 +31,12 @@ public class SettingsActivity extends AppCompatActivity {
     private static List<Statistics> listOfStatistics;
     LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities;
     private int countOfForgotten;
-    private TextView nameEditText;
+    private TextView btNameTextView;
     private TextView show1;
     private TextView show2;
     Statistics s;
     ArrayList<Calendar> mainDaysOfWeek;
+    Button btRefreshButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +47,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void run() {
                 statisticsViewModel = new ViewModelProvider(SettingsActivity.this).get(StatisticsViewModel.class);
                 countOfForgotten = statisticsViewModel.getForgottenCount();
-               }
+
+            }
         });
         t.start();
-
+        checkConnected();
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
         getSupportActionBar().setTitle("Opcje i statystyki");
@@ -59,20 +59,9 @@ public class SettingsActivity extends AppCompatActivity {
         mTextView = findViewById(R.id.text);
         colorSwitch = findViewById(R.id.colorSwitch);
 
-        nameEditText = findViewById(R.id.nameEditText);
+        btNameTextView = findViewById(R.id.btNameTextView);
         advancedStatistics = findViewById(R.id.statsButton);
-
-
-
-        nameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                    System.out.println("dsa"); // tu edycja db
-            }
-        });
-
-
+        btRefreshButton = findViewById(R.id.btRefreshButton);
 
         mainDaysOfWeek = calculatePastSevenDaysOfWeek();
         try {
@@ -103,7 +92,6 @@ public class SettingsActivity extends AppCompatActivity {
 
 
             series.setAnimated(true);
-
             graph.getViewport().setMinX(d1.getTime());
             graph.getViewport().setMaxX(d2.getTime());
             graph.getViewport().setXAxisBoundsManual(true);
@@ -116,12 +104,25 @@ public class SettingsActivity extends AppCompatActivity {
             series.setDrawBackground(true);
             graph.setTitle("Wykres zapomnianych czynności");
             graph.getGridLabelRenderer().setHorizontalAxisTitle("Daty");
-            graph.getGridLabelRenderer().setVerticalAxisTitle("Ilość zapomnianych czynności");
 
-            if(maxValueOfForgottenActions%2 == 0)
-                graph.getGridLabelRenderer().setNumVerticalLabels(maxValueOfForgottenActions);
-            else
-                graph.getGridLabelRenderer().setNumVerticalLabels(maxValueOfForgottenActions+1);
+
+            int maxValue = maxValueOfForgottenActions;
+            int interval;
+            if(maxValue <=10)
+                interval = 1;
+            else if (maxValue <= 55) {
+                interval = 5; // increment of 5 between each label
+            } else if (maxValue <= 110) {
+                interval = 10; // increment of 10 between each label
+            } else {
+                interval = 20; // increment of 20 between each label
+            }
+            // search the top value of your graph, it must be a multiplier of your interval
+            int maxLabel = maxValue;
+            while (maxLabel % interval != 0) {
+                maxLabel++;
+            }
+            graph.getGridLabelRenderer().setNumVerticalLabels(maxLabel / interval + 1);
 
 
         } catch (IllegalArgumentException e) {
@@ -153,7 +154,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         });
 
-
         advancedStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +173,12 @@ public class SettingsActivity extends AppCompatActivity {
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
             }
     });
+        btRefreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkConnected();
+            }
+        });
     }
     @Override // back button in nav bar
     public boolean onSupportNavigateUp() {
@@ -246,4 +252,27 @@ public class SettingsActivity extends AppCompatActivity {
         }
         return max;
     }
+    String name;
+    public void checkConnected()
+    {
+        BluetoothAdapter.getDefaultAdapter().getProfileProxy(this, serviceListener, BluetoothProfile.HEADSET);
+    }
+    private BluetoothProfile.ServiceListener serviceListener = new BluetoothProfile.ServiceListener()
+    {
+        @Override
+        public void onServiceDisconnected(int profile)
+        {
+
+        }
+        @Override
+        public void onServiceConnected(int profile, BluetoothProfile proxy)
+        {
+            for (BluetoothDevice device : proxy.getConnectedDevices())
+            {
+                name = device.getName();
+                btNameTextView.setText(name);
+            }
+            BluetoothAdapter.getDefaultAdapter().closeProfileProxy(profile, proxy);
+        }
+    };
 }
