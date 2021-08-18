@@ -32,8 +32,8 @@ public class SettingsActivity extends AppCompatActivity {
     LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities;
     private int countOfForgotten;
     private TextView btNameTextView;
-    private TextView show1;
-    private TextView show2;
+    private TextView show1,show2, show3, show4, peroidInput;
+    private Button tab1,tab2,tab3;
     Statistics s;
     ArrayList<Calendar> mainDaysOfWeek;
     Button btRefreshButton;
@@ -171,9 +171,51 @@ public class SettingsActivity extends AppCompatActivity {
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
                 show1 = popupWindow.getContentView().findViewById(R.id.allShow);
                 show2 = popupWindow.getContentView().findViewById(R.id.forgottenShow);
+                show3 = popupWindow.getContentView().findViewById(R.id.notForgottenShow);
+                show4 = popupWindow.getContentView().findViewById(R.id.lastPeriodShow);
+                peroidInput = popupWindow.getContentView().findViewById(R.id.lastPeriod);
+                tab1 = popupWindow.getContentView().findViewById(R.id.tab1);
+                tab2 = popupWindow.getContentView().findViewById(R.id.tab2);
+                tab3 = popupWindow.getContentView().findViewById(R.id.tab3);
                 show1.setText(String.valueOf(countOfForgotten));
                 show2.setText("pienć");
+                tab1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        show1.setText("tab1");
+                        show2.setText("jeden");
+                        show3.setText("dd");
+                        if(show4.getVisibility() == View.GONE)
+                        {
+                            show4.setVisibility(View.VISIBLE);
+                            peroidInput.setVisibility(View.VISIBLE);
+                        }
+                        peroidInput.setText("Na tle ostatnich 7 dni");
+                    }
+                });
+                tab2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        show1.setText("tab2");
+                        show2.setText("dwa");
+                        if(show4.getVisibility() == View.GONE)
+                        {
+                            show4.setVisibility(View.VISIBLE);
+                            peroidInput.setVisibility(View.VISIBLE);
+                        }
+                        peroidInput.setText("Na tle ostatnich 30 dni");
 
+                    }
+                });
+                tab3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        show1.setText("tab3");
+                        show2.setText("no i kox");
+                        show4.setVisibility(View.GONE);
+                        peroidInput.setVisibility(View.GONE);
+                    }
+                });
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
             }
     });
