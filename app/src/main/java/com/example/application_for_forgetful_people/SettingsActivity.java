@@ -30,12 +30,19 @@ public class SettingsActivity extends AppCompatActivity {
     private StatisticsViewModel statisticsViewModel;
     private static List<Statistics> listOfStatistics;
     LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities;
+    LinkedList<Statistics> sevenLastDaysStatistics;
+    LinkedList<Statistics> previousSevenLastDaysStatistics;
+    LinkedList<Statistics> statisticsOfLastMonth;
+    LinkedList<Statistics> statisticsOfPreviousMonth;
     private int countOfForgotten;
     private TextView btNameTextView;
     private TextView show1;
     private TextView show2;
     Statistics s;
     ArrayList<Calendar> mainDaysOfWeek;
+    ArrayList<Calendar> previousMainDaysOfWeek;
+    ArrayList<Calendar> lastMonthDays;
+    ArrayList<Calendar> previousMonthDays;
     Button btRefreshButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +71,46 @@ public class SettingsActivity extends AppCompatActivity {
         btRefreshButton = findViewById(R.id.btRefreshButton);
 
         mainDaysOfWeek = calculatePastSevenDaysOfWeek();
+        lastMonthDays = calculateLastMonthDaysOfWeek();
+        previousMainDaysOfWeek = calculatePastPreviousSevenDaysOfWeek();
+        previousMonthDays = calculatePreviousMonthDaysOfWeek();
+
         try {
-            sevenLastDaysWithAmountOfForgottenActivities = getSevenDaysOfStatistics(listOfStatistics, mainDaysOfWeek); // rozwiąza problem NPE - prawdopodobnie bład w metodzie
+            sevenLastDaysWithAmountOfForgottenActivities = getDaysOfStatistics(listOfStatistics, mainDaysOfWeek);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        try {
+            sevenLastDaysStatistics = getMonthDaysOfStatistics(listOfStatistics, mainDaysOfWeek);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            previousSevenLastDaysStatistics = getMonthDaysOfStatistics(listOfStatistics, previousMainDaysOfWeek);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            statisticsOfLastMonth = getMonthDaysOfStatistics(listOfStatistics, lastMonthDays);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            statisticsOfPreviousMonth = getMonthDaysOfStatistics(listOfStatistics, previousMonthDays);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         Date d1 = mainDaysOfWeek.get(4).getTime();
         Date d2 = mainDaysOfWeek.get(0).getTime();
         int maxValueOfForgottenActions = getMaxValueFromLastFiveDays(sevenLastDaysWithAmountOfForgottenActivities);
 
         final GraphView graph = findViewById(R.id.graph);
-        GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
         graph.setVisibility(View.VISIBLE);
         try {
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]
@@ -198,13 +233,11 @@ public class SettingsActivity extends AppCompatActivity {
         SettingsActivity.listOfStatistics = listOfStatistics;
     }
 
-    private LinkedHashMap<Integer, Integer> getSevenDaysOfStatistics(List<Statistics> listOfStatistics, ArrayList<Calendar> daysOfWeek) throws ParseException {
+    private LinkedHashMap<Integer, Integer> getDaysOfStatistics(List<Statistics> listOfStatistics, ArrayList<Calendar> daysOfWeek) throws ParseException {
         ArrayList<Calendar> datesOfStatistics = new ArrayList<>();
         LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities = new LinkedHashMap<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyy", Locale.ENGLISH);
 
-        Calendar calOfToday = Calendar.getInstance();
-        Calendar calOfSevenDaysBefore = Calendar.getInstance();
         int amountOfForgot;
         listOfStatistics.forEach(s -> {
             try {
@@ -215,10 +248,6 @@ public class SettingsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-        calOfToday.add(Calendar.DATE,-1);
-        calOfSevenDaysBefore.add(Calendar.DATE, -7);
-
-        daysOfWeek=calculatePastSevenDaysOfWeek();
 
         for (int i = 0; i < daysOfWeek.size(); i++) {
             amountOfForgot = 0;
@@ -237,6 +266,35 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    private LinkedList<Statistics> getMonthDaysOfStatistics(List<Statistics> listOfStatistics, ArrayList<Calendar> daysOfWeek) throws ParseException {
+        ArrayList<Calendar> datesOfStatistics = new ArrayList<>();
+        LinkedList<Statistics> lastDaysWithAmountOfForgottenActivities = new LinkedList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyy", Locale.ENGLISH);
+
+        listOfStatistics.forEach(s -> {
+            try {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(Objects.requireNonNull(sdf.parse(s.getDayOfForgettingActivity() + " " + s.getMonthOfForgettingActivity() + " " + s.getYearOfForgettingActivity())));
+                datesOfStatistics.add(cal);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        });
+
+        for (int i = 0; i < daysOfWeek.size(); i++) {
+            for (int j = 0; j < datesOfStatistics.size(); j++) {
+                Date date1 = sdf.parse(sdf.format(daysOfWeek.get(i).getTime()));
+                Date date2 = sdf.parse(sdf.format(datesOfStatistics.get(j).getTime()));
+                if((date1.equals(date2) )){
+                    lastDaysWithAmountOfForgottenActivities.add(listOfStatistics.get(j));
+                }
+            }
+        }
+
+        return lastDaysWithAmountOfForgottenActivities;
+
+    }
+
     private ArrayList<Calendar> calculatePastSevenDaysOfWeek(){
         ArrayList<Calendar> days = new ArrayList<>();
 
@@ -246,6 +304,77 @@ public class SettingsActivity extends AppCompatActivity {
             days.add(cal);
         }
         return days;
+    }
+
+    private ArrayList<Calendar> calculatePastPreviousSevenDaysOfWeek(){
+        ArrayList<Calendar> days = new ArrayList<>();
+
+        for (int i = -7; i >= -13; i--) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, i);
+            days.add(cal);
+        }
+        return days;
+    }
+
+    private ArrayList<Calendar> calculateLastMonthDaysOfWeek() {
+        ArrayList<Calendar> days = new ArrayList<>();
+
+        for (int i = 0; i >= -29; i--) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, i);
+            days.add(cal);
+        }
+        return days;
+    }
+
+    private ArrayList<Calendar> calculatePreviousMonthDaysOfWeek() {
+        ArrayList<Calendar> days = new ArrayList<>();
+
+        for (int i = 30; i >= -59; i--) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, i);
+            days.add(cal);
+        }
+        return days;
+    }
+
+    private int getAmonutOfForgotActivities(LinkedList<Statistics> listOfStatistics, boolean wasForgotten) {
+
+        int amount = 0;
+        for (Statistics statistic : listOfStatistics) {
+            if(wasForgotten && statistic.isWasForgotten()){
+                amount++;
+            } else if (!wasForgotten && !statistic.isWasForgotten()) {
+                amount++;
+            }
+        }
+        return amount;
+    }
+
+    private String compareStatisticsWithPreviousStatistics(LinkedList<Statistics> listOfStatisticsThisWeek, LinkedList<Statistics> listOfStatisticsPreviousWeek) {
+
+        int amountOfForgotActivitiesInThisWeek = 0;
+        int amountOfForgotActivitiesInPreviousWeek = 0;
+
+        for (Statistics statistic : listOfStatisticsThisWeek) {
+            if(statistic.isWasForgotten())
+                amountOfForgotActivitiesInThisWeek++;
+        }
+        for (Statistics statistic : listOfStatisticsPreviousWeek) {
+            if(statistic.isWasForgotten())
+                amountOfForgotActivitiesInPreviousWeek++;
+        }
+
+        int difference = amountOfForgotActivitiesInThisWeek - amountOfForgotActivitiesInPreviousWeek;
+
+        if(difference < 0) {
+            difference = Math.abs(difference);
+            return difference + "mniej";
+        } else if (difference > 0) {
+            return difference + "więcej";
+        }
+        return String.valueOf(difference);
     }
 
     private int getMaxValueFromLastFiveDays(LinkedHashMap<Integer, Integer> sevenLastDaysWithAmountOfForgottenActivities){
