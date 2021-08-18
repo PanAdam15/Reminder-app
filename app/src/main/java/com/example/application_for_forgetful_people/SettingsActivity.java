@@ -124,6 +124,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
             graph.getGridLabelRenderer().setNumVerticalLabels(maxLabel / interval + 1);
 
+            //graph.getViewport().setYAxisBoundsManual(true);
+            // indicate number of vertical labels
+            graph.getGridLabelRenderer().setNumVerticalLabels(maxLabel / interval + 1);
+            // now, it's ok, you should have a graph with integer labels
 
         } catch (IllegalArgumentException e) {
 
