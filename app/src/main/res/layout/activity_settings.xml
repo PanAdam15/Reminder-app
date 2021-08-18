@@ -30,7 +30,8 @@
             <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" android:id="@+id/colorSwitch" android:textSize="20sp"
-                    android:gravity="start" android:textAlignment="center"/>
+                    android:gravity="start"
+            android:paddingEnd="15dp"/>
         </TableRow>
         <TableRow android:layout_marginBottom="20sp">
             <TextView
@@ -70,7 +71,7 @@
             android:text="Button"
             android:layout_width="47dp"
             android:layout_height="48dp" android:id="@+id/btRefreshButton"
-            app:icon="@android:drawable/ic_dialog_alert" app:iconTint="@color/black"
+            app:icon="@drawable/refresh4"
             android:scaleX="1" android:scaleY="1"
             style="@style/Theme.Application_for_forgetful_people"
             android:background="@android:color/transparent"
