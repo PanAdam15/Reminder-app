@@ -10,10 +10,10 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.application_for_forgetful_people.entity.Statistics;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -200,10 +200,10 @@ public class SettingsActivity extends AppCompatActivity {
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_window, null);
 
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+                int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+                final PopupWindow popupWindow = new PopupWindow(popupView, width+1300, height, focusable);
                 show1 = popupWindow.getContentView().findViewById(R.id.allShow);
                 show2 = popupWindow.getContentView().findViewById(R.id.forgottenShow);
                 show3 = popupWindow.getContentView().findViewById(R.id.notForgottenShow);
