@@ -212,41 +212,49 @@ public class SettingsActivity extends AppCompatActivity {
                 tab1 = popupWindow.getContentView().findViewById(R.id.tab1);
                 tab2 = popupWindow.getContentView().findViewById(R.id.tab2);
                 tab3 = popupWindow.getContentView().findViewById(R.id.tab3);
-                show1.setText(String.valueOf(countOfForgotten));
-                show2.setText("pienć");
+                show1.setText(String.valueOf(sevenLastDaysStatistics.size()));
+                show2.setText(String.valueOf(getAmonutOfForgotActivities(sevenLastDaysStatistics, true)));
+                show3.setText(String.valueOf(getAmonutOfForgotActivities(sevenLastDaysStatistics, false)));
+                show4.setText(compareStatisticsWithPreviousStatistics(sevenLastDaysStatistics, previousSevenLastDaysStatistics));
                 tab1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        show1.setText("tab1");
-                        show2.setText("jeden");
-                        show3.setText("dd");
+
+                        show1.setText(String.valueOf(sevenLastDaysStatistics.size()));
+                        show2.setText(String.valueOf(getAmonutOfForgotActivities(sevenLastDaysStatistics, true)));
+                        show3.setText(String.valueOf(getAmonutOfForgotActivities(sevenLastDaysStatistics, false)));
                         if(show4.getVisibility() == View.GONE)
                         {
                             show4.setVisibility(View.VISIBLE);
                             peroidInput.setVisibility(View.VISIBLE);
                         }
                         peroidInput.setText("Na tle ostatnich 7 dni");
+                        show4.setText(compareStatisticsWithPreviousStatistics(sevenLastDaysStatistics, previousSevenLastDaysStatistics));
                     }
                 });
                 tab2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        show1.setText("tab2");
-                        show2.setText("dwa");
+                        show1.setText(String.valueOf(statisticsOfLastMonth.size()));
+                        show2.setText(String.valueOf(getAmonutOfForgotActivities(statisticsOfLastMonth, true)));
+                        show3.setText(String.valueOf(getAmonutOfForgotActivities(statisticsOfLastMonth, false)));
                         if(show4.getVisibility() == View.GONE)
                         {
                             show4.setVisibility(View.VISIBLE);
                             peroidInput.setVisibility(View.VISIBLE);
                         }
                         peroidInput.setText("Na tle ostatnich 30 dni");
+                        show4.setText(compareStatisticsWithPreviousStatistics(statisticsOfLastMonth, statisticsOfPreviousMonth));
 
                     }
                 });
                 tab3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        show1.setText("tab3");
-                        show2.setText("no i kox");
+                        LinkedList<Statistics> list = new LinkedList<>(listOfStatistics);
+                        show1.setText(String.valueOf(listOfStatistics.size()));
+                        show2.setText(String.valueOf(getAmonutOfForgotActivities(list, true)));
+                        show3.setText(String.valueOf(getAmonutOfForgotActivities(list, false)));
                         show4.setVisibility(View.GONE);
                         peroidInput.setVisibility(View.GONE);
                     }
@@ -373,7 +381,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ArrayList<Calendar> calculatePreviousMonthDaysOfWeek() {
         ArrayList<Calendar> days = new ArrayList<>();
 
-        for (int i = 30; i >= -59; i--) {
+        for (int i = -30; i >= -59; i--) {
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE, i);
             days.add(cal);
@@ -412,9 +420,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         if(difference < 0) {
             difference = Math.abs(difference);
-            return difference + "mniej";
+            return difference + " mniej";
         } else if (difference > 0) {
-            return difference + "więcej";
+            return difference + " więcej";
         }
         return String.valueOf(difference);
     }
@@ -450,4 +458,5 @@ public class SettingsActivity extends AppCompatActivity {
             BluetoothAdapter.getDefaultAdapter().closeProfileProxy(profile, proxy);
         }
     };
+
 }
