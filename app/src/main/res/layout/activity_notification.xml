@@ -18,7 +18,7 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
-            android:layout_marginTop="10dp" app:layout_constraintBottom_toTopOf="@+id/recycler_view_notification"/>
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view_notification"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
             android:layout_height="400dp"
@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="70dp"/>
     <Button
             android:text="Zatwierdz"
             android:layout_width="300dp"
@@ -37,6 +37,14 @@
             app:layout_constraintTop_toBottomOf="@+id/recycler_view_notification"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="Sprawdź, czy te czynności zostały przez Ciebie wykonane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/DSTRB"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view_notification"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold" android:textSize="15sp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
