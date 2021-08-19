@@ -6,23 +6,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+
+
     <TextView
             android:text="@string/dstrb"
-            android:layout_width="176dp"
-            android:layout_height="74dp" android:id="@+id/DSTRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/DSTRB"
             android:autoText="false" android:textSize="50sp"
             android:textStyle="bold" android:textColor="#FFFFFF" android:background="@drawable/rounded_corner_title"
             android:textColorLink="#D33F3F" android:textAlignment="center" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="115dp" android:layout_marginEnd="115dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:textColorHighlight="#0E0505"/>
-
-
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.4"
+            android:textColorHighlight="#0E0505" app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+            app:layout_constraintVertical_bias="0.083"/>
     <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp" android:id="@+id/AddNewReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/AddNewReminder"
             android:background="@android:color/transparent"
 
             app:icon="@android:drawable/ic_input_add"
@@ -33,28 +33,26 @@
             app:rippleColor="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="@+id/imageButton"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
-            app:layout_constraintTop_toBottomOf="@+id/fading_text" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0" android:layout_marginBottom="20dp"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginBottom="20dp" app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            android:layout_marginTop="35dp" android:layout_marginStart="15dp"/>
     <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp" android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/settingsButton"
             android:backgroundTint="@android:color/transparent"
             android:background="@android:color/transparent"
             app:icon="@drawable/rsz_kisspng_computer_icons_scalable_vector_graphics_clip_art_p_action_gear_cog_preferences_service_options_5b631755d611886171018115332206938768"
             android:scaleX="1" android:scaleY="1" android:textAlignment="center"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_marginBottom="580dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="17dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.127"
-            app:iconSize="40dp" android:layout_marginEnd="216dp"
-    />
+            app:iconSize="40dp"
+            app:layout_constraintEnd_toStartOf="@+id/DSTRB" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/DSTRB"/>
     <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp" android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/imageButton"
             android:backgroundTint="@android:color/transparent"
             app:icon="@drawable/more_2"
             android:scaleX="1.5" android:scaleY="1.5" android:textAlignment="center"
@@ -64,18 +62,18 @@
             android:drawableTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/DSTRB" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" app:layout_constraintHorizontal_bias="0.533"
-            app:layout_constraintBottom_toBottomOf="@+id/settingsButton"/>
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintBottom_toBottomOf="@+id/DSTRB" android:layout_marginStart="15dp"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
-            android:layout_height="500dp"
+            android:layout_height="420dp"
             android:id="@+id/recycler_view1"
             tools:listitem="@layout/activity_row"
             app:layout_constraintBottom_toBottomOf="parent"
             android:outlineAmbientShadowColor="#DCBBBB" android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@+id/fading_text"
-            android:layout_marginTop="30dp" android:layout_marginBottom="50dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="200dp"/>
     <com.tomer.fadingtextview.FadingTextView
             android:layout_width="238dp"
             android:layout_height="120dp"
@@ -86,8 +84,10 @@
             android:gravity="center"
             android:id="@+id/fading_text"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/DSTRB"
-            android:layout_marginStart="84dp"
-            app:layout_constraintEnd_toStartOf="@+id/AddNewReminder"/>
+            android:layout_marginStart="75dp"
+            app:layout_constraintEnd_toStartOf="@+id/AddNewReminder"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view1"
+            android:layout_marginBottom="10dp" android:layout_marginTop="5dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

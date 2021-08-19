@@ -17,8 +17,8 @@
             android:id="@+id/whole">
 
         <TextView
-                android:layout_width="307dp"
-                android:layout_height="106dp" android:id="@+id/textView2"
+                android:layout_width="290dp"
+                android:layout_height="100dp" android:id="@+id/textView2"
                 android:background="@drawable/rounded_corner"
 
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
