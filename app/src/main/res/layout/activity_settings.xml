@@ -7,27 +7,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".SettingsActivity"
-        android:paddingStart="8dip"
+
+
         android:paddingBottom="6dip"
         android:paddingTop="4dip">
 
     <TableLayout
             android:id="@+id/tableLayout1"
-            android:layout_width="376dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:stretchColumns="*"
             android:paddingRight="2dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
-            android:paddingStart="5dp">
+            android:paddingStart="2dp">
 
         <TableRow android:layout_marginBottom="20sp">
 
             <TextView
                     android:text="Tryb Dzień/Noc"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/colorModeView" android:textSize="20sp"/>
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:id="@+id/colorModeView" android:textSize="20sp"/>
             <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/colorSwitch" android:textSize="20sp"
@@ -55,7 +58,9 @@
             <Button
                     android:text="Statystyki"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/statsButton"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:id="@+id/statsButton"
                     android:backgroundTint="@color/purple_200"/>
         </TableRow>
     </TableLayout>
