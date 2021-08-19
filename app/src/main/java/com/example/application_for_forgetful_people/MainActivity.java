@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        createNotificationChannel();
+
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -142,17 +142,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    private void createNotificationChannel(){
-        CharSequence name = "foxandroidReminderChannel";
-        String description = "channel";
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-        NotificationChannel channel = new NotificationChannel("foxandroid",name,importance);
-        channel.setDescription(description);
-
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent pack){

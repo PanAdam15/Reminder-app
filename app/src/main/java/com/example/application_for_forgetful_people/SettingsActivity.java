@@ -71,9 +71,6 @@ public class SettingsActivity extends AppCompatActivity {
         btRefreshButton = findViewById(R.id.btRefreshButton);
 
         mainDaysOfWeek = calculatePastSevenDaysOfWeek();
-        lastMonthDays = calculateLastMonthDaysOfWeek();
-        previousMainDaysOfWeek = calculatePastPreviousSevenDaysOfWeek();
-        previousMonthDays = calculatePreviousMonthDaysOfWeek();
 
         try {
             sevenLastDaysWithAmountOfForgottenActivities = getDaysOfStatistics(listOfStatistics, mainDaysOfWeek);
@@ -81,29 +78,40 @@ public class SettingsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        try {
-            sevenLastDaysStatistics = getMonthDaysOfStatistics(listOfStatistics, mainDaysOfWeek);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lastMonthDays = calculateLastMonthDaysOfWeek();
+                previousMainDaysOfWeek = calculatePastPreviousSevenDaysOfWeek();
+                previousMonthDays = calculatePreviousMonthDaysOfWeek();
 
-        try {
-            previousSevenLastDaysStatistics = getMonthDaysOfStatistics(listOfStatistics, previousMainDaysOfWeek);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
-        try {
-            statisticsOfLastMonth = getMonthDaysOfStatistics(listOfStatistics, lastMonthDays);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+                try {
+                    sevenLastDaysStatistics = getMonthDaysOfStatistics(listOfStatistics, mainDaysOfWeek);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-        try {
-            statisticsOfPreviousMonth = getMonthDaysOfStatistics(listOfStatistics, previousMonthDays);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+                try {
+                    previousSevenLastDaysStatistics = getMonthDaysOfStatistics(listOfStatistics, previousMainDaysOfWeek);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    statisticsOfLastMonth = getMonthDaysOfStatistics(listOfStatistics, lastMonthDays);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    statisticsOfPreviousMonth = getMonthDaysOfStatistics(listOfStatistics, previousMonthDays);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t2.start();
 
 
         Date d1 = mainDaysOfWeek.get(4).getTime();
@@ -203,7 +211,7 @@ public class SettingsActivity extends AppCompatActivity {
                 int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
-                final PopupWindow popupWindow = new PopupWindow(popupView, width+1300, height, focusable);
+                final PopupWindow popupWindow = new PopupWindow(popupView, -1, height, focusable);
                 show1 = popupWindow.getContentView().findViewById(R.id.allShow);
                 show2 = popupWindow.getContentView().findViewById(R.id.forgottenShow);
                 show3 = popupWindow.getContentView().findViewById(R.id.notForgottenShow);

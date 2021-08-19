@@ -33,7 +33,6 @@ public class BackgroundService extends Service {
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         this.registerReceiver(mReceiver, filter);
 
-
         startForeground();
 
         return super.onStartCommand(intent, flags, startId);
@@ -97,8 +96,7 @@ public class BackgroundService extends Service {
     }
 
     private void createNotificationChannel(){
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-        NotificationChannel channel = new NotificationChannel(NOTIF_CHANNEL_ID,NOTIF_CHANNEL_ID,importance);
+        NotificationChannel channel = new NotificationChannel(NOTIF_CHANNEL_ID,NOTIF_CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH);
         channel.setDescription("Background service notification");
 
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
