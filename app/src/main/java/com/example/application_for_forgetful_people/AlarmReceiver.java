@@ -18,8 +18,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"foxandroid")
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("test")
-                .setContentText("test")
+                .setContentTitle("DSTRB")
+                .setContentText("Połączenie z bazą utracone! Sprawdź przypomnienia!")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
