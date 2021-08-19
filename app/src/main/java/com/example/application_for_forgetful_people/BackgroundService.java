@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat;
 public class BackgroundService extends Service {
 
     private static final int NOTIF_ID = 1;
-    private static final String NOTIF_CHANNEL_ID = "Channel_Id";
+    private static final String NOTIF_CHANNEL_ID = "foxandroid";
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
 
@@ -96,7 +96,7 @@ public class BackgroundService extends Service {
     }
 
     private void createNotificationChannel(){
-        NotificationChannel channel = new NotificationChannel(NOTIF_CHANNEL_ID,NOTIF_CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel channel = new NotificationChannel(NOTIF_CHANNEL_ID,"foxandroid", NotificationManager.IMPORTANCE_HIGH);
         channel.setDescription("Background service notification");
 
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
