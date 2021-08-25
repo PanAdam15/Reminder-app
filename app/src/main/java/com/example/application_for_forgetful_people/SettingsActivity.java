@@ -154,23 +154,19 @@ public class SettingsActivity extends AppCompatActivity {
             if(maxValue <=10)
                 interval = 1;
             else if (maxValue <= 55) {
-                interval = 5; // increment of 5 between each label
+                interval = 5;
             } else if (maxValue <= 110) {
-                interval = 10; // increment of 10 between each label
+                interval = 10;
             } else {
-                interval = 20; // increment of 20 between each label
+                interval = 20;
             }
-            // search the top value of your graph, it must be a multiplier of your interval
             int maxLabel = maxValue;
             while (maxLabel % interval != 0) {
                 maxLabel++;
             }
             graph.getGridLabelRenderer().setNumVerticalLabels(maxLabel / interval + 1);
 
-            //graph.getViewport().setYAxisBoundsManual(true);
-            // indicate number of vertical labels
             graph.getGridLabelRenderer().setNumVerticalLabels(maxLabel / interval + 1);
-            // now, it's ok, you should have a graph with integer labels
 
         } catch (IllegalArgumentException e) {
 
@@ -186,10 +182,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
 
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
-            colorSwitch.setChecked(true);
-            else
-            colorSwitch.setChecked(false);
+        colorSwitch.setChecked(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES);
 
         colorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -282,7 +275,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
-    @Override // back button in nav bar
+    @Override
     public boolean onSupportNavigateUp() {
 
         finish();
@@ -453,7 +446,7 @@ public class SettingsActivity extends AppCompatActivity {
     {
         BluetoothAdapter.getDefaultAdapter().getProfileProxy(this, serviceListener, BluetoothProfile.HEADSET);
     }
-    private BluetoothProfile.ServiceListener serviceListener = new BluetoothProfile.ServiceListener()
+    private final BluetoothProfile.ServiceListener serviceListener = new BluetoothProfile.ServiceListener()
     {
         @Override
         public void onServiceDisconnected(int profile)

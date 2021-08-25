@@ -288,7 +288,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         hourOfReminderActivate = String.valueOf(hourOfDay);
         minuteOfReminderActivate = String.valueOf(minute);
     }
-    @Override // back button in nav bar
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;

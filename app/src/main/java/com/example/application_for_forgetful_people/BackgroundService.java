@@ -55,7 +55,6 @@ public class BackgroundService extends Service{
                 .build());
     }
 
-    //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -63,18 +62,18 @@ public class BackgroundService extends Service{
             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
 //            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-//           ... //Device found
+//
 //            }
 ////
 //            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-//           ... //Done searching
+//
 //            }
 //            else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
-//           ... //Device is about to disconnect
+//
 //            }
 //            else
             if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-//           ... //Device is now connected
+//
                }
             else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 if(!MainActivity.isListOfRemindersEmpty()) {
