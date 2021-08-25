@@ -186,6 +186,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
 
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+            colorSwitch.setChecked(true);
+            else
+            colorSwitch.setChecked(false);
+
         colorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

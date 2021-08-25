@@ -19,7 +19,6 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
     private Long id;
     private String name;
     private ReminderViewModel reminderViewModel;
-    private EditText nameOfNewReminder;
     private Button addNewReminderButton;
     private Button chooseTimeOfReminder;
     private CheckBox checkBoxMon;
@@ -43,14 +42,15 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
     boolean isActive;
     private String hourOfReminderActivate;
     private String minuteOfReminderActivate;
-
+    private AutoCompleteTextView nameOfNewReminder;
+    private String[] tab = new String[]{"Pranie","Żelazko","Gaz","Zamknąć drzwi","Nakarmić zwierzęta","Klucze","Portfel"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reminder);
         ArrayList<Integer> days = new ArrayList<>();
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
-        nameOfNewReminder = findViewById(R.id.nameOfNewActivity);
+
         addNewReminderButton = findViewById(R.id.AddNew);
         checkBoxMon = findViewById(R.id.checkBoxMonday);
         checkBoxTue = findViewById(R.id.checkBoxTuesday);
@@ -62,6 +62,9 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         switchBluetooth = findViewById(R.id.switchBluetooth);
         switchRing = findViewById(R.id.switchRing);
         chooseTimeOfReminder = findViewById(R.id.chooseTimeButton);
+        nameOfNewReminder = findViewById(R.id.nameOfNewActivity);
+
+        nameOfNewReminder.setAdapter(new ArrayAdapter<String>(NewReminder.this,R.layout.support_simple_spinner_dropdown_item,tab));
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

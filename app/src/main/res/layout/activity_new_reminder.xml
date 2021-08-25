@@ -8,7 +8,7 @@
         tools:context=".NewReminder"
         >
 
-    <EditText
+    <AutoCompleteTextView
             android:hint="@string/nameOfNewActitity"
             android:layout_width="380dp"
             android:layout_height="70dp" android:id="@+id/nameOfNewActivity"
