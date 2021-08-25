@@ -66,7 +66,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
 
         nameOfNewReminder.setAdapter(new ArrayAdapter<String>(NewReminder.this,R.layout.support_simple_spinner_dropdown_item,tab));
 
-        assert getSupportActionBar() != null;   //null check
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Nowe przypomnienie");
         isActive = true;
@@ -109,6 +109,14 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
                     days.add(Calendar.MONDAY);
                 else
                     days.remove((Integer) Calendar.MONDAY);
+            }
+        });
+
+        nameOfNewReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nameOfNewReminder.showDropDown();
+
             }
         });
 
@@ -288,7 +296,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         hourOfReminderActivate = String.valueOf(hourOfDay);
         minuteOfReminderActivate = String.valueOf(minute);
     }
-    @Override // back button in nav bar
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
