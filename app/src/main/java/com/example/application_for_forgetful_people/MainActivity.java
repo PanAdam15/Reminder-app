@@ -1,7 +1,5 @@
 package com.example.application_for_forgetful_people;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.AlarmClock;
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Reminder> listOfReminders;
     private StatisticsViewModel statisticsViewModel;
     private List<Statistics> listOfStatistics;
+    private static boolean todayRemindersListIsEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
             reminderListAdapter.setListOfReminders(elements);
             listOfReminders = elements;
 
+        });
+
+        reminderViewModel.getListOfRemindersWhoseStatusIsActive().observe(this, elements -> {
+            todayRemindersListIsEmpty = elements.isEmpty();
         });
 
         addNewReminderButton.setOnClickListener(v -> {
@@ -214,5 +217,9 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 
+
+    public static boolean isListOfRemindersEmpty() {
+        return todayRemindersListIsEmpty;
+    }
 
 }

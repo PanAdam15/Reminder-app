@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-public class BackgroundService extends Service {
+public class BackgroundService extends Service{
 
     private static final int NOTIF_ID = 1;
     private static final String NOTIF_CHANNEL_ID = "foxandroid";
@@ -47,7 +47,7 @@ public class BackgroundService extends Service {
                 notificationIntent, 0);
 
         startForeground(NOTIF_ID, new NotificationCompat.Builder(this,
-                NOTIF_CHANNEL_ID) // don't forget create a notification channel first
+                NOTIF_CHANNEL_ID)
                 .setOngoing(true)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText("Service is running background")
@@ -77,7 +77,9 @@ public class BackgroundService extends Service {
 //           ... //Device is now connected
                }
             else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
-                setAlarm();
+                if(!MainActivity.isListOfRemindersEmpty()) {
+                    setAlarm();
+                }
             }
         }
     };
