@@ -10,41 +10,43 @@
     <TextView
             android:text="@string/dstrb"
             android:layout_width="300dp"
-            android:layout_height="73dp" android:id="@+id/DSTRB"
+            android:layout_height="wrap_content" android:id="@+id/DSTRB"
             android:autoText="false" android:textSize="50sp"
             android:textStyle="bold" android:textColor="#FFFFFF" android:background="@drawable/rounded_corner_title"
             android:textColorLink="#D33F3F" android:textAlignment="center"
             android:textColorHighlight="#0E0505"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_view_notification"/>
+            app:layout_constraintHorizontal_bias="0.505"
+            android:layout_marginTop="10dp"/>
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_width="302dp"
+            android:layout_height="500dp"
             android:id="@+id/recycler_view_notification"
             tools:listitem="@layout/activity_row_notification"
             android:outlineAmbientShadowColor="#DCBBBB" android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="70dp"/>
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintBottom_toTopOf="@+id/buttonNotificationConfirm"
+            app:layout_constraintTop_toBottomOf="@+id/DSTRB" android:layout_marginTop="135dp"/>
     <Button
             android:text="Zatwierdz"
             android:layout_width="300dp"
             android:layout_height="wrap_content" android:id="@+id/buttonNotificationConfirm"
             android:textSize="30dp" android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view_notification"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"/>
     <TextView
             android:text="Sprawdź, czy te czynności zostały przez Ciebie wykonane"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/DSTRB"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_view_notification"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:textStyle="bold" android:textSize="15sp"/>
+            android:textStyle="bold" android:textSize="15sp" app:layout_constraintHorizontal_bias="0.454"
+            android:gravity="center" app:layout_constraintBottom_toTopOf="@+id/recycler_view_notification"
+            android:layout_marginBottom="10dp" android:layout_marginTop="8dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
