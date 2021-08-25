@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.application_for_forgetful_people.entity.Reminder;
-import com.example.application_for_forgetful_people.entity.Statistics;
 
 import java.util.HashMap;
 import java.util.List;
@@ -106,7 +104,7 @@ public class NotificationReminderListAdapter extends RecyclerView.Adapter<Notifi
         notifyDataSetChanged();
     }
 
-    public int getForRadioPosiotion(){
+    public int getForRadioPosition(){
         return forRadioPosition;
     }
 
