@@ -9,9 +9,11 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
+import com.example.application_for_forgetful_people.entity.Hint;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class NewReminder extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
@@ -43,11 +45,26 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
     private String hourOfReminderActivate;
     private String minuteOfReminderActivate;
     private AutoCompleteTextView nameOfNewReminder;
-    private String[] tab = new String[]{"Pranie","Żelazko","Gaz","Zamknąć drzwi","Nakarmić zwierzęta","Klucze","Portfel"};
+    private List<String> listOfHints;
+    private HintViewModel hintViewModel;
+    private String[] tab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reminder);
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                hintViewModel = new ViewModelProvider(NewReminder.this).get(HintViewModel.class);
+                listOfHints = hintViewModel.getAllHints();
+                tab = new String[listOfHints.size()];
+                listOfHints.toArray(tab);
+            }
+        });
+
+        t.start();
+
         ArrayList<Integer> days = new ArrayList<>();
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
@@ -64,6 +81,11 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         chooseTimeOfReminder = findViewById(R.id.chooseTimeButton);
         nameOfNewReminder = findViewById(R.id.nameOfNewActivity);
 
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         nameOfNewReminder.setAdapter(new ArrayAdapter<String>(NewReminder.this,R.layout.support_simple_spinner_dropdown_item,tab));
 
         assert getSupportActionBar() != null;
@@ -197,6 +219,9 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
                         Toast.makeText(NewReminder.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
                     }
                     else{
+                        if (!listOfHints.contains(nameOfRemidner)) {
+                            hintViewModel.insert(new Hint(nameOfRemidner));
+                        }
                         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
                         if(id != null)
                             reminderViewModel.deleteReminderById(id);
@@ -213,6 +238,9 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
                     if (nameOfRemidner.trim().length() == 0)
                         Toast.makeText(NewReminder.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
                     else {
+                        if (!listOfHints.contains(nameOfRemidner)) {
+                            hintViewModel.insert(new Hint(nameOfRemidner));
+                        }
                         Intent updateIntent = new Intent();
                         updateIntent.putExtra("id", id);
                         updateIntent.putExtra("name", nameOfRemidner);

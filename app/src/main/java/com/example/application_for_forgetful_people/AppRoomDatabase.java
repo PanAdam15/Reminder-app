@@ -7,21 +7,24 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.application_for_forgetful_people.dao.CuriosityDao;
+import com.example.application_for_forgetful_people.dao.HintDao;
 import com.example.application_for_forgetful_people.dao.ReminderDao;
 import com.example.application_for_forgetful_people.dao.StatisticsDao;
 import com.example.application_for_forgetful_people.entity.Curiosity;
+import com.example.application_for_forgetful_people.entity.Hint;
 import com.example.application_for_forgetful_people.entity.Reminder;
 import com.example.application_for_forgetful_people.entity.Statistics;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Reminder.class, Statistics.class, Curiosity.class}, version = 16, exportSchema = false)
+@Database(entities = {Reminder.class, Statistics.class, Curiosity.class, Hint.class}, version = 17, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
 
     public abstract ReminderDao reminderDao();
     public abstract StatisticsDao statisticsDao();
     public abstract CuriosityDao curiosityDao();
+    public abstract HintDao hintDao();
 
     private static volatile AppRoomDatabase INSTANCE;
 
@@ -53,6 +56,7 @@ public abstract class AppRoomDatabase extends RoomDatabase {
                 ReminderDao dao = INSTANCE.reminderDao();
                 StatisticsDao statisticsDao = INSTANCE.statisticsDao();
                 CuriosityDao curiosityDao = INSTANCE.curiosityDao();
+                HintDao hintDao = INSTANCE.hintDao();
                 curiosityDao.insert(new Curiosity("W mózgu jest 100 miliardów neuronów."));
                 curiosityDao.insert(new Curiosity("Naczynia krwionośne obecne w mózgu mają prawie 160 000 kilometrów długości."));
                 curiosityDao.insert(new Curiosity("Mózg w prawie 80% to woda."));
@@ -77,6 +81,13 @@ public abstract class AppRoomDatabase extends RoomDatabase {
                 curiosityDao.insert(new Curiosity("Aktywny mózg jest bardziej odporny na starzenie się i Alzheimera."));
                 curiosityDao.insert(new Curiosity("Każda część mózgu ma przypisaną konkretną funkcję."));
                 curiosityDao.insert(new Curiosity("Nasz mózg ma ogromny potencjał i możemy się nauczyć jak efektywniej go używać."));
+                hintDao.insert(new Hint("Pranie"));
+                hintDao.insert(new Hint("Żelazko"));
+                hintDao.insert(new Hint("Gaz"));
+                hintDao.insert(new Hint("Zamknąć drzwi"));
+                hintDao.insert(new Hint("Nakarwmić zwierzęta"));
+                hintDao.insert(new Hint("Klucze"));
+                hintDao.insert(new Hint("Portfel"));
 
             });
         }
