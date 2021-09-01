@@ -55,14 +55,11 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
         holder.isActiveSwitch.setChecked(listOfReminders.get(position).isActive());
         if(listOfReminders.get(position).isIfBluetooth()){
                 holder.bluetooth.setVisibility(View.VISIBLE);
+                holder.speaker.setVisibility(View.INVISIBLE);
         }
         else{
-            holder.bluetooth.setVisibility(View.INVISIBLE);}
-        if(listOfReminders.get(position).isIfRing()){
-                holder.speaker.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.speaker.setVisibility(View.INVISIBLE);}
+            holder.bluetooth.setVisibility(View.INVISIBLE);
+            holder.speaker.setVisibility(View.VISIBLE);}
 
         if(listOfReminders.get(position).isActive()){
             holder.backgroundView.getBackground().setAlpha(255);
