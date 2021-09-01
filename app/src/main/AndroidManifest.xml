@@ -17,9 +17,9 @@
             android:roundIcon="@drawable/circleandroidchrome192x192"
             android:supportsRtl="true"
             android:theme="@style/Theme.Application_for_forgetful_people">
-        <activity android:name=".ReminderNotificationActivity">
+        <activity android:name=".activities.ReminderNotificationActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -27,10 +27,10 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".NewReminder"
-                android:parentActivityName=".MainActivity"/>
+                android:name=".activities.NewReminderActivity"
+                android:parentActivityName=".activities.MainActivity"/>
         <activity
-                android:name=".SettingsActivity"
+                android:name=".activities.SettingsActivity"
                 android:label="@string/title_activity_settings_activity"
                 android:hardwareAccelerated="true"
                 />

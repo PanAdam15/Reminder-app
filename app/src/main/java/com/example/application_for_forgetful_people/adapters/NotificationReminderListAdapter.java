@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.application_for_forgetful_people.R;
 import com.example.application_for_forgetful_people.entity.Reminder;
+import com.example.application_for_forgetful_people.viewModels.ReminderViewModel;
+import com.example.application_for_forgetful_people.viewModels.StatisticsViewModel;
 
 import java.util.HashMap;
 import java.util.List;

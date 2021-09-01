@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.activities;
 
 import android.content.Intent;
 import android.view.View;
@@ -8,7 +8,11 @@ import android.os.Bundle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.application_for_forgetful_people.R;
+import com.example.application_for_forgetful_people.adapters.NotificationReminderListAdapter;
 import com.example.application_for_forgetful_people.entity.Statistics;
+import com.example.application_for_forgetful_people.viewModels.ReminderViewModel;
+import com.example.application_for_forgetful_people.viewModels.StatisticsViewModel;
 
 import java.time.LocalDate;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,12 +8,14 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.application_for_forgetful_people.R;
 import com.example.application_for_forgetful_people.entity.Reminder;
+import com.example.application_for_forgetful_people.viewModels.ReminderViewModel;
 
 import java.util.List;
 
 public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapter.ReminderViewHolder>
-        implements ItemTouchHelperAdapter{
+        implements ItemTouchHelperAdapter {
 
     @NonNull
     LayoutInflater layoutInflater;
@@ -23,11 +25,11 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     private ReminderViewModel reminderViewModel;
     private Reminder mReminder;
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    private OnItemClickListener mOnItemClickListener;
+    public OnItemClickListener mOnItemClickListener;
 
     public void setReminderViewModel(ReminderViewModel reminderViewModel) {
         this.reminderViewModel = reminderViewModel;

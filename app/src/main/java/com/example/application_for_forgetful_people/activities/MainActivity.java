@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +16,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.application_for_forgetful_people.BackgroundService;
+import com.example.application_for_forgetful_people.MyItemTouchHelper;
+import com.example.application_for_forgetful_people.R;
+import com.example.application_for_forgetful_people.adapters.ReminderListAdapter;
 import com.example.application_for_forgetful_people.databinding.ActivityMainBinding;
 import com.example.application_for_forgetful_people.entity.Curiosity;
 import com.example.application_for_forgetful_people.entity.Reminder;
 import com.example.application_for_forgetful_people.entity.Statistics;
+import com.example.application_for_forgetful_people.viewModels.CuriosityViewModel;
+import com.example.application_for_forgetful_people.viewModels.ReminderViewModel;
+import com.example.application_for_forgetful_people.viewModels.StatisticsViewModel;
 import com.tomer.fadingtextview.FadingTextView;
 
 import java.lang.reflect.Field;
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });
         t1.start();
 
-        startService(new Intent(this,BackgroundService.class));
+        startService(new Intent(this, BackgroundService.class));
 
         addNewReminderButton = findViewById(R.id.AddNewReminder);
         settingsButton = findViewById(R.id.settingsButton);
@@ -105,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         addNewReminderButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, NewReminder.class);
+            Intent intent = new Intent(MainActivity.this, NewReminderActivity.class);
             startActivityForResult(intent,ADD_ACTIVITY_REQUEST_CODE);
 
         });
@@ -213,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onItemClick(int position){
-        Intent intent = new Intent(MainActivity.this, NewReminder.class);
+        Intent intent = new Intent(MainActivity.this, NewReminderActivity.class);
         intent.putExtra("id",listOfReminders.get(position).getId());
         intent.putExtra("name",listOfReminders.get(position).getName());
         intent.putExtra("bt",listOfReminders.get(position).isIfBluetooth());

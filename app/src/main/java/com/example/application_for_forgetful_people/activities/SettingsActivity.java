@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.activities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
+import com.example.application_for_forgetful_people.R;
 import com.example.application_for_forgetful_people.entity.Statistics;
+import com.example.application_for_forgetful_people.viewModels.StatisticsViewModel;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;

@@ -3,6 +3,7 @@ package com.example.application_for_forgetful_people;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.application_for_forgetful_people.adapters.ItemTouchHelperAdapter;
 
 public class MyItemTouchHelper extends ItemTouchHelper.Callback {
 

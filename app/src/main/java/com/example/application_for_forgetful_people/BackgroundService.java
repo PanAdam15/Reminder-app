@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import com.example.application_for_forgetful_people.activities.MainActivity;
 
 public class BackgroundService extends Service{
 

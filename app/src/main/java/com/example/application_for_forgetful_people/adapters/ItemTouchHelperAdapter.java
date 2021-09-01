@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.adapters;
 
 public interface ItemTouchHelperAdapter {
 

@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.viewModels;
 
 import android.app.Application;
 import androidx.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.activities;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -9,13 +9,17 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
+import com.example.application_for_forgetful_people.R;
+import com.example.application_for_forgetful_people.TimePickerFragment;
 import com.example.application_for_forgetful_people.entity.Hint;
+import com.example.application_for_forgetful_people.viewModels.HintViewModel;
+import com.example.application_for_forgetful_people.viewModels.ReminderViewModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class NewReminder extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class NewReminderActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private Bundle pack;
     private Long id;
@@ -56,7 +60,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                hintViewModel = new ViewModelProvider(NewReminder.this).get(HintViewModel.class);
+                hintViewModel = new ViewModelProvider(NewReminderActivity.this).get(HintViewModel.class);
                 listOfHints = hintViewModel.getAllHints();
                 tab = new String[listOfHints.size()];
                 listOfHints.toArray(tab);
@@ -86,7 +90,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        nameOfNewReminder.setAdapter(new ArrayAdapter<String>(NewReminder.this,R.layout.support_simple_spinner_dropdown_item,tab));
+        nameOfNewReminder.setAdapter(new ArrayAdapter<String>(NewReminderActivity.this,R.layout.support_simple_spinner_dropdown_item,tab));
 
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -210,13 +214,13 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
                 String nameOfRemidner = nameOfNewReminder.getText().toString();
                 if (!switchBluetooth.isChecked()) {
                     if ((hourOfReminderActivate == null && minuteOfReminderActivate == null)) {
-                        Toast.makeText(NewReminder.this, "Proszę, wybierz czas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewReminderActivity.this, "Proszę, wybierz czas", Toast.LENGTH_SHORT).show();
                     }
                     else if(days.isEmpty()){
-                        Toast.makeText(NewReminder.this, "Proszę, wybierz przynajmniej jeden dzień", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewReminderActivity.this, "Proszę, wybierz przynajmniej jeden dzień", Toast.LENGTH_SHORT).show();
                     }
                     else if(nameOfRemidner.isEmpty()){
-                        Toast.makeText(NewReminder.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewReminderActivity.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         if (!listOfHints.contains(nameOfRemidner)) {
@@ -236,7 +240,7 @@ public class NewReminder extends AppCompatActivity implements TimePickerDialog.O
                 } else {
 
                     if (nameOfRemidner.trim().length() == 0)
-                        Toast.makeText(NewReminder.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewReminderActivity.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
                     else {
                         if (!listOfHints.contains(nameOfRemidner)) {
                             hintViewModel.insert(new Hint(nameOfRemidner));

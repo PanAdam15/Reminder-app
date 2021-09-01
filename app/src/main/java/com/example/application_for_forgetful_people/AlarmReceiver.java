@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import com.example.application_for_forgetful_people.activities.ReminderNotificationActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 

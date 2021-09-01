@@ -1,4 +1,4 @@
-package com.example.application_for_forgetful_people;
+package com.example.application_for_forgetful_people.viewModels;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -22,7 +22,7 @@ public class ReminderViewModel extends AndroidViewModel {
         listOfRemindersWhoseStatusIsActive = reminderRepository.getRemindersWhoseStatusIsActive();
     }
 
-    LiveData<List<Reminder>> getAllReminders(){
+    public LiveData<List<Reminder>> getAllReminders(){
         return listOfReminders;
     }
 
@@ -46,7 +46,7 @@ public class ReminderViewModel extends AndroidViewModel {
         reminderRepository.updateIsActiveStatus(isActive,id);
     }
 
-    LiveData<List<Reminder>> getListOfRemindersWhoseStatusIsActive(){
+    public LiveData<List<Reminder>> getListOfRemindersWhoseStatusIsActive(){
         return listOfRemindersWhoseStatusIsActive;
     }
 
