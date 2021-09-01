@@ -14,10 +14,12 @@ public class Curiosity {
     @NonNull
     private String contents;
 
-    @Ignore
-    public Curiosity() {
+
+    public Curiosity(@NonNull String contents) {
+        this.contents = contents;
     }
 
+    @Ignore
     public Curiosity(long id, @NonNull String contents) {
         this.id = id;
         this.contents = contents;

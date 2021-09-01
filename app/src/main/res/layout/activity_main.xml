@@ -78,7 +78,7 @@
             android:layout_width="238dp"
             android:layout_height="120dp"
             app:texts="@array/curiosities"
-            app:timeout="10000"
+            app:timeout="60000"
             app:shuffle="true"
             android:textSize="20sp"
             android:gravity="center"
