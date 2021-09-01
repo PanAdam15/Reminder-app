@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.NewReminderActivity"
-        >
+>
 
     <AutoCompleteTextView
             android:hint="@string/nameOfNewActitity"
@@ -28,22 +28,22 @@
             android:textAlignment="viewStart" android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"/>
-    <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="35dp" android:id="@+id/switchRing"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            android:layout_marginEnd="20dp" app:layout_constraintStart_toEndOf="@+id/AddNew"
-            app:layout_constraintTop_toBottomOf="@+id/switchBluetooth" app:layout_constraintBottom_toBottomOf="@+id/AddNew"
-            app:layout_constraintHorizontal_bias="0.879" app:layout_constraintVertical_bias="0.353"/>
+            app:layout_constraintHorizontal_bias="0.488"/>
     <Switch
             android:layout_width="wrap_content"
             android:layout_height="60dp" android:id="@+id/switchBluetooth"
-            android:rotationX="180"
-            app:layout_constraintEnd_toEndOf="@+id/textView4" android:layout_marginEnd="20dp"
-            app:layout_constraintStart_toStartOf="@+id/switchRing" app:layout_constraintTop_toTopOf="@+id/textView4"
-            app:layout_constraintBottom_toTopOf="@+id/AddNew" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.255"/>
+            android:rotation="270"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/chooseTimeButton"/>
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="60dp" android:id="@+id/switchRing"
+            android:rotation="90"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/switchBluetooth"
+            app:layout_constraintEnd_toEndOf="@+id/textView4" app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"/>
     <ImageButton
             android:layout_width="70dp"
             android:layout_height="60dp" app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
@@ -52,9 +52,9 @@
             style="@style/Widget.AppCompat.Button.Borderless" android:textAlignment="center" android:scaleX="1.5"
             android:scaleY="1.5"
             android:contentDescription="@string/bluetooth"
-            app:layout_constraintEnd_toStartOf="@+id/switchBluetooth" android:layout_marginEnd="28dp"
-            app:layout_constraintTop_toTopOf="@+id/textView4" app:layout_constraintBottom_toTopOf="@+id/AddNew"
-            android:layout_marginBottom="50dp" app:layout_constraintVertical_bias="0.324"/>
+            app:layout_constraintStart_toEndOf="@+id/radioGroupDays"
+            app:layout_constraintEnd_toEndOf="@+id/textView4" app:layout_constraintTop_toTopOf="@+id/radioGroupDays"
+            app:layout_constraintHorizontal_bias="0.572"/>
     <RadioGroup
             android:layout_width="66dp"
             android:layout_height="176dp"
@@ -96,9 +96,9 @@
             android:layout_height="35dp" app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
             android:id="@+id/imageView"
             android:contentDescription="@string/speaker"
-            app:layout_constraintEnd_toStartOf="@+id/switchRing"
-            android:layout_marginEnd="28dp" app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintBottom_toBottomOf="@+id/AddNew" app:layout_constraintVertical_bias="0.354"/>
+            app:layout_constraintStart_toStartOf="@+id/switchBluetooth"
+            app:layout_constraintEnd_toEndOf="@+id/switchBluetooth"
+            android:layout_marginBottom="80dp" app:layout_constraintBottom_toBottomOf="@+id/textView4"/>
     <Button
 
             android:layout_width="65dp"
