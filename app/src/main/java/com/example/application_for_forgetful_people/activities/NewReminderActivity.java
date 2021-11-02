@@ -2,6 +2,7 @@ package com.example.application_for_forgetful_people.activities;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.application_for_forgetful_people.TimePickerFragment;
 import com.example.application_for_forgetful_people.entity.Hint;
 import com.example.application_for_forgetful_people.viewModels.HintViewModel;
 import com.example.application_for_forgetful_people.viewModels.ReminderViewModel;
+import top.defaults.colorpicker.ColorPickerPopup;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,6 +54,10 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
     private List<String> listOfHints;
     private HintViewModel hintViewModel;
     private String[] tab;
+    private Button mSetColorButton, mPickColorButton;
+    private View mColorPreview;
+    private int mDefaultColor;
+    private TextView background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +90,10 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
         switchRing = findViewById(R.id.switchRing);
         chooseTimeOfReminder = findViewById(R.id.chooseTimeButton);
         nameOfNewReminder = findViewById(R.id.nameOfNewActivity);
-
+        mPickColorButton = findViewById(R.id.colorButton);
+        mColorPreview = findViewById(R.id.colorPreview);
+        background = findViewById(R.id.textView4);
+        mDefaultColor = -16711681;
         try {
             t.join();
         } catch (InterruptedException e) {
@@ -258,6 +267,7 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
                         updateIntent.putExtra("bt", isBt);
                         updateIntent.putExtra("speaker", isRing);
                         updateIntent.putExtra("active", isActive);
+                        updateIntent.putExtra("color", mDefaultColor);
                         setResult(RESULT_OK, updateIntent);
                         finish();
                     }
@@ -281,7 +291,65 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
                 }
             }
         });
+        mPickColorButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        new ColorPickerPopup.Builder(NewReminderActivity.this).initialColor(
+                                        Color.RED) // set initial color
+                                // of the color
+                                // picker dialog
+                                .enableBrightness(
+                                        true) // enable color brightness
+                                // slider or not
+                                .enableAlpha(
+                                        true) // enable color alpha
+                                // changer on slider or
+                                // not
+                                .okTitle(
+                                        "Choose") // this is top right
+                                // Choose button
+                                .cancelTitle(
+                                        "Cancel") // this is top left
+                                // Cancel button which
+                                // closes the
+                                .showIndicator(
+                                        true) // this is the small box
+                                // which shows the chosen
+                                // color by user at the
+                                // bottom of the cancel
+                                // button
+                                .showValue(
+                                        true) // this is the value which
+                                // shows the selected
+                                // color hex code
+                                // the above all values can be made
+                                // false to disable them on the
+                                // color picker dialog.
+                                .build()
+                                .show(
+                                        v,
+                                        new ColorPickerPopup.ColorPickerObserver() {
+                                            @Override
+                                            public void
+                                            onColorPicked(int color) {
+                                                // set the color
+                                                // which is returned
+                                                // by the color
+                                                // picker
+                                                mDefaultColor = color;
 
+                                                // now as soon as
+                                                // the dialog closes
+                                                // set the preview
+                                                // box to returned
+                                                // color
+                                                mColorPreview.setBackgroundColor(mDefaultColor);
+
+                                            }
+                                        });
+                    }
+                });
 
     }
 

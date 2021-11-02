@@ -12,16 +12,21 @@ public class Curiosity {
     private long id;
 
     @NonNull
+    private String name;
+
+    @NonNull
     private String contents;
 
 
-    public Curiosity(@NonNull String contents) {
+    public Curiosity(@NonNull String name, @NonNull String contents) {
+        this.name = name;
         this.contents = contents;
     }
 
     @Ignore
-    public Curiosity(long id, @NonNull String contents) {
+    public Curiosity(long id,@NonNull String name, @NonNull String contents) {
         this.id = id;
+        this.name = name;
         this.contents = contents;
     }
 
@@ -31,6 +36,14 @@ public class Curiosity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @NonNull

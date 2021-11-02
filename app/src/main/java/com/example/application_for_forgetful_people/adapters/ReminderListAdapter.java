@@ -3,8 +3,12 @@ package com.example.application_for_forgetful_people.adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.GradientDrawable;
 import android.view.*;
-import android.widget.*;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +59,11 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     public void onBindViewHolder(@NonNull ReminderViewHolder holder, int position) {
         holder.reminderName.setText(listOfReminders.get(position).getName());
         holder.isActiveSwitch.setChecked(listOfReminders.get(position).isActive());
+        GradientDrawable gradient = new GradientDrawable();
+        gradient.setColor(listOfReminders.get(position).getColor());
+        gradient.setCornerRadius(50);
+        //gdDefault.setStroke(strokeWidth, strokeColor);
+        holder.background.setBackgroundDrawable(gradient);
         if(listOfReminders.get(position).isIfBluetooth()){
                 holder.bluetooth.setVisibility(View.VISIBLE);
                 holder.speaker.setVisibility(View.INVISIBLE);
@@ -145,7 +154,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     public class ReminderViewHolder extends RecyclerView.ViewHolder implements
                 View.OnClickListener,
                 GestureDetector.OnGestureListener {
-        TextView reminderName, mon,tue,wed,thu,fri,sat,sun, backgroundView;
+        TextView reminderName, mon,tue,wed,thu,fri,sat,sun, backgroundView, background;
         ImageView bluetooth, speaker;
         GestureDetector mGestureDetector;
         Switch isActiveSwitch;
@@ -167,6 +176,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             sun = view.findViewById(R.id.iconSun);
             backgroundView = view.findViewById(R.id.textView2);
             isActiveSwitch = view.findViewById(R.id.isActiveSwitch);
+            background = view.findViewById(R.id.textView2);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

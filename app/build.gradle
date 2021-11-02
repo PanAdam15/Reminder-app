@@ -55,4 +55,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     compileOnly 'com.google.android.wearable:wearable:2.6.0'
+
+    implementation 'com.github.duanhong169:colorpicker:1.1.6'
 }

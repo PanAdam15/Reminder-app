@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             t1.join();
-        } catch(Exception e) {
+        } catch(InterruptedException e) {
         }
 
             fadingTextView = findViewById(R.id.fading_text);
@@ -164,7 +164,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        getSupportActionBar().setElevation(0);
+        try {
+            getSupportActionBar().setElevation(0);
+        }catch (Exception e){}
+
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
@@ -189,7 +192,8 @@ public class MainActivity extends AppCompatActivity {
                                                         pack.getBooleanExtra("sun",false),
                                                         pack.getBooleanExtra("bt",false),
                                                         pack.getBooleanExtra("speaker",false),
-                                                        pack.getBooleanExtra("active", true)));
+                                                        pack.getBooleanExtra("active", true),
+                                                        pack.getIntExtra("color",-16711681)));
                 showToast("Dodano przypomnienie");
             }
         }else if (requestCode == UPDATE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
@@ -207,7 +211,8 @@ public class MainActivity extends AppCompatActivity {
                                                     pack.getBooleanExtra("sun",false),
                                                     pack.getBooleanExtra("bt",false),
                                                     pack.getBooleanExtra("speaker",false),
-                                                    pack.getBooleanExtra("active",true));
+                                                    pack.getBooleanExtra("active",true),
+                                                    pack.getIntExtra("color",-16711681));
 
                 showToast("Zaktualizowano");
                 reminderViewModel.update(reminder);
@@ -233,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("sat",listOfReminders.get(position).isIfSaturday());
         intent.putExtra("sun",listOfReminders.get(position).isIfSunday());
         intent.putExtra("active",listOfReminders.get(position).isActive());
+        intent.putExtra("color",listOfReminders.get(position).getColor());
         startActivityForResult(intent,UPDATE_ACTIVITY_REQUEST_CODE);
     }
 
