@@ -20,11 +20,6 @@
         <activity android:name=".activities.ReminderNotificationActivity">
         </activity>
         <activity android:name=".activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".activities.NewReminderActivity"
@@ -34,6 +29,15 @@
                 android:label="@string/title_activity_settings_activity"
                 android:hardwareAccelerated="true"
                 />
+        <activity
+                android:name=".SplashActivity" android:theme="@style/SplashScreen"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <service android:name=".BackgroundService"/>
 
