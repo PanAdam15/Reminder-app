@@ -11,14 +11,13 @@
     <AutoCompleteTextView
             android:hint="@string/nameOfNewActitity"
             android:layout_width="380dp"
-            android:layout_height="0dp" android:id="@+id/nameOfNewActivity"
+            android:layout_height="80dp" android:id="@+id/nameOfNewActivity"
             android:background="@drawable/rounded_corner"
             android:textSize="20sp" android:textStyle="bold"
             android:textAlignment="center" android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/colorPreview"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:importantForAutofill="no"
-            android:inputType="textShortMessage" android:layout_marginTop="73dp" android:layout_marginBottom="326dp"/>
+            android:inputType="textShortMessage" android:layout_marginTop="73dp"/>
     <TextView
 
             android:layout_width="350dp"
@@ -132,8 +131,9 @@
             android:layout_marginTop="252dp"/>
     <View
             android:layout_width="48dp"
-            android:layout_height="0dp" android:id="@+id/colorPreview"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="172dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/nameOfNewActivity"
-            android:layout_marginBottom="268dp" app:layout_constraintEnd_toStartOf="@+id/imageView"/>
+            android:layout_height="59dp" android:id="@+id/colorPreview"
+            app:layout_constraintStart_toEndOf="@+id/colorButton"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupDays"
+            app:layout_constraintBottom_toTopOf="@+id/AddNew"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
