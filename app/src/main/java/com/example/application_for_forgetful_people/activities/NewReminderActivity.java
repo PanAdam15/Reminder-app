@@ -36,7 +36,7 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
     private CheckBox checkBoxFr;
     private CheckBox checkBoxSat;
     private CheckBox checkBoxSun;
-    private Switch switchBluetooth;
+    private Switch switchBluetooth, switchall;
     private Switch switchRing;
     boolean isMon;
     boolean isTue;
@@ -93,6 +93,7 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
         mPickColorButton = findViewById(R.id.colorButton);
         mColorPreview = findViewById(R.id.colorPreview);
         background = findViewById(R.id.textView4);
+        switchall = findViewById(R.id.switch1);
         mDefaultColor = -16711681;
         try {
             t.join();
@@ -215,6 +216,31 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
             }
         });
 
+        switchall.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    checkBoxMon.setChecked(true);
+                    checkBoxTue.setChecked(true);
+                    checkBoxWen.setChecked(true);
+                    checkBoxThu.setChecked(true);
+                    checkBoxFr.setChecked(true);
+                    checkBoxSat.setChecked(true);
+                    checkBoxSun.setChecked(true);
+                }
+                else{
+                    checkBoxMon.setChecked(false);
+                    checkBoxTue.setChecked(false);
+                    checkBoxWen.setChecked(false);
+                    checkBoxThu.setChecked(false);
+                    checkBoxFr.setChecked(false);
+                    checkBoxSat.setChecked(false);
+                    checkBoxSun.setChecked(false);
+                }
+
+            }
+        });
+
         addNewReminderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,6 +276,9 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
 
                     if (nameOfRemidner.trim().length() == 0)
                         Toast.makeText(NewReminderActivity.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
+                    else if(nameOfRemidner.length() > 45){
+                        Toast.makeText(NewReminderActivity.this, "Nazwa nie moze zawierać więcej niż 45 znaków", Toast.LENGTH_SHORT).show();
+                    }
                     else {
                         if (!listOfHints.contains(nameOfRemidner)) {
                             hintViewModel.insert(new Hint(nameOfRemidner));
@@ -295,37 +324,13 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
                 new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        new ColorPickerPopup.Builder(NewReminderActivity.this).initialColor(
-                                        Color.RED) // set initial color
-                                // of the color
-                                // picker dialog
-                                .enableBrightness(
-                                        true) // enable color brightness
-                                // slider or not
-                                .enableAlpha(
-                                        true) // enable color alpha
-                                // changer on slider or
-                                // not
-                                .okTitle(
-                                        "Choose") // this is top right
-                                // Choose button
-                                .cancelTitle(
-                                        "Cancel") // this is top left
-                                // Cancel button which
-                                // closes the
-                                .showIndicator(
-                                        true) // this is the small box
-                                // which shows the chosen
-                                // color by user at the
-                                // bottom of the cancel
-                                // button
-                                .showValue(
-                                        true) // this is the value which
-                                // shows the selected
-                                // color hex code
-                                // the above all values can be made
-                                // false to disable them on the
-                                // color picker dialog.
+                        new ColorPickerPopup.Builder(NewReminderActivity.this).initialColor(Color.RED)
+                                .enableBrightness(true)
+                                .enableAlpha(true)
+                                .okTitle("Wybierz")
+                                .cancelTitle("Wstecz")
+                                .showIndicator(true)
+                                .showValue(true)
                                 .build()
                                 .show(
                                         v,
@@ -333,21 +338,12 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
                                             @Override
                                             public void
                                             onColorPicked(int color) {
-                                                // set the color
-                                                // which is returned
-                                                // by the color
-                                                // picker
                                                 mDefaultColor = color;
-
-                                                // now as soon as
-                                                // the dialog closes
-                                                // set the preview
-                                                // box to returned
-                                                // color
                                                 mColorPreview.setBackgroundColor(mDefaultColor);
 
                                             }
                                         });
+
                     }
                 });
 
