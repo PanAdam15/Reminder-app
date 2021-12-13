@@ -38,14 +38,14 @@ public class SettingsActivity extends AppCompatActivity {
     LinkedList<Statistics> statisticsOfPreviousMonth;
     private int countOfForgotten;
     private TextView btNameTextView;
-    private TextView show1,show2, show3, show4, peroidInput;
+    private TextView show1,show2, show3, show4, peroidInput, about;
     private Button tab1,tab2,tab3;
     Statistics s;
     ArrayList<Calendar> mainDaysOfWeek;
     ArrayList<Calendar> previousMainDaysOfWeek;
     ArrayList<Calendar> lastMonthDays;
     ArrayList<Calendar> previousMonthDays;
-    Button btRefreshButton;
+    Button btRefreshButton, aboutButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mTextView = findViewById(R.id.text);
         colorSwitch = findViewById(R.id.colorSwitch);
-
+        aboutButton = findViewById(R.id.aboutButton);
         btNameTextView = findViewById(R.id.btNameTextView);
         advancedStatistics = findViewById(R.id.statsButton);
         btRefreshButton = findViewById(R.id.btRefreshButton);
@@ -201,6 +201,21 @@ public class SettingsActivity extends AppCompatActivity {
 
         });
 
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.about_window, null);
+
+                int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+                int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true;
+                final PopupWindow aboutWindow = new PopupWindow(popupView, -1, height, focusable);
+                about = aboutWindow.getContentView().findViewById(R.id.about);
+                aboutWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+            }
+        });
         advancedStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

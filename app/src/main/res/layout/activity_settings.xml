@@ -61,6 +61,13 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:id="@+id/statsButton"
+                    android:backgroundTint="@color/purple_200"
+            android:layout_marginEnd="10dp"/>
+            <Button
+                    android:text="O aplikacji"
+                    android:id="@+id/aboutButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"/>
         </TableRow>
     </TableLayout>
