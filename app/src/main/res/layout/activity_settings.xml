@@ -52,26 +52,27 @@
                     android:text="Brak"
                     android:textSize="20sp" android:gravity="center"/>
         </TableRow>
-
-
-        <TableRow android:layout_marginBottom="20sp">
-            <Button
-                    android:text="Statystyki"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:id="@+id/statsButton"
-                    android:backgroundTint="@color/purple_200"
-            android:layout_marginEnd="10dp"/>
-            <Button
-                    android:text="O aplikacji"
-                    android:id="@+id/aboutButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/purple_200"/>
-        </TableRow>
     </TableLayout>
 
+    <Button
+            android:text="Statystyki"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:id="@+id/statsButton"
+            android:backgroundTint="@color/purple_200"
+            app:layout_constraintBottom_toTopOf="@+id/graph"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout1"
+            app:layout_constraintStart_toStartOf="@+id/tableLayout1"
+            app:layout_constraintEnd_toStartOf="@+id/aboutButton"/>
+    <Button
+            android:text="O aplikacji"
+            android:id="@+id/aboutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout1"
+            app:layout_constraintBottom_toTopOf="@+id/graph" app:layout_constraintEnd_toStartOf="@+id/btRefreshButton"/>
     <com.jjoe64.graphview.GraphView
             android:layout_width="wrap_content"
             android:layout_height="400dp"
