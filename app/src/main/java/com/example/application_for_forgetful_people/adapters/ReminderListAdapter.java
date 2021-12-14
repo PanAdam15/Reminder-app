@@ -18,7 +18,7 @@ import com.example.application_for_forgetful_people.viewModels.ReminderViewModel
 
 import java.util.List;
 
-public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapter.ReminderViewHolder>
+public class ReminderListAdapter extends RecyclerView.Adapter<ReminderListAdapter.ReminderViewHolder>
         implements ItemTouchHelperAdapter {
 
     @NonNull
@@ -49,7 +49,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     @NonNull
     @Override
     public ReminderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.activity_row,null);
+        View view = layoutInflater.inflate(R.layout.activity_row, null);
 
         return new ReminderViewHolder(view);
 
@@ -64,15 +64,15 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
         gradient.setCornerRadius(50);
         //gdDefault.setStroke(strokeWidth, strokeColor);
         holder.background.setBackgroundDrawable(gradient);
-        if(listOfReminders.get(position).isIfBluetooth()){
-                holder.bluetooth.setVisibility(View.VISIBLE);
-                holder.speaker.setVisibility(View.INVISIBLE);
-        }
-        else{
+        if (listOfReminders.get(position).isIfBluetooth()) {
+            holder.bluetooth.setVisibility(View.VISIBLE);
+            holder.speaker.setVisibility(View.INVISIBLE);
+        } else {
             holder.bluetooth.setVisibility(View.INVISIBLE);
-            holder.speaker.setVisibility(View.VISIBLE);}
+            holder.speaker.setVisibility(View.VISIBLE);
+        }
 
-        if(listOfReminders.get(position).isActive()){
+        if (listOfReminders.get(position).isActive()) {
             holder.backgroundView.getBackground().setAlpha(255);
             //holder.reminderName.getBackground().setAlpha(255);
             holder.mon.getBackground().setAlpha(255);
@@ -82,10 +82,9 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             holder.fri.getBackground().setAlpha(255);
             holder.sat.getBackground().setAlpha(255);
             holder.sun.getBackground().setAlpha(255);
-        }
-        else {
+        } else {
             holder.backgroundView.getBackground().setAlpha(128);
-           //holder.reminderName.getBackground().setAlpha(128);
+            //holder.reminderName.getBackground().setAlpha(128);
             holder.mon.getBackground().setAlpha(128);
             holder.tue.getBackground().setAlpha(128);
             holder.wed.getBackground().setAlpha(128);
@@ -94,37 +93,37 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             holder.sat.getBackground().setAlpha(128);
             holder.sun.getBackground().setAlpha(128);
         }
-        if(!listOfReminders.get(position).isIfMonday())
+        if (!listOfReminders.get(position).isIfMonday())
             holder.mon.setBackgroundColor(525252);
         else
             holder.mon.setBackgroundResource(R.drawable.rounded_corner_title);
 
-        if(!listOfReminders.get(position).isIfTuesday())
+        if (!listOfReminders.get(position).isIfTuesday())
             holder.tue.setBackgroundColor(525252);
         else
             holder.tue.setBackgroundResource(R.drawable.rounded_corner_title);
 
-        if(!listOfReminders.get(position).isIfWednesday())
+        if (!listOfReminders.get(position).isIfWednesday())
             holder.wed.setBackgroundColor(525252);
         else
             holder.wed.setBackgroundResource(R.drawable.rounded_corner_title);
 
-        if(!listOfReminders.get(position).isIfThursday())
+        if (!listOfReminders.get(position).isIfThursday())
             holder.thu.setBackgroundColor(525252);
         else
             holder.thu.setBackgroundResource(R.drawable.rounded_corner_title);
 
-        if(!listOfReminders.get(position).isIfFriday())
+        if (!listOfReminders.get(position).isIfFriday())
             holder.fri.setBackgroundColor(525252);
         else
             holder.fri.setBackgroundResource(R.drawable.rounded_corner_title);
 
-        if(!listOfReminders.get(position).isIfSaturday())
+        if (!listOfReminders.get(position).isIfSaturday())
             holder.sat.setBackgroundColor(525252);
         else
             holder.sat.setBackgroundResource(R.drawable.rounded_corner_title);
 
-        if(!listOfReminders.get(position).isIfSunday())
+        if (!listOfReminders.get(position).isIfSunday())
             holder.sun.setBackgroundColor(525252);
         else
             holder.sun.setBackgroundResource(R.drawable.rounded_corner_title);
@@ -134,7 +133,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
 
     @Override
     public int getItemCount() {
-        if(listOfReminders != null)
+        if (listOfReminders != null)
             return listOfReminders.size();
         return 0;
     }
@@ -152,9 +151,9 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
     }
 
     public class ReminderViewHolder extends RecyclerView.ViewHolder implements
-                View.OnClickListener,
-                GestureDetector.OnGestureListener {
-        TextView reminderName, mon,tue,wed,thu,fri,sat,sun, backgroundView, background;
+            View.OnClickListener,
+            GestureDetector.OnGestureListener {
+        TextView reminderName, mon, tue, wed, thu, fri, sat, sun, backgroundView, background;
         ImageView bluetooth, speaker;
         GestureDetector mGestureDetector;
         Switch isActiveSwitch;
@@ -162,7 +161,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
         public ReminderViewHolder(View view) {
             super(view);
 
-            mGestureDetector = new GestureDetector(view.getContext(),this);
+            mGestureDetector = new GestureDetector(view.getContext(), this);
 
             reminderName = view.findViewById(R.id.nameOfReminder);
             bluetooth = view.findViewById(R.id.imageBT);
@@ -187,7 +186,7 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
             isActiveSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    reminderViewModel.updateIsActiveStatus(isChecked,listOfReminders.get(getAdapterPosition()).getId());
+                    reminderViewModel.updateIsActiveStatus(isChecked, listOfReminders.get(getAdapterPosition()).getId());
                 }
             });
         }
@@ -227,38 +226,26 @@ public class ReminderListAdapter  extends RecyclerView.Adapter<ReminderListAdapt
 
         }
     }
+
     public void setListOfReminders(List<Reminder> listOfReminders) {
         this.listOfReminders = listOfReminders;
         notifyDataSetChanged();
     }
 
-    private AlertDialog AskOption(int position)
-    {
-        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(layoutInflater.getContext())
+    private AlertDialog AskOption(int position) {
 
+        return new AlertDialog.Builder(layoutInflater.getContext())
                 .setTitle("Usuń")
                 .setMessage("Czy na pewno chcesz usunąć ten element?")
-               .setIcon(R.drawable.circleandroidchrome192x192)
-
-                .setPositiveButton("Usuń", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        reminderViewModel.deleteReminderById(listOfReminders.get(position).getId());
-                        listOfReminders.remove(position);
-                        notifyItemRemoved(position);
-                        dialog.dismiss();
-                    }
+                .setIcon(R.drawable.circleandroidchrome192x192)
+                .setPositiveButton("Usuń", (dialog, whichButton) -> {
+                    reminderViewModel.deleteReminderById(listOfReminders.get(position).getId());
+                    listOfReminders.remove(position);
+                    notifyItemRemoved(position);
+                    dialog.dismiss();
                 })
-                .setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                    }
-                })
+                .setNegativeButton("Anuluj", (dialog, which) -> dialog.dismiss())
                 .create();
-
-        return myQuittingDialogBox;
     }
 
 }

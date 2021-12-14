@@ -24,7 +24,7 @@ public class ReminderNotificationActivity extends AppCompatActivity {
     private NotificationReminderListAdapter notificationReminderListAdapter;
     private StatisticsViewModel statisticViewModel;
     private Button confirmButton;
-    private HashMap<Long,Boolean> statmap;
+    private HashMap<Long, Boolean> statmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +33,18 @@ public class ReminderNotificationActivity extends AppCompatActivity {
 
         confirmButton = findViewById(R.id.buttonNotificationConfirm);
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                RecyclerView recyclerView = findViewById(R.id.recycler_view_notification);
-                notificationReminderListAdapter = new NotificationReminderListAdapter(ReminderNotificationActivity.this);
+        Thread t = new Thread(() -> {
+            RecyclerView recyclerView = findViewById(R.id.recycler_view_notification);
+            notificationReminderListAdapter = new NotificationReminderListAdapter(ReminderNotificationActivity.this);
 
-                recyclerView.setAdapter(notificationReminderListAdapter);
+            recyclerView.setAdapter(notificationReminderListAdapter);
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(ReminderNotificationActivity.this));
-                reminderViewModel = new ViewModelProvider(ReminderNotificationActivity.this).get(ReminderViewModel.class);
-                statisticViewModel = new ViewModelProvider(ReminderNotificationActivity.this).get(StatisticsViewModel.class);
-                notificationReminderListAdapter.setStatisticViewModel(statisticViewModel);
+            recyclerView.setLayoutManager(new LinearLayoutManager(ReminderNotificationActivity.this));
+            reminderViewModel = new ViewModelProvider(ReminderNotificationActivity.this).get(ReminderViewModel.class);
+            statisticViewModel = new ViewModelProvider(ReminderNotificationActivity.this).get(StatisticsViewModel.class);
+            notificationReminderListAdapter.setStatisticViewModel(statisticViewModel);
 
-                notificationReminderListAdapter.setReminderViewModel(reminderViewModel);
-            }
+            notificationReminderListAdapter.setReminderViewModel(reminderViewModel);
         });
         t.start();
 
@@ -68,9 +65,9 @@ public class ReminderNotificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 statmap = notificationReminderListAdapter.getStatMap();
-                for(Map.Entry<Long,Boolean> entry: statmap.entrySet()){
+                for (Map.Entry<Long, Boolean> entry : statmap.entrySet()) {
                     LocalDate currentDate = LocalDate.now();
-                    statisticViewModel.insert(new Statistics(entry.getKey(),entry.getValue(),String.valueOf(currentDate.getDayOfMonth()),String.valueOf(currentDate.getMonthValue()),String.valueOf(currentDate.getYear())));
+                    statisticViewModel.insert(new Statistics(entry.getKey(), entry.getValue(), String.valueOf(currentDate.getDayOfMonth()), String.valueOf(currentDate.getMonthValue()), String.valueOf(currentDate.getYear())));
                     Intent intent = new Intent(ReminderNotificationActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

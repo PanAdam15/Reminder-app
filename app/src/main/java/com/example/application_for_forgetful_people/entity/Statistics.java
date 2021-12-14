@@ -49,6 +49,15 @@ public class Statistics {
         this.monthOfForgettingActivity = monthOfForgettingActivity;
         this.yearOfForgettingActivity = yearOfForgettingActivity;
     }
+@Ignore
+    public Statistics(long id, long reminderId, boolean wasForgotten, @NonNull String dayOfForgettingActivity, @NonNull String monthOfForgettingActivity, @NonNull String yearOfForgettingActivity) {
+        this.id = id;
+        this.reminderId = reminderId;
+        this.wasForgotten = wasForgotten;
+        this.dayOfForgettingActivity = dayOfForgettingActivity;
+        this.monthOfForgettingActivity = monthOfForgettingActivity;
+        this.yearOfForgettingActivity = yearOfForgettingActivity;
+    }
 
     public long getId() {
         return id;

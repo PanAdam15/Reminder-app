@@ -312,15 +312,7 @@ public class SettingsActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyy", Locale.ENGLISH);
 
         int amountOfForgot;
-        listOfStatistics.forEach(s -> {
-            try {
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(Objects.requireNonNull(sdf.parse(s.getDayOfForgettingActivity() + " " + s.getMonthOfForgettingActivity() + " " + s.getYearOfForgettingActivity())));
-                datesOfStatistics.add(cal);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        });
+        getDatesOfStatistics(listOfStatistics, datesOfStatistics, sdf);
 
         for (int i = 0; i < daysOfWeek.size(); i++) {
             amountOfForgot = 0;
@@ -328,7 +320,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Date date1 = sdf.parse(sdf.format(daysOfWeek.get(i).getTime()));
                 Date date2 = sdf.parse(sdf.format(datesOfStatistics.get(j).getTime()));
                 boolean b = listOfStatistics.get(j).isWasForgotten();
-                if((date1.equals(date2) ) && b){
+                if((Objects.requireNonNull(date1).equals(date2) ) && b){
                     amountOfForgot++;
                 }
             }
@@ -344,6 +336,23 @@ public class SettingsActivity extends AppCompatActivity {
         LinkedList<Statistics> lastDaysWithAmountOfForgottenActivities = new LinkedList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyy", Locale.ENGLISH);
 
+        getDatesOfStatistics(listOfStatistics, datesOfStatistics, sdf);
+
+        for (Calendar calendar : daysOfWeek) {
+            for (int j = 0; j < datesOfStatistics.size(); j++) {
+                Date date1 = sdf.parse(sdf.format(calendar.getTime()));
+                Date date2 = sdf.parse(sdf.format(datesOfStatistics.get(j).getTime()));
+                if ((date1.equals(date2))) {
+                    lastDaysWithAmountOfForgottenActivities.add(listOfStatistics.get(j));
+                }
+            }
+        }
+
+        return lastDaysWithAmountOfForgottenActivities;
+
+    }
+
+    private void getDatesOfStatistics(List<Statistics> listOfStatistics, ArrayList<Calendar> datesOfStatistics, SimpleDateFormat sdf) {
         listOfStatistics.forEach(s -> {
             try {
                 Calendar cal = Calendar.getInstance();
@@ -353,19 +362,6 @@ public class SettingsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-
-        for (int i = 0; i < daysOfWeek.size(); i++) {
-            for (int j = 0; j < datesOfStatistics.size(); j++) {
-                Date date1 = sdf.parse(sdf.format(daysOfWeek.get(i).getTime()));
-                Date date2 = sdf.parse(sdf.format(datesOfStatistics.get(j).getTime()));
-                if((date1.equals(date2) )){
-                    lastDaysWithAmountOfForgottenActivities.add(listOfStatistics.get(j));
-                }
-            }
-        }
-
-        return lastDaysWithAmountOfForgottenActivities;
-
     }
 
     private ArrayList<Calendar> calculatePastSevenDaysOfWeek(){
