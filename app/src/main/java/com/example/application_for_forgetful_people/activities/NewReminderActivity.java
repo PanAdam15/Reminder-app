@@ -271,12 +271,8 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
                         startActivity(intent);
                         finish();
                     }
-
                 } else {
-
-                    if (nameOfRemidner.trim().length() == 0)
-                        Toast.makeText(NewReminderActivity.this, "Nazwa nie moze byc pusta", Toast.LENGTH_SHORT).show();
-                    else if(nameOfRemidner.length() > 45){
+                    if(nameOfRemidner.length() > 45){
                         Toast.makeText(NewReminderActivity.this, "Nazwa nie moze zawierać więcej niż 45 znaków", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -306,7 +302,9 @@ public class NewReminderActivity extends AppCompatActivity implements TimePicker
 
         chooseTimeOfReminder.setOnClickListener(v -> {
             DialogFragment timePicker = new TimePickerFragment();
+
             timePicker.show(getSupportFragmentManager(), "time picker");
+
         });
 
         switchBluetooth.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

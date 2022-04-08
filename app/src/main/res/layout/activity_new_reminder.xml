@@ -10,14 +10,15 @@
 
     <AutoCompleteTextView
             android:hint="@string/nameOfNewActitity"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="80dp" android:id="@+id/nameOfNewActivity"
             android:background="@drawable/rounded_corner"
             android:textSize="20sp" android:textStyle="bold"
             android:textAlignment="center" android:textColor="#FFFFFF"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:importantForAutofill="no"
-            android:inputType="textShortMessage" android:layout_marginTop="73dp"/>
+            android:inputType="textShortMessage" android:layout_marginTop="73dp" android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"/>
     <TextView
 
             android:layout_width="350dp"
@@ -25,16 +26,17 @@
             android:background="@drawable/rounded_corner"
             android:textColor="#FFFFFF"
             android:textAlignment="viewStart" android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488" app:layout_constraintVertical_bias="0.497"/>
+            app:layout_constraintHorizontal_bias="0.488" app:layout_constraintTop_toBottomOf="@+id/nameOfNewActivity"
+            android:layout_marginStart="10dp" android:layout_marginEnd="10dp"/>
     <Switch
             android:layout_width="wrap_content"
             android:layout_height="60dp" android:id="@+id/switchBluetooth"
             android:rotation="270"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="6dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"/>
+            app:layout_constraintEnd_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toStartOf="@+id/imageButton" app:layout_constraintTop_toTopOf="@+id/textView4"
+            android:layout_marginTop="135dp"/>
     <Switch
             android:layout_width="wrap_content"
             android:layout_height="60dp" android:id="@+id/switchRing"
@@ -45,18 +47,15 @@
             android:layout_marginStart="27dp" app:layout_constraintStart_toEndOf="@+id/AddNew"
             android:layout_marginBottom="218dp"/>
     <ImageButton
-            android:layout_width="0dp"
+            android:layout_width="55dp"
             android:layout_height="35dp" app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
             android:backgroundTint="@android:color/transparent"
             android:id="@+id/imageButton"
             style="@style/Widget.AppCompat.Button.Borderless" android:textAlignment="center" android:scaleX="1.5"
             android:scaleY="1.5"
             android:contentDescription="@string/bluetooth"
-            android:layout_marginTop="58dp"
-            app:layout_constraintTop_toBottomOf="@+id/chooseTimeButton" android:layout_marginBottom="60dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView6" app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintBottom_toBottomOf="@+id/switchBluetooth"
-            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/switchBluetooth"
+            app:layout_constraintEnd_toEndOf="@+id/textView4" app:layout_constraintStart_toEndOf="@+id/colorButton"/>
     <RadioGroup
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -96,15 +95,13 @@
                 android:textSize="18sp" android:textColor="#FFFFFF"/>
     </RadioGroup>
     <ImageView
-            android:layout_width="0dp"
+            android:layout_width="55dp"
             android:layout_height="35dp" app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
             android:id="@+id/imageView"
             android:contentDescription="@string/speaker"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="41dp" app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintBottom_toTopOf="@+id/switchRing"
-            app:layout_constraintTop_toTopOf="@+id/switchBluetooth"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"/>
+            app:layout_constraintStart_toStartOf="@+id/switchBluetooth"
+            app:layout_constraintEnd_toEndOf="@+id/switchBluetooth"
+            app:layout_constraintTop_toBottomOf="@+id/switchBluetooth"/>
     <Button
 
             android:layout_width="65dp"
@@ -126,19 +123,19 @@
             app:layout_constraintStart_toStartOf="@+id/colorButton"/>
     <Button
             android:text="Wybierz Kolor"
-            android:layout_width="115dp"
+            android:layout_width="108dp"
             android:layout_height="56dp" android:id="@+id/colorButton"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" app:layout_constraintStart_toEndOf="@+id/textView5"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="@+id/colorPreview"
+            app:layout_constraintStart_toStartOf="@+id/colorPreview" app:layout_constraintHorizontal_bias="0.643"/>
     <View
             android:layout_width="55dp"
             android:layout_height="42dp" android:id="@+id/colorPreview"
-            android:layout_marginTop="27dp"
-            app:layout_constraintTop_toBottomOf="@+id/colorButton" android:layout_marginBottom="26dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintEnd_toEndOf="@+id/AddNew"
+            app:layout_constraintStart_toStartOf="@+id/AddNew" app:layout_constraintTop_toBottomOf="@+id/colorButton"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"/>
     <TextView
             android:text="Dzień tygodnia"
             android:layout_width="wrap_content"
@@ -151,9 +148,9 @@
             android:text="Typ alarmu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView6"
-            android:textColor="#FFFFFF" android:layout_marginEnd="24dp"
-            android:layout_marginBottom="13dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView4" app:layout_constraintBottom_toTopOf="@+id/imageButton"/>
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton" app:layout_constraintBottom_toTopOf="@+id/imageButton"/>
     <Switch
             android:layout_width="58dp"
             android:layout_height="29dp" android:id="@+id/switch1"
@@ -169,4 +166,6 @@
             android:textSize="8sp"
             app:layout_constraintTop_toBottomOf="@+id/switch1" app:layout_constraintEnd_toEndOf="@+id/switch1"
             app:layout_constraintStart_toStartOf="@+id/switch1" android:textColor="#FFFFFF"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
