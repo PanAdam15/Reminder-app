@@ -13,13 +13,13 @@ Data is stored with inbuilt SQLite database. Application was made by using only 
 
 ![image](https://user-images.githubusercontent.com/84517586/163008657-8c482f0c-411c-4ff0-a6a7-1865bc68ee0b.png)
 
-After adding a new activity, the application returns to its main activity. You can notice that the added item in the center of the screen is displayed as a list item. The reminder view includes the most important user-defined attributes, such as:  
+2.After adding a new activity, the application returns to its main activity. You can notice that the added item in the center of the screen is displayed as a list item. The reminder view includes the most important user-defined attributes, such as:  
 •	Name  
 • Reminder on / off switch  
 • Highlighted days of the week on which the reminder is active  
 • Reminder type icon  
 •	Colour  
-2.In the options and statistics activity you can switch between the color mode by the "Tryb Dzień/Noc" switch. You can also check the name of the bluetooth device with which you are connected. If there is no connection, the word "brak" is displayed as in the picture above. Below is a set of statistics for the last five days on the graph as well as the "STATYSTYKI" button displaying detailed information.
+3.In the options and statistics activity you can switch between the color mode by the "Tryb Dzień/Noc" switch. You can also check the name of the bluetooth device with which you are connected. If there is no connection, the word "brak" is displayed as in the picture above. Below is a set of statistics for the last five days on the graph as well as the "STATYSTYKI" button displaying detailed information.
 ![image](https://user-images.githubusercontent.com/84517586/163009435-259f4c9e-773f-42c4-88ec-2fbf018cc12f.png)
 ![image](https://user-images.githubusercontent.com/84517586/163009724-d03f1c16-faa0-4663-ab2c-fe56daa5668d.png)
 ![image](https://user-images.githubusercontent.com/84517586/163011433-3eeefa80-2c90-4085-ae9a-fc2a7d374cc0.png)  
