@@ -1,8 +1,8 @@
 # Reminder-app
-
+Simple app with personalized reminders that are controlled by bluetooth connection.
 Users can add, edit and delete reminders. It is possible to specify whether the reminder should be triggered
 after losing the Bluetooth connection with the other device, or should it act as a normal system alarm. Users can read statistics and choose one of two color modes. The interface is designed from high-quality prototypes.
-Data is stored with inbuilt SQLite database. Application was made by using only Java language. 
+Data is stored with inbuilt SQLite database. Application was made by using only Java language.  
 ![image](https://user-images.githubusercontent.com/84517586/163011588-b82e6507-e2f4-4931-a15c-edd2950f4985.png)
 
 1.Tapping on plus icon redirects you to new reminder activity. In there user can personalize new reminder by entering name or selecting default one, choosing days from radio buttons, color of its background and switch between bluetooth/normal alarms. Depending on type there is a possibility of selecting fixed time for the reminder to be displayed.
